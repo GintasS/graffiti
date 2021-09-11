@@ -1,7 +1,7 @@
 <h1 align="center">
   <a href="https://git.mif.vu.lt/gisv5653/grafflib">
     <!-- Proporcijos W:H - 1.495:1 -->
-    <img src="/docs/images" alt="Logo" width="149" height="100">
+    <img src="docs/images/"Project Graffitti logo.jpg"" alt="Logo" width="149" height="100">
   </a>
 </h1>
 
