@@ -1,7 +1,7 @@
 <h1 align="center">
   <a href="https://git.mif.vu.lt/gisv5653/grafflib">
     <!-- Proporcijos W:H - 1.495:1 -->
-    <img src="https://scontent.fvno1-1.fna.fbcdn.net/v/t1.15752-9/s2048x2048/241146083_537648694158251_274877996684255014_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=ae9488&_nc_ohc=Enr9exSY5_UAX8spiqw&_nc_ht=scontent.fvno1-1.fna&oh=cffec07795fbff8ebd20fecd738f5618&oe=6160D7A2" alt="Logo" width="149" height="100">
+    <img src="/docs/images" alt="Logo" width="149" height="100">
   </a>
 </h1>
 
