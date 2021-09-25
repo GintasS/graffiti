@@ -17,6 +17,7 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>GraffLibAPI</Name>
     <RootNamespace>GraffLibAPI</RootNamespace>
+    <InterpreterId>CondaEnv|CondaEnv|GraffLibEnv</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +76,9 @@
     <Content Include="GraffLibAPI\templates\contact.html" />
     <Content Include="GraffLibAPI\templates\index.html" />
     <Content Include="GraffLibAPI\templates\layout.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|GraffLibEnv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 
