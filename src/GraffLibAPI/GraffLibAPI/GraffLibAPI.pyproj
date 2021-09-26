@@ -17,6 +17,8 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>GraffLibAPI</Name>
     <RootNamespace>GraffLibAPI</RootNamespace>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +29,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GraffLibAPI\controllers\maincontroller.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\controllers\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\version.py">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +47,7 @@
     <Folder Include="GraffLibAPI\controllers\" />
     <Folder Include="GraffLibAPI\main\" />
     <Folder Include="GraffLibAPI\models\" />
+    <Folder Include="GraffLibAPI\views\" />
     <Folder Include="GraffLibAPI\utils\" />
     <Folder Include="GraffLibAPI\services\" />
     <Folder Include="GraffLibAPI\static\" />
