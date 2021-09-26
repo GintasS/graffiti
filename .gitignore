@@ -149,3 +149,8 @@ cython_debug/
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+
+# Ignoring misc files
+*.pyc
+*.cache
+*.suo
