@@ -1,0 +1,747 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a GraffLib server that exposes various endpoints for client app.",
+    "version": "1.0.0",
+    "title": "GraffLib REST API"
+  },
+  "host": "localhost:8000",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Endpoints for dealing directly with user account data.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Images",
+      "description": "Endpoints for dealing directly with graffiti images.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Markers",
+      "description": "Endpoints for dealing directly with GIS markers.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Cities",
+      "description": "Endpoints for dealing with cities.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users.",
+        "description": "",
+        "operationId": "getUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get all users."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user.",
+        "description": "",
+        "operationId": "postUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to create a new user."
+          },
+          "422": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user by UserId.",
+        "description": "",
+        "operationId": "getUserById",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to return.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get a specific user."
+          },
+          "404": {
+            "description": "User was not found."
+          }
+        }
+      }
+    },
+    "/users/{userId}/password": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user's password.",
+        "description": "",
+        "operationId": "patchUserPassword",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to update password.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to update user's password."
+          },
+          "404": {
+            "description": "User was not found."
+          }
+        }
+      }
+    },
+    "/users/{userId}/email": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user's email.",
+        "description": "",
+        "operationId": "patchUserEmail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to update email.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to update user's email."
+          },
+          "404": {
+            "description": "User was not found."
+          }
+        }
+      }
+    },
+    "/users/{userId}/images": {
+      "get": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "Get all user's images.",
+        "description": "",
+        "operationId": "getUserImages",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to get all the images.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get all images for the user."
+          },
+          "404": {
+            "description": "User was not found."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "Create a new image for the user.",
+        "description": "",
+        "operationId": "postUserImage",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to create a new image for.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to create a new image."
+          }
+        }
+      }
+    },
+    "/markers": {
+      "post": {
+        "tags": [
+          "Markers"
+        ],
+        "summary": "Create a new marker.",
+        "description": "",
+        "operationId": "postMarker",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to create a new marker."
+          },
+          "422": {
+            "description": "Marker already exists."
+          }
+        }
+      }
+    },
+    "/{cityName}/markers": {
+      "get": {
+        "tags": [
+          "Markers"
+        ],
+        "summary": "Get all markers for the city.",
+        "description": "",
+        "operationId": "getCityMarkers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cityName",
+            "in": "path",
+            "description": "Name of the city to get all markers for.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get all markers for the city."
+          },
+          "404": {
+            "description": "City was not found."
+          }
+        }
+      }
+    },
+    "/markers/{markerId}/information": {
+      "get": {
+        "tags": [
+          "Markers"
+        ],
+        "summary": "Get marker's information.",
+        "description": "",
+        "operationId": "getMarkerInformation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "markerId",
+            "in": "path",
+            "description": "ID of Marker to get the information for.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get specific information for the marker."
+          },
+          "404": {
+            "description": "Marker was not found."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Markers"
+        ],
+        "summary": "Update marker's information.",
+        "description": "",
+        "operationId": "updateMarkerInformation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "markerId",
+            "in": "path",
+            "description": "ID of Marker to get the information for.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to update marker's information."
+          },
+          "404": {
+            "description": "Marker was not found."
+          }
+        }
+      }
+    },
+    "/markers/{markerId}/images": {
+      "get": {
+        "tags": [
+          "Markers"
+        ],
+        "summary": "Get images for the marker.",
+        "description": "",
+        "operationId": "getImagesForMarker",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "markerId",
+            "in": "path",
+            "description": "ID of Marker to get the images for.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get images for the specific marker."
+          },
+          "404": {
+            "description": "Marker was not found."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Markers"
+        ],
+        "summary": "Create a new image for the marker.",
+        "description": "",
+        "operationId": "postImagesForMarker",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "markerId",
+            "in": "path",
+            "description": "ID of Marker to get the information for.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to update marker's information."
+          },
+          "404": {
+            "description": "Marker was not found."
+          },
+          "422": {
+            "description": "Image already exists."
+          }
+        }
+      }
+    },
+    "/cities": {
+      "get": {
+        "tags": [
+          "Cities"
+        ],
+        "summary": "Get all cities.",
+        "description": "",
+        "operationId": "getCities",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to get all the cities."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cities"
+        ],
+        "summary": "Create a new city.",
+        "description": "",
+        "operationId": "postCity",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authorized."
+          },
+          "403": {
+            "description": "User does not have sufficient access rights to create a city."
+          },
+          "422": {
+            "description": "City already exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "description": "user privillege status",
+          "enum": [
+            "user",
+            "admin"
+          ]
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "imageMetadata": {
+          "$ref": "#/definitions/ImageMetadata"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "imageDescription": {
+          "$ref": "#/definitions/ImageDescription"
+        }
+      }
+    },
+    "ImageMetadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userPhotoId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "extension": {
+          "type": "string",
+          "description": "Image's extension",
+          "enum": [
+            "png",
+            "jpeg",
+            "jpg"
+          ]
+        },
+        "Latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "photographyTime": {
+          "type": "string"
+        },
+        "uploadTime": {
+          "type": "string"
+        }
+      }
+    },
+    "ImageDescription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userPhotoId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "graffitiObject": {
+          "type": "string"
+        },
+        "photoDirection": {
+          "type": "string",
+          "description": "Direction from which the photo was taken.",
+          "enum": [
+            "front",
+            "angle"
+          ]
+        }
+      }
+    },
+    "City": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
