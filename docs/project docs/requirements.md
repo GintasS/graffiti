@@ -19,7 +19,7 @@
 		- [Usability](#usability)
 		- [Other](#other)	
 - [Technologies](#technologies)
-- [Additional Information](#additional information)
+- [Additional Information](#additional-information)
 
 
 </details>
@@ -154,6 +154,7 @@ Other scenarios are also possible.
 	- Back-end:
 		- Python
 		- Flask
+    - Swagger
 		- Packages:
 			- Click
 			- itsdangerous
@@ -170,7 +171,7 @@ Other scenarios are also possible.
 	- OS with network adapter enabled.
 	- OS that supports Python and it's packages.
 
-## Additional Information
+## Additional information
 
 - GraffLib Project Vision can be found here: [link](https://miro.com/app/board/o9J_lyyCsbc=/).
 - GraffLib MVP can be found here: [link](https://miro.com/app/board/o9J_lws9LDk=/).
