@@ -154,6 +154,7 @@ Other scenarios are also possible.
 	- Back-end:
 		- Python
 		- Flask
+    - Swagger
 		- Packages:
 			- Click
 			- itsdangerous
