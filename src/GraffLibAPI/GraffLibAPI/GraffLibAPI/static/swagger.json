@@ -87,9 +87,6 @@
               "$ref": "#/definitions/CreateUserResponse"
             }
           },
-          "400": {
-            "description": "Bad request."
-          },
           "405": {
             "description": "Validation exception."
           },
@@ -838,13 +835,13 @@
     "CreateUserRequest": {
       "type": "object",
       "properties": {
-        "userName": {
+        "user_name": {
           "type": "string"
         },
-        "firstName": {
+        "first_name": {
           "type": "string"
         },
-        "lastName": {
+        "last_name": {
           "type": "string"
         },
         "email": {
@@ -853,7 +850,7 @@
         "password": {
           "type": "string"
         },
-        "status": {
+        "role": {
           "type": "string",
           "description": "user privillege status",
           "enum": [
