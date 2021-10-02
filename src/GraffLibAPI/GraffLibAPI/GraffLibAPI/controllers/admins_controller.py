@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request
-from GraffLibAPI.models.requests.create_user_request import CreateUserRequest, CreateUserRequestSchema
+from flask import Blueprint, request
 from GraffLibAPI.controllers.users_controller import users
+from GraffLibAPI.models.requests.create_user_request import CreateUserRequest, CreateUserRequestSchema
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.

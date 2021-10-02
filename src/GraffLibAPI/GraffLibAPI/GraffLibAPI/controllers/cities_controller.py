@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, request
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
