@@ -29,7 +29,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GraffLibAPI\controllers\citycontroller.py">
+    <Compile Include="GraffLibAPI\controllers\adminscontroller.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\controllers\citiescontroller.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\controllers\imagescontroller.py">
