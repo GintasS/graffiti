@@ -5,20 +5,22 @@ from flask import Blueprint, render_template, request
 
 # This might be useful if you want to create multiple versions of an API or simply 
 # divide services within the same application.
-blueprint_users = Blueprint('api-users', __name__, url_prefix='/users')
+blueprint_images = Blueprint('api-images', __name__, url_prefix='/v1/users')
 
-@blueprint_users.route('/<int:user_id>/images', methods=['GET', 'POST'])
-def entity(user_id):
-    if request.method == "GET":
-        return {
-            'id': entity_id,
-            'message': 'This endpoint should return the entity {} details'.format(entity_id),
-            'method': request.method
-        }
-    if request.method == "POST":
-        return {
-            'id': entity_id,
-            'message': 'This endpoint should update the entity {}'.format(entity_id),
-            'method': request.method,
-            'body': request.json
-        }
+@blueprint_images.route('/<int:user_id>/images', methods=['GET'])
+def getUserImage(user_id):
+    return {
+        'message': 'This GET6 endpoint should update the entity',
+        'method': request.method,
+        'body': request.json,
+        'userId': user_id
+    }
+
+@blueprint_images.route('/<int:user_id>/images', methods=['POST'])
+def createUserImage(user_id):
+    return {
+        'message': 'This POST7 endpoint should update the entity',
+        'method': request.method,
+        'body': request.json,
+        'userId': user_id
+    }
