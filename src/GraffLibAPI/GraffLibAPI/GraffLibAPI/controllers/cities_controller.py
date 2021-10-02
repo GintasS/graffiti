@@ -8,7 +8,7 @@ from flask import Blueprint, render_template, request
 blueprint_cities = Blueprint('api-cities', __name__, url_prefix='/v1/cities')
 
 @blueprint_cities.route('', methods=['GET'])
-def getCity():
+def get_city():
     return {
         'message': 'This GET4 endpoint should update the entity',
         'method': request.method,
@@ -16,7 +16,7 @@ def getCity():
     }
 
 @blueprint_cities.route('', methods=['POST'])
-def createCity():
+def create_city():
     return {
         'message': 'This POST5 endpoint should update the entity',
         'method': request.method,

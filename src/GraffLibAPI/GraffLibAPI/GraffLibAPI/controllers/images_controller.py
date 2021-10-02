@@ -8,7 +8,7 @@ from flask import Blueprint, render_template, request
 blueprint_images = Blueprint('api-images', __name__, url_prefix='/v1/users')
 
 @blueprint_images.route('/<int:user_id>/images', methods=['GET'])
-def getUserImage(user_id):
+def get_user_image(user_id):
     return {
         'message': 'This GET6 endpoint should update the entity',
         'method': request.method,
@@ -17,7 +17,7 @@ def getUserImage(user_id):
     }
 
 @blueprint_images.route('/<int:user_id>/images', methods=['POST'])
-def createUserImage(user_id):
+def create_user_image(user_id):
     return {
         'message': 'This POST7 endpoint should update the entity',
         'method': request.method,

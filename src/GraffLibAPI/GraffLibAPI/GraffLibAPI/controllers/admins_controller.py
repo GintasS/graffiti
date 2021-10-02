@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request
+from GraffLibAPI.models.requests.create_user_request import CreateUserRequest, CreateUserRequestSchema
+from GraffLibAPI.controllers.users_controller import users
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
@@ -8,15 +10,18 @@ from flask import Blueprint, render_template, request
 blueprint_admins = Blueprint('api-admins', __name__, url_prefix='/v1')
 
 @blueprint_admins.route('/admins/users', methods=['GET'])
-def getAllUsers():
+def get_users():
+
+    schema = CreateUserRequestSchema(many=True)
+
     return {
-        'message': 'This GET1 endpoint should update the entity',
+        'message': 'This PATCH13 endpoint should update the entity',
         'method': request.method,
-        'body': request.json
+        'body': schema.dump(users)
     }
 
 @blueprint_admins.route('/users/<int:user_id>/', methods=['GET'])
-def getSpecificUser(user_id):
+def get_specific_user(user_id):
     return {
         'message': 'This GET2 SPECIFIC endpoint should update the entity',
         'method': request.method,
@@ -25,7 +30,7 @@ def getSpecificUser(user_id):
     }
 
 @blueprint_admins.route('/users/<int:user_id>/', methods=['DELETE'])
-def deleteSpecificUser(user_id):
+def delete_specific_user(user_id):
     return {
         'message': 'This DELETE3 endpoint should update the entity',
         'method': request.method,
@@ -35,7 +40,7 @@ def deleteSpecificUser(user_id):
 
 
 @blueprint_admins.route('/users/<int:user_id>/images/<int:image_id>', methods=['DELETE'])
-def deleteSpecificImageForUser(user_id, image_id):
+def delete_specific_image_for_user(user_id, image_id):
     return {
         'message': 'This endpoint should update the entity',
         'method': request.method,
@@ -43,3 +48,4 @@ def deleteSpecificImageForUser(user_id, image_id):
         'userId': user_id,
         'imageId': image_id
     }
+

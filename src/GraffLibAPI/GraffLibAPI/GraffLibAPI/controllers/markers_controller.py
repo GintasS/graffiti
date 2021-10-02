@@ -8,7 +8,7 @@ from flask import Blueprint, render_template, request
 blueprint_markers = Blueprint('api-markers', __name__, url_prefix='/v1')
 
 @blueprint_markers.route('/<string:city_name>/markers', methods=['GET'])
-def getCityMarker(city_name):
+def get_city_markers(city_name):
     return {
         'message': 'This GET8 endpoint should update the entity',
         'method': request.method,
@@ -17,7 +17,7 @@ def getCityMarker(city_name):
     }
 
 @blueprint_markers.route('/<string:city_name>/markers', methods=['POST'])
-def createCityMarker(city_name):
+def create_city_marker(city_name):
     return {
         'message': 'This POST9 endpoint should update the entity',
         'method': request.method,
@@ -26,7 +26,7 @@ def createCityMarker(city_name):
     }
 
 @blueprint_markers.route('/markers/<int:marker_id>/images', methods=['GET'])
-def getImagesForCityMarker(marker_id):
+def get_images_for_city_marker(marker_id):
     return {
         'message': 'This GET232 should update the entity',
         'method': request.method,
@@ -36,7 +36,7 @@ def getImagesForCityMarker(marker_id):
 
 
 @blueprint_markers.route('/markers/<int:marker_id>/images', methods=['POST'])
-def createImageForCityMarker(marker_id):
+def create_image_for_city_marker(marker_id):
     return {
         'message': 'This POST11 should update the entity',
         'method': request.method,

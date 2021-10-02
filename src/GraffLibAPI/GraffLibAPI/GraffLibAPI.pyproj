@@ -29,22 +29,46 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GraffLibAPI\controllers\adminscontroller.py">
+    <Compile Include="GraffLibAPI\controllers\admins_controller.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\controllers\citiescontroller.py">
+    <Compile Include="GraffLibAPI\controllers\cities_controller.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\controllers\imagescontroller.py">
+    <Compile Include="GraffLibAPI\controllers\images_controller.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\controllers\markerscontroller.py">
+    <Compile Include="GraffLibAPI\controllers\markers_controller.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\controllers\userscontroller.py">
+    <Compile Include="GraffLibAPI\controllers\users_controller.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\controllers\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\enums\RoleType.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\enums\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\requests\create_user_request.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\requests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\responses\create_user_response.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\responses\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\user_model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\version.py">
@@ -59,6 +83,9 @@
     <Folder Include="GraffLibAPI\controllers\" />
     <Folder Include="GraffLibAPI\main\" />
     <Folder Include="GraffLibAPI\models\" />
+    <Folder Include="GraffLibAPI\models\enums\" />
+    <Folder Include="GraffLibAPI\models\responses\" />
+    <Folder Include="GraffLibAPI\models\requests\" />
     <Folder Include="GraffLibAPI\utils\" />
     <Folder Include="GraffLibAPI\services\" />
     <Folder Include="GraffLibAPI\static\" />
@@ -71,6 +98,7 @@
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="libman.json" />
     <Content Include="requirements.txt" />
     <Content Include="GraffLibAPI\static\content\bootstrap.css" />
     <Content Include="GraffLibAPI\static\content\bootstrap.min.css" />
