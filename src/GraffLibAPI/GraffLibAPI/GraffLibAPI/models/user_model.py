@@ -3,6 +3,8 @@ import datetime as dt
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
 from marshmallow import Schema, fields, validate, ValidationError
 from GraffLibAPI.models.enums import RoleType
+from marshmallow_enum import EnumField
+from GraffLibAPI.configuration.constants import *
 
 class UserModel():
     def __init__(self, user_name, first_name, last_name, email, password, role):
@@ -25,10 +27,10 @@ class UserModel():
 # Other: https://marshmallow.readthedocs.io/en/stable/quickstart.html
 # Validators: https://marshmallow.readthedocs.io/en/stable/marshmallow.validate.html
 class UserModelSchema(Schema):
-    user_name = fields.Str(validate=validate.Length(min=6, max=256, error="Username must be between 6 and 256 characters."))
+    user_name = fields.Str(validate=validate.Length(min=USERNAME_MIN_LENGTH, max=USERNAME_MAX_LENGTH, error=USERNAME_VALIDATION_MSG))
     first_name = fields.Str()
     last_name = fields.Str()
-    email = fields.Email(error="Email address must be a valid one.");
-    password = fields.Str(validate=validate.Length(min=8, max=128, error="Password must be between 8 and 128 characters."))
-    role = fields.Str(validate=validate.OneOf(["User", "Admin"], error="User role must be either:'User' or 'Admin'."))
+    email = fields.Email(min=EMAIL_MIN_LENGTH, max=EMAIL_MAX_LENGTH, error=EMAIL_VALIDATION_MSG)
+    password = fields.Str(validate=validate.Length(min=PASSWORD_MIN_LENGTH, max=PASSWORD_MAX_LENGTH, error=PASSWORD_VALIDATION_MSG))
+    role = EnumField(RoleType.RoleType)
     created_at = fields.Date()
