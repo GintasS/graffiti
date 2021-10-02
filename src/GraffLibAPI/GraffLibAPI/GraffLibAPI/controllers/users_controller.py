@@ -24,7 +24,7 @@ def create_user():
     try:
         create_user_request = CreateUserRequestSchema().load(request.get_json())
     except ValidationError as err:
-        return jsonify(err.messages), 405
+        return jsonify(err.messages), 400
     except:
         return "Internal server errror.", 500
     
