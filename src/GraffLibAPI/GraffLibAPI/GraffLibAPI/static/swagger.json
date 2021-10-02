@@ -6,11 +6,19 @@
     "title": "GraffLib REST API"
   },
   "host": "localhost:8000",
-  "basePath": "/v2",
+  "basePath": "/v1",
   "tags": [
     {
       "name": "Users",
       "description": "Endpoints for dealing directly with user account data.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Admins",
+      "description": "Endpoints for managing user data.",
       "externalDocs": {
         "description": "Find out more",
         "url": "http://swagger.io"
@@ -43,18 +51,204 @@
 
   ],
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/users": {
-      "get": {
+      "post": {
         "tags": [
           "Users"
         ],
+        "summary": "Create a new user.",
+        "description": "",
+        "operationId": "postUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be added to the system.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/CreateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
+            "description": "User already exists."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/users/password-recovery": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Send a password recovery email.",
+        "description": "",
+        "operationId": "sendPasswordRecoveryEmail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendUserPasswordRecoveryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted operation."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "404": {
+            "description": "User was not found."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+
+        }
+      }
+    },
+    "/users/password": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user's password after sending recovery email.",
+        "description": "",
+        "operationId": "updateUserPasswordAfterRecoveryEmail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserPasswordRecoveryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
+            "description": "User didn't request password change."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user's password when user is authenticated.",
+        "description": "",
+        "operationId": "updateUserPasswordUserAuthenticated",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserPasswordUserAuthenticatedRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authenticated."
+          },
+          "403": {
+            "description": "User is not authorized."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "422": {
+            "description": "User can't update other user passwords, only his/her owns."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+
+    "/admins/users": {
+      "get": {
+        "tags": [
+          "Admins"
+        ],
         "summary": "Get all users.",
         "description": "",
-        "operationId": "getUsers",
+        "operationId": "getAllUsersByAdmin",
         "consumes": [
           "application/json"
         ],
@@ -63,56 +257,35 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation."
+            "description": "Successful operation.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to get all users."
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Create a new user.",
-        "description": "",
-        "operationId": "postUsers",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "Successful operation."
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
             "description": "User is not authorized."
           },
-          "403": {
-            "description": "User does not have sufficient access rights to create a new user."
-          },
-          "422": {
-            "description": "User already exists."
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
     },
+
     "/users/{userId}": {
       "get": {
         "tags": [
-          "Users"
+          "Admins"
         ],
         "summary": "Get a user by UserId.",
         "description": "",
-        "operationId": "getUserById",
+        "operationId": "getUserByIdByAdmin",
         "consumes": [
           "application/json"
         ],
@@ -131,28 +304,32 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation"
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to get a specific user."
+            "description": "User is not authorized."
           },
           "404": {
             "description": "User was not found."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
-      }
-    },
-    "/users/{userId}/password": {
-      "patch": {
+      },
+      "delete": {
         "tags": [
-          "Users"
+          "Admins"
         ],
-        "summary": "Update user's password.",
+        "summary": "Delete a specific user.",
         "description": "",
-        "operationId": "patchUserPassword",
+        "operationId": "deleteUserByAdmin",
         "consumes": [
           "application/json"
         ],
@@ -163,36 +340,40 @@
           {
             "name": "userId",
             "in": "path",
-            "description": "ID of User to update password.",
+            "description": "ID of User to delete.",
             "required": true,
             "type": "integer",
             "format": "int64"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful operation"
+          "204": {
+            "description": "No content."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to update user's password."
+            "description": "User is not authorized."
           },
           "404": {
             "description": "User was not found."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
     },
-    "/users/{userId}/email": {
-      "patch": {
+
+    "/users/{userId}/images/{imageId}": {
+      "delete": {
         "tags": [
-          "Users"
+          "Admins"
         ],
-        "summary": "Update user's email.",
+        "summary": "Delete user's image.",
         "description": "",
-        "operationId": "patchUserEmail",
+        "operationId": "deleteUserSpecificImage",
         "consumes": [
           "application/json"
         ],
@@ -203,34 +384,46 @@
           {
             "name": "userId",
             "in": "path",
-            "description": "ID of User to update email.",
+            "description": "ID of User to delete a specific image for.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "imageId",
+            "in": "path",
+            "description": "ID of Image to delete.",
             "required": true,
             "type": "integer",
             "format": "int64"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful operation"
+          "204": {
+            "description": "No content."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to update user's email."
+            "description": "User is not authorized."
           },
           "404": {
-            "description": "User was not found."
+            "description": "User or the image was not found."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
     },
+
     "/users/{userId}/images": {
       "get": {
         "tags": [
           "Images"
         ],
-        "summary": "Get all user's images.",
+        "summary": "Get user's images.",
         "description": "",
         "operationId": "getUserImages",
         "consumes": [
@@ -251,16 +444,25 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation."
+            "description": "Successful operation.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Image"
+              }
+            }
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to get all images for the user."
+            "description": "User is not authorized."
           },
           "404": {
             "description": "User was not found."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       },
@@ -285,57 +487,49 @@
             "required": true,
             "type": "integer",
             "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Image object that needs to be added to the system.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateImageRequest"
+            }
           }
         ],
         "responses": {
           "201": {
-            "description": "Successful operation."
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/CreateImageResponse"
+            }
           },
           "400": {
             "description": "Bad request."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to create a new image."
+            "description": "User is not authorized."
+          },
+          "404": {
+            "description": "User was not found."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
+            "description": "Image already exists."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
     },
-    "/markers": {
-      "post": {
-        "tags": [
-          "Markers"
-        ],
-        "summary": "Create a new marker.",
-        "description": "",
-        "operationId": "postMarker",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "201": {
-            "description": "Successful operation."
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "User is not authorized."
-          },
-          "403": {
-            "description": "User does not have sufficient access rights to create a new marker."
-          },
-          "422": {
-            "description": "Marker already exists."
-          }
-        }
-      }
-    },
+
     "/{cityName}/markers": {
       "get": {
         "tags": [
@@ -361,66 +555,30 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation."
-          },
-          "401": {
-            "description": "User is not authorized."
-          },
-          "403": {
-            "description": "User does not have sufficient access rights to get all markers for the city."
+            "description": "Successful operation.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Marker"
+              }
+            }
           },
           "404": {
             "description": "City was not found."
-          }
-        }
-      }
-    },
-    "/markers/{markerId}/information": {
-      "get": {
-        "tags": [
-          "Markers"
-        ],
-        "summary": "Get marker's information.",
-        "description": "",
-        "operationId": "getMarkerInformation",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "markerId",
-            "in": "path",
-            "description": "ID of Marker to get the information for.",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation."
           },
-          "401": {
-            "description": "User is not authorized."
-          },
-          "403": {
-            "description": "User does not have sufficient access rights to get specific information for the marker."
-          },
-          "404": {
-            "description": "Marker was not found."
+          "500": {
+            "description": "Internal server error."
           }
         }
       },
-      "put": {
+
+      "post": {
         "tags": [
           "Markers"
         ],
-        "summary": "Update marker's information.",
+        "summary": "Create a new marker for the city.",
         "description": "",
-        "operationId": "updateMarkerInformation",
+        "operationId": "postCityMarker",
         "consumes": [
           "application/json"
         ],
@@ -429,39 +587,51 @@
         ],
         "parameters": [
           {
-            "name": "markerId",
+            "name": "cityName",
             "in": "path",
-            "description": "ID of Marker to get the information for.",
+            "description": "Name of the city to create a new marker for.",
             "required": true,
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful operation."
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/Marker"
+            }
           },
           "400": {
             "description": "Bad request."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to update marker's information."
+            "description": "User is not authorized."
           },
           "404": {
-            "description": "Marker was not found."
+            "description": "City was not found."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
+            "description": "Marker already exists."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
     },
+
     "/markers/{markerId}/images": {
       "get": {
         "tags": [
           "Markers"
         ],
-        "summary": "Get images for the marker.",
+        "summary": "Get all images for the marker.",
         "description": "",
         "operationId": "getImagesForMarker",
         "consumes": [
@@ -474,7 +644,7 @@
           {
             "name": "markerId",
             "in": "path",
-            "description": "ID of Marker to get the images for.",
+            "description": "ID of Marker to get all the images for.",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -482,16 +652,16 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful operation."
-          },
-          "401": {
-            "description": "User is not authorized."
-          },
-          "403": {
-            "description": "User does not have sufficient access rights to get images for the specific marker."
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/GetCityMarkerImagesResponse"
+            }
           },
           "404": {
             "description": "Marker was not found."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       },
@@ -501,7 +671,7 @@
         ],
         "summary": "Create a new image for the marker.",
         "description": "",
-        "operationId": "postImagesForMarker",
+        "operationId": "postImageForMarker",
         "consumes": [
           "application/json"
         ],
@@ -512,30 +682,39 @@
           {
             "name": "markerId",
             "in": "path",
-            "description": "ID of Marker to get the information for.",
+            "description": "ID of Marker to create a new image for.",
             "required": true,
             "type": "integer",
             "format": "int64"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful operation."
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/CreateCityMarkerImageResponse"
+            }
           },
           "400": {
             "description": "Bad request."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to update marker's information."
+            "description": "User is not authorized."
           },
           "404": {
             "description": "Marker was not found."
           },
-          "422": {
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
             "description": "Image already exists."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
@@ -547,7 +726,7 @@
         ],
         "summary": "Get all cities.",
         "description": "",
-        "operationId": "getCities",
+        "operationId": "getAllCities",
         "consumes": [
           "application/json"
         ],
@@ -559,10 +738,13 @@
             "description": "Successful operation."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to get all the cities."
+            "description": "User is not authorized."
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       },
@@ -579,21 +761,41 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "City object that needs to be added to the system.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCityRequest"
+            }
+          }
+        ],
         "responses": {
-          "200": {
-            "description": "Successful operation."
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/CreateCityResponse"
+            }
           },
           "400": {
             "description": "Bad request."
           },
           "401": {
-            "description": "User is not authorized."
+            "description": "User is not authenticated."
           },
           "403": {
-            "description": "User does not have sufficient access rights to create a city."
+            "description": "User is not authorized."
           },
-          "422": {
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
             "description": "City already exists"
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
@@ -632,6 +834,95 @@
         }
       }
     },
+
+    "CreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "description": "user privillege status",
+          "enum": [
+            "user",
+            "admin"
+          ]
+        }
+      }
+    },
+
+    "CreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+
+    "SendUserPasswordRecoveryRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+
+    "UpdateUserPasswordRecoveryRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        }
+      }
+    },
+
+    "UpdateUserPasswordUserAuthenticatedRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "oldPassword": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        }
+      }
+    },
+
+
+
+
+
+
+
     "Image": {
       "type": "object",
       "properties": {
@@ -649,6 +940,57 @@
         }
       }
     },
+
+    "ImageModel": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "imageMetadata": {
+          "$ref": "#/definitions/ImageMetadata"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "imageDescription": {
+          "$ref": "#/definitions/ImageDescription"
+        }
+      }
+    },
+
+
+    "CreateImageRequest": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "imageMetadataModel": {
+          "$ref": "#/definitions/ImageMetadataModel"
+        },
+        "imageDescription": {
+          "$ref": "#/definitions/ImageDescriptionModel"
+        }
+      }
+    },
+
+    "CreateImageResponse": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "imageMetadataModel": {
+          "$ref": "#/definitions/ImageMetadataModel"
+        },
+        "imageDescription": {
+          "$ref": "#/definitions/ImageDescriptionModel"
+        }
+      }
+    },
+
+
     "ImageMetadata": {
       "type": "object",
       "properties": {
@@ -685,6 +1027,65 @@
         }
       }
     },
+
+    "ImageMetadataModel": {
+      "type": "object",
+      "properties": {
+        "extension": {
+          "type": "string",
+          "description": "Image's extension",
+          "enum": [
+            "png",
+            "jpeg",
+            "jpg"
+          ]
+        },
+
+        "coordinates": {
+          "$ref": "#/definitions/CoordinatesModel"
+        },
+
+
+        "photographyTime": {
+          "type": "string"
+        },
+        "uploadTime": {
+          "type": "string"
+        }
+      }
+    },
+
+    "Coordinates": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+
+    "CoordinatesModel": {
+      "properties": {
+        "Latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+
+
     "ImageDescription": {
       "type": "object",
       "properties": {
@@ -712,6 +1113,191 @@
         }
       }
     },
+
+
+    "ImageDescriptionModel": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "graffitiObject": {
+          "type": "string"
+        },
+        "photoDirection": {
+          "type": "string",
+          "description": "Direction from which the photo was taken.",
+          "enum": [
+            "front",
+            "angle"
+          ]
+        }
+      }
+    },
+
+    "Marker": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+
+        "statistics": {
+          "$ref": "#/definitions/MarkerStatistics"
+        },
+
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        }
+      }
+    },
+
+    "MarkerModel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+
+        "statistics": {
+          "$ref": "#/definitions/MarkerStatisticsModel"
+        },
+
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        }
+      }
+    },
+
+    "MarkerStatistics": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfImages": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+
+    "MarkerStatisticsModel": {
+      "type": "object",
+      "properties": {
+        "numberOfImages": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+
+
+    "GetCityMarkersResponse": {
+      "type": "object",
+      "properties": {
+        "cityMarkers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Marker"
+          }
+        }
+      }
+    },
+
+    "GetCityMarkerImagesResponse": {
+      "type": "object",
+      "properties": {
+        "markerImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        }
+      }
+    },
+
+    "CreateCityMarkerImageRequest": {
+      "type": "object",
+      "properties": {
+        "markerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "image": {
+          "$ref": "#/definitions/ImageModel"
+        }
+      }
+    },
+
+    "CreateCityMarkerImageResponse": {
+      "type": "object",
+      "properties": {
+        "markerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "image": {
+          "$ref": "#/definitions/Image"
+        }
+      }
+    },
+
+    "GetCitiesResponse": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/City"
+          }
+        }
+      }
+    },
+
+    "CreateCityRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+
+    "CreateCityResponse": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "$ref": "#/definitions/City"
+        }
+      }
+    },
+
     "City": {
       "type": "object",
       "properties": {
@@ -724,6 +1310,9 @@
         }
       }
     },
+
+
+
     "ApiResponse": {
       "type": "object",
       "properties": {
