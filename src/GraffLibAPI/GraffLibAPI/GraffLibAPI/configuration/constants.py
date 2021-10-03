@@ -1,3 +1,5 @@
+import os
+
 # Validation limits
 # UserModel
 USERNAME_MIN_LENGTH = 6
@@ -14,3 +16,7 @@ EMAIL_MAX_LENGTH = 320
 USERNAME_VALIDATION_MSG = "Username must be between 6 and 256 characters."
 EMAIL_VALIDATION_MSG = "Email address must be a valid one."
 PASSWORD_VALIDATION_MSG = "Password must be between 8 and 128 characters."
+
+# Database constants
+DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/database/main-db.db"
+SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
