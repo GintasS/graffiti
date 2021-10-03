@@ -4,6 +4,6 @@ from enum import Enum
 # It just defines a class called RoleType that inherits from Enum 
 # and that defines two types: 
 # USER and ADMIN.
-class RoleType(Enum):
+class RoleType(str, Enum):
     USER = "USER"
     ADMIN = "ADMIN"

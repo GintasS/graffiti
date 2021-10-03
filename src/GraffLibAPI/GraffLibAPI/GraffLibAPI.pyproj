@@ -53,6 +53,24 @@
     <Compile Include="GraffLibAPI\controllers\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\database\db_setup.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\database\entities\user_entity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\database\entities\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\database\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\mappings\mappings.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\mappings\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\enums\RoleType.py">
       <SubType>Code</SubType>
     </Compile>
@@ -87,12 +105,15 @@
   <ItemGroup>
     <Folder Include="GraffLibAPI\" />
     <Folder Include="GraffLibAPI\controllers\" />
+    <Folder Include="GraffLibAPI\database\entities\" />
     <Folder Include="GraffLibAPI\main\" />
     <Folder Include="GraffLibAPI\models\" />
     <Folder Include="GraffLibAPI\models\enums\" />
     <Folder Include="GraffLibAPI\models\responses\" />
     <Folder Include="GraffLibAPI\models\requests\" />
     <Folder Include="GraffLibAPI\configuration\" />
+    <Folder Include="GraffLibAPI\database\" />
+    <Folder Include="GraffLibAPI\mappings\" />
     <Folder Include="GraffLibAPI\utils\" />
     <Folder Include="GraffLibAPI\services\" />
     <Folder Include="GraffLibAPI\static\" />
@@ -102,11 +123,11 @@
     <Folder Include="GraffLibAPI\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GraffLibAPI\database\main-db.db" />
     <Content Include="GraffLibAPI\Links.txt" />
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="libman.json" />
     <Content Include="requirements.txt" />
     <Content Include="GraffLibAPI\static\content\bootstrap.css" />
     <Content Include="GraffLibAPI\static\content\bootstrap.min.css" />

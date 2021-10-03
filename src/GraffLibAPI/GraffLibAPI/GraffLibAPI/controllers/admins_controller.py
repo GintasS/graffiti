@@ -1,6 +1,7 @@
 from flask import Blueprint, request
-from GraffLibAPI.controllers.users_controller import users
+from GraffLibAPI.database.db_setup import session
 from GraffLibAPI.models.requests.create_user_request import CreateUserRequest, CreateUserRequestSchema
+from GraffLibAPI.database.entities.user_entity import UserEntity, UserEntitySchema
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
@@ -11,13 +12,16 @@ blueprint_admins = Blueprint('api-admins', __name__, url_prefix='/v1')
 
 @blueprint_admins.route('/admins/users', methods=['GET'])
 def get_users():
-
-    schema = CreateUserRequestSchema(many=True)
+    try:
+        users = session.query(UserEntity).all()
+        user_entity_schema = UserEntitySchema(many=True)
+    except:
+        return "Internal server errror.", 500
 
     return {
         'message': 'This PATCH13 endpoint should update the entity',
         'method': request.method,
-        'body': schema.dump(users)
+        'body': user_entity_schema.dump(users)
     }
 
 @blueprint_admins.route('/users/<int:user_id>/', methods=['GET'])
