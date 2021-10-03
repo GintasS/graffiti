@@ -15,6 +15,19 @@ https://stackoverflow.com/questions/60866234/unknown-field-after-updating-to-3-5
 https://marshmallow.readthedocs.io/en/stable/marshmallow.validate.html
 https://marshmallow.readthedocs.io/en/stable/quickstart.html
 
+Database:
+https://realpython.com/python-sqlite-sqlalchemy/
+https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#connecting-our-api-to-a-database
+https://sqlitebrowser.org/
+https://www.sqlshack.com/learn-sql-naming-conventions/
+https://marshmallow-sqlalchemy.readthedocs.io/en/latest/
+https://docs.sqlalchemy.org/en/14/core/engines.html
+https://docs.sqlalchemy.org/en/14/core/constraints.html#unique-constraint
+https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/table_config.html?highlight=__table_args__
+https://docs.sqlalchemy.org/en/14/core/metadata.html?highlight=extend_existing
+https://stackoverflow.com/questions/2317081/sqlalchemy-maximum-column-length
+https://docs.sqlalchemy.org/en/14/core/type_basics.html
+https://stackoverflow.com/questions/24481852/serialising-an-enum-member-to-json
 
 
 Validation links:
