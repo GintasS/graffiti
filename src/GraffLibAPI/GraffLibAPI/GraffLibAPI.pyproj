@@ -65,6 +65,7 @@
     <Folder Include="GraffLibAPI\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GraffLibAPI\Links.txt" />
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
