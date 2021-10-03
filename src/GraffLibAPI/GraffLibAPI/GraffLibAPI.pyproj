@@ -124,11 +124,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GraffLibAPI\database\main-db.db" />
+    <Content Include="GraffLibAPI\Links.txt" />
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="libman.json" />
-    <Content Include="Links.txt" />
     <Content Include="requirements.txt" />
     <Content Include="GraffLibAPI\static\content\bootstrap.css" />
     <Content Include="GraffLibAPI\static\content\bootstrap.min.css" />
