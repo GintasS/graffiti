@@ -1,6 +1,7 @@
 from GraffLibAPI.models.requests.create_user_request import CreateUserRequest
 from GraffLibAPI.models.responses.create_user_response import CreateUserResponse
 from GraffLibAPI.database.entities.user_entity import UserEntity
+from GraffLibAPI.database.entities.user_password_change_history_entity import UserPasswordChangeHistoryEntity
 
 import datetime as dt
 
@@ -20,3 +21,9 @@ def from_user_entity_to_create_user_response(entity : UserEntity) -> CreateUserR
         entity.id, 
         entity.user_name, 
         entity.email)
+
+def from_user_entity_to_user_password_change_history_entity(entity : UserEntity) -> UserPasswordChangeHistoryEntity:
+    return UserPasswordChangeHistoryEntity(
+        user_id = entity.id, 
+        password_changed_at = dt.datetime.now())
+
