@@ -7,7 +7,9 @@ from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
 from sqlalchemy import UniqueConstraint, CheckConstraint, Table, Column
 from GraffLibAPI.configuration.constants import *
 from GraffLibAPI.models.enums.RoleType import RoleType
-from GraffLibAPI.database.db_setup import Base, engine
+from GraffLibAPI.database.base import Base
+from sqlalchemy.orm import relationship
+from GraffLibAPI.database.entities.user_password_change_history_entity import UserPasswordChangeHistoryEntity
 
 class UserEntity(Base):
     __tablename__ = "user"
@@ -29,8 +31,7 @@ class UserEntity(Base):
     password = sa.Column(sa.String(PASSWORD_MAX_LENGTH), nullable=False)
     role = sa.Column(sa.Enum(RoleType), nullable=False)
     created_at = sa.Column(sa.DATETIME)
-
-Base.metadata.create_all(engine)
+    children = relationship("UserPasswordChangeHistoryEntity")
 
 class UserEntitySchema(SQLAlchemySchema):
     class Meta:
