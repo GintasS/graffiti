@@ -225,9 +225,6 @@
           "403": {
             "description": "User is not authorized."
           },
-          "405": {
-            "description": "Validation exception."
-          },
           "422": {
             "description": "User can't update other user passwords, only his/her owns."
           },
@@ -901,14 +898,14 @@
     "UpdateUserPasswordUserAuthenticatedRequest": {
       "type": "object",
       "properties": {
-        "userId": {
+        "user_id": {
           "type": "integer",
           "format": "int64"
         },
-        "oldPassword": {
+        "old_password": {
           "type": "string"
         },
-        "newPassword": {
+        "new_password": {
           "type": "string"
         }
       }
