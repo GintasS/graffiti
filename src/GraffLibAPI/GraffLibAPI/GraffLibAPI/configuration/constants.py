@@ -20,3 +20,9 @@ PASSWORD_VALIDATION_MSG = "Password must be between 8 and 128 characters."
 # Database constants
 DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/database/main-db.db"
 SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
+
+APPSETTINGS_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
+APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
+
+PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/static/content/email-templates/password-recovery-template.html"
+PASSWORD_RECOVERY_TEMPLATE_FILE_URI  = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
