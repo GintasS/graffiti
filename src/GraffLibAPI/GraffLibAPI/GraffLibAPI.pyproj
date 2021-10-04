@@ -53,10 +53,16 @@
     <Compile Include="GraffLibAPI\controllers\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\database\base.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\database\db_setup.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\database\entities\user_entity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\database\entities\user_password_change_history_entity.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\database\entities\__init__.py">
@@ -80,6 +86,12 @@
     <Compile Include="GraffLibAPI\models\requests\create_user_request.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\models\requests\send_password_recovery_email_request.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\requests\update_authenticated_user_password_request.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\requests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +105,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\utils\email_sender_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\utils\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\version.py">
@@ -114,6 +132,7 @@
     <Folder Include="GraffLibAPI\configuration\" />
     <Folder Include="GraffLibAPI\database\" />
     <Folder Include="GraffLibAPI\mappings\" />
+    <Folder Include="GraffLibAPI\static\content\email-templates\" />
     <Folder Include="GraffLibAPI\utils\" />
     <Folder Include="GraffLibAPI\services\" />
     <Folder Include="GraffLibAPI\static\" />
@@ -123,8 +142,12 @@
     <Folder Include="GraffLibAPI\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GraffLibAPI\configuration\appsettings.ini" />
     <Content Include="GraffLibAPI\database\main-db.db" />
     <Content Include="GraffLibAPI\Links.txt" />
+    <Content Include="GraffLibAPI\static\content\email-templates\password-recovery-template.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
