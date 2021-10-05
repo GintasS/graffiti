@@ -21,7 +21,7 @@
 <div align="center">
 <br />
 
-[![license](https://img.shields.io/gitlab/license/gisv5653/grafflib.svg?style=flat-square)](LICENSE)
+<!--[![license](https://img.shields.io/gitlab/license/gisv5653/grafflib.svg?style=flat-square)](LICENSE) -->
 
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://git.mif.vu.lt/gisv5653/grafflib/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![code with hearth by gisv5653](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-gisv5653-ff1414.svg?style=flat-square)](https://git.mif.vu.lt/gisv5653)
