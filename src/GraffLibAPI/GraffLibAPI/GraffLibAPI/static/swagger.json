@@ -145,7 +145,7 @@
       }
     },
     "/users/password": {
-      "patch": {
+      "post": {
         "tags": [
           "Users"
         ],

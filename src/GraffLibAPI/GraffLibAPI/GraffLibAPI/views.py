@@ -6,22 +6,11 @@ from datetime import datetime
 from flask import render_template
 from GraffLibAPI import app
 
-@app.route('/contact')
-def contact():
+@app.route('/password')
+def password_reset_unauthenticated():
     """Renders the contact page."""
     return render_template(
-        'contact.html',
-        title='Contact',
+        'password-recovery/password-reset-unauthenticated.html',
+        title='GraffLib - Password Reset',
         year=datetime.now().year,
-        message='Your contact page.'
-    )
-
-@app.route('/about')
-def about():
-    """Renders the about page."""
-    return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
     )
