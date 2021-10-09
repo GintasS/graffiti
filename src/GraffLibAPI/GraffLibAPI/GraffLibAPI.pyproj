@@ -32,9 +32,6 @@
     <Compile Include="GraffLibAPI\configuration\constants.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\configuration\email_credentials.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GraffLibAPI\configuration\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -65,10 +62,7 @@
     <Compile Include="GraffLibAPI\database\entities\user_entity.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\database\entities\user_password_reset_history_entity.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GraffLibAPI\database\entities\user_password_reset_entity.py">
+    <Compile Include="GraffLibAPI\database\entities\user_password_change_history_entity.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\database\entities\__init__.py">
@@ -86,9 +80,6 @@
     <Compile Include="GraffLibAPI\models\enums\RoleType.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\enums\user_password_reset_type.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GraffLibAPI\models\enums\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -98,7 +89,6 @@
     <Compile Include="GraffLibAPI\models\requests\send_password_recovery_email_request.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\requests\update_unauthenticated_user_password_request.py" />
     <Compile Include="GraffLibAPI\models\requests\update_authenticated_user_password_request.py">
       <SubType>Code</SubType>
     </Compile>
@@ -118,9 +108,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\utils\email_sender_helper.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GraffLibAPI\utils\user_helper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\utils\__init__.py">
@@ -145,9 +132,7 @@
     <Folder Include="GraffLibAPI\configuration\" />
     <Folder Include="GraffLibAPI\database\" />
     <Folder Include="GraffLibAPI\mappings\" />
-    <Folder Include="GraffLibAPI\static\scripts\custom scripts\" />
-    <Folder Include="GraffLibAPI\templates\email-templates\" />
-    <Folder Include="GraffLibAPI\templates\password-recovery\" />
+    <Folder Include="GraffLibAPI\static\content\email-templates\" />
     <Folder Include="GraffLibAPI\utils\" />
     <Folder Include="GraffLibAPI\services\" />
     <Folder Include="GraffLibAPI\static\" />
@@ -160,28 +145,22 @@
     <Content Include="GraffLibAPI\configuration\appsettings.ini" />
     <Content Include="GraffLibAPI\database\main-db.db" />
     <Content Include="GraffLibAPI\Links.txt" />
-    <Content Include="GraffLibAPI\static\content\bootstrap.css" />
-    <Content Include="GraffLibAPI\static\content\bootstrap.css.map" />
-    <Content Include="GraffLibAPI\static\content\bootstrap.min.css" />
-    <Content Include="GraffLibAPI\static\content\bootstrap.min.css.map" />
-    <Content Include="GraffLibAPI\static\scripts\bootstrap.js" />
-    <Content Include="GraffLibAPI\static\scripts\bootstrap.min.js" />
-    <Content Include="GraffLibAPI\static\scripts\custom scripts\form-script.js" />
-    <Content Include="GraffLibAPI\templates\password-recovery\password-reset-failure.html" />
-    <Content Include="GraffLibAPI\templates\password-recovery\password-reset-success.html" />
-    <Content Include="GraffLibAPI\templates\password-recovery\password-reset-unauthenticated.html" />
-    <Content Include="GraffLibAPI\templates\email-templates\password-recovery-template.html">
+    <Content Include="GraffLibAPI\static\content\email-templates\password-recovery-template.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="requirements.txt" />
+    <Content Include="GraffLibAPI\static\content\bootstrap.css" />
+    <Content Include="GraffLibAPI\static\content\bootstrap.min.css" />
     <Content Include="GraffLibAPI\static\content\site.css" />
     <Content Include="GraffLibAPI\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="GraffLibAPI\static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GraffLibAPI\static\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="GraffLibAPI\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="GraffLibAPI\static\scripts\bootstrap.js" />
+    <Content Include="GraffLibAPI\static\scripts\bootstrap.min.js" />
     <Content Include="GraffLibAPI\static\scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="GraffLibAPI\static\scripts\jquery-1.10.2.js" />
     <Content Include="GraffLibAPI\static\scripts\jquery-1.10.2.min.js" />
@@ -195,7 +174,9 @@
     <Content Include="GraffLibAPI\static\scripts\respond.js" />
     <Content Include="GraffLibAPI\static\scripts\respond.min.js" />
     <Content Include="GraffLibAPI\static\scripts\_references.js" />
+    <Content Include="GraffLibAPI\templates\about.html" />
     <Content Include="GraffLibAPI\templates\contact.html" />
+    <Content Include="GraffLibAPI\templates\index.html" />
     <Content Include="GraffLibAPI\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
