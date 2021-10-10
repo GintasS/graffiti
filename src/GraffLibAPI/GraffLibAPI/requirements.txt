@@ -1,4 +1,6 @@
 astroid==2.8.0
+bcrypt==3.2.0
+cffi==1.14.6
 click==8.0.1
 colorama==0.4.4
 Flask==2.0.1
@@ -17,9 +19,11 @@ marshmallow-sqlalchemy==0.26.1
 mccabe==0.6.1
 pip==20.1.1
 platformdirs==2.4.0
+pycparser==2.20
 pylint==2.11.1
 scipy==1.4.1
 setuptools==47.1.0
+six==1.16.0
 SQLAlchemy==1.4.25
 toml==0.10.2
 typed-ast==1.4.3

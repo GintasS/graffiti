@@ -28,6 +28,13 @@ https://docs.sqlalchemy.org/en/14/core/metadata.html?highlight=extend_existing
 https://stackoverflow.com/questions/2317081/sqlalchemy-maximum-column-length
 https://docs.sqlalchemy.org/en/14/core/type_basics.html
 https://stackoverflow.com/questions/24481852/serialising-an-enum-member-to-json
+https://stackoverflow.com/questions/7478403/sqlalchemy-classes-across-files
+Relationships - https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
+
+Email sending:
+https://docs.python.org/3.7/library/configparser.html
+https://www.reddit.com/r/learnpython/comments/264ffw/what_is_the_pythonic_way_of_storing_credentials/
+https://realpython.com/python-send-email/
 
 
 Validation links:
@@ -55,4 +62,4 @@ Python Errors and exceptions - https://docs.python.org/3.7/tutorial/errors.html
 Making JSON class serializble - https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
 Py Linq library - https://pypi.org/project/py-linq/
 Pylint - https://docs.microsoft.com/en-us/visualstudio/python/linting-python-code?view=vs-2019
-
+Storing password change history - https://security.stackexchange.com/questions/85074/is-it-safe-to-store-a-password-hash-history-for-preventing-user-to-keep-same-pas
