@@ -11,7 +11,7 @@ assignees: ""
 **Describe the Request**
 
 <!-- Insert date in the parentheses. -->
-We need to post our weekly accomplishments for Software Engineering by the next Wednesday ().
+We need to post our weekly accomplishments for Software Engineering by the next Tuesday ().
 
 **Describe Preferred Solution**
 
