@@ -27,14 +27,15 @@ PASSWORD_RESET_TOKEN_VALIDATION_MSG = "Token must be between 32 and 48 character
 
 # Database constants
 if platform.system().lower() == "windows" or platform.system().lower() == "linux":
-    DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/GraffLibAPI/database/main-db.db"
+    DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/database/main-db.db"
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
 
     APPSETTINGS_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
     APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
 
     PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
-    PASSWORD_RECOVERY_TEMPLATE_FILE_URI  = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
+    PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
+
 
 else:
     DATABASE_FILE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/GraffLibAPI/database/main-db.db"
@@ -44,4 +45,4 @@ else:
     APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
 
     PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
-    PASSWORD_RECOVERY_TEMPLATE_FILE_URI  = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
+    PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
