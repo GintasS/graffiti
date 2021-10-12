@@ -26,7 +26,7 @@ PASSWORD_RESET_TOKEN_MAX_LENGTH = 48
 PASSWORD_RESET_TOKEN_VALIDATION_MSG = "Token must be between 32 and 48 characters."
 
 # Database constants
-if platform.system().lower() == "windows":
+if platform.system().lower() == "windows" or platform.system().lower() == "linux":
     DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/GraffLibAPI/database/main-db.db"
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
 
