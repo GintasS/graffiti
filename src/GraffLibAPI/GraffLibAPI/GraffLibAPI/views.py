@@ -20,12 +20,16 @@ import hashlib
 # Project imports
 from GraffLibAPI.models.enums import *
 from GraffLibAPI.models.requests.create_user_request import *
+from GraffLibAPI.models.requests.create_city_request import *
 from GraffLibAPI.models.responses.create_user_response import *
+from GraffLibAPI.models.responses.create_city_response import *
 from GraffLibAPI.models.user_model import UserModel
+from GraffLibAPI.models.city_model import CityModel
 from GraffLibAPI.models.requests.send_password_recovery_email_request import *
 from GraffLibAPI.models.requests.update_unauthenticated_user_password_request import *
 from GraffLibAPI.models.requests.update_authenticated_user_password_request import *
 from GraffLibAPI.database.entities.user_entity import *
+from GraffLibAPI.database.entities.city_entity import *
 from GraffLibAPI.database.entities.user_password_reset_entity import *
 from GraffLibAPI.database.entities.user_password_reset_history_entity import *
 from GraffLibAPI.database.db_setup import session

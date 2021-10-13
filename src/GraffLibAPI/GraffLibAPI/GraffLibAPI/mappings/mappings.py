@@ -3,8 +3,11 @@ import datetime as dt
 
 # Project includes.
 from GraffLibAPI.models.requests.create_user_request import CreateUserRequest
+from GraffLibAPI.models.requests.create_city_request import CreateCityRequest
 from GraffLibAPI.models.responses.create_user_response import CreateUserResponse
+from GraffLibAPI.models.responses.create_city_response import CreateCityResponse
 from GraffLibAPI.database.entities.user_entity import UserEntity
+from GraffLibAPI.database.entities.city_entity import CityEntity
 from GraffLibAPI.database.entities.user_password_reset_history_entity import UserPasswordResetHistoryEntity
 from GraffLibAPI.database.entities.user_password_reset_entity import UserPasswordResetEntity
 from GraffLibAPI.models.enums.user_password_reset_type import UserPasswordResetType
@@ -20,11 +23,20 @@ def to_user_entity(request : CreateUserRequest) -> UserEntity:
         role=request.role, 
         created_at=dt.datetime.now())
 
+def to_city_entity(request : CreateCityRequest) -> CityEntity:
+    return CityEntity(
+        city_name=request.city_name)
+
 def to_create_user_response(entity : UserEntity) -> CreateUserResponse:
     return CreateUserResponse(
         entity.id, 
         entity.user_name, 
         entity.email)
+
+def to_create_city_response(entity : CityEntity) -> CreateCityResponse:
+    return CreateCityResponse(
+        entity.id,
+        entity.city_name)
 
 # User Password Resets
 

@@ -1286,7 +1286,7 @@
     "CreateCityRequest": {
       "type": "object",
       "properties": {
-        "name": {
+        "city_name": {
           "type": "string"
         }
       }
@@ -1294,11 +1294,15 @@
 
     "CreateCityResponse": {
       "type": "object",
-      "properties": {
-        "city": {
-          "$ref": "#/definitions/City"
+        "properties": {
+            "id": {
+                "type": "integer",
+                "format": "int64"
+            },
+            "city_name": {
+                "type": "string"
+            }
         }
-      }
     },
 
     "City": {
