@@ -9,6 +9,7 @@ from GraffLibAPI.database.base import Base
 from GraffLibAPI.database.entities.user_password_reset_history_entity import UserPasswordResetHistoryEntity
 from GraffLibAPI.database.entities.user_password_reset_entity import UserPasswordResetEntity
 from GraffLibAPI.database.entities.user_entity import UserEntity
+from GraffLibAPI.database.entities.city_entity import CityEntity
 
 
 

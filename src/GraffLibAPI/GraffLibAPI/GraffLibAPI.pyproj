@@ -62,6 +62,9 @@
     <Compile Include="GraffLibAPI\database\db_setup.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\database\entities\city_entity.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\database\entities\user_entity.py">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +86,9 @@
     <Compile Include="GraffLibAPI\mappings\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\models\city_model.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\enums\RoleType.py">
       <SubType>Code</SubType>
     </Compile>
@@ -90,6 +96,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\enums\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\requests\create_city_request.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\requests\create_user_request.py">
@@ -106,6 +115,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\responses\create_user_response.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\responses\create_city_response.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\responses\__init__.py">
