@@ -1,4 +1,5 @@
 import os
+import platform
 
 # Validation
 # UserModel
@@ -24,14 +25,24 @@ PASSWORD_RESET_TOKEN_MAX_LENGTH = 48
 
 PASSWORD_RESET_TOKEN_VALIDATION_MSG = "Token must be between 32 and 48 characters."
 
-# TODO: paths don't work in Mac Os.
-
 # Database constants
-DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/database/main-db.db"
-SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
+if platform.system().lower() == "windows" or platform.system().lower() == "linux":
+    DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/database/main-db.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
 
-APPSETTINGS_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
-APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
+    APPSETTINGS_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
+    APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
 
-PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
-PASSWORD_RECOVERY_TEMPLATE_FILE_URI  = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
+    PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
+    PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
+
+
+else:
+    DATABASE_FILE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/GraffLibAPI/database/main-db.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
+
+    APPSETTINGS_FILE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
+    APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
+
+    PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
+    PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
