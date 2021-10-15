@@ -34,10 +34,3 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
 )
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 ### end swagger specific ###
-
-import GraffLibAPI.views
-import GraffLibAPI.controllers.admins_controller
-import GraffLibAPI.controllers.cities_controller
-import GraffLibAPI.controllers.images_controller
-import GraffLibAPI.controllers.markers_controller
-import GraffLibAPI.controllers.users_controller
