@@ -154,9 +154,6 @@
     <Compile Include="GraffLibAPI\models\responses\images\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\responses\user_images_response.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GraffLibAPI\models\responses\__init__.py">
       <SubType>Code</SubType>
     </Compile>
