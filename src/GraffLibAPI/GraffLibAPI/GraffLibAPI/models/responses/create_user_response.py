@@ -6,15 +6,11 @@ from marshmallow import post_load
 from GraffLibAPI.models.user_model import UserModel, UserModelSchema
 
 class CreateUserResponse():
-    def __init__(self, user_id, user_name, email):
+    def __init__(self, user_id, user_name, email, created_at):
        self.user_id = user_id
        self.user_name = user_name
        self.email = email
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
-
-
+       self.created_at = created_at
 
 # Note that besides the User class, 
 # we also defined a UserSchema. 
@@ -23,7 +19,8 @@ class CreateUserResponse():
 
 # **kwargs absorbs unmatched fields.
 
-class CreateUserResponseSchema():
-    @post_load
-    def make_create_user_request(self, data, **kwargs):
-        return CreateUserResponse(**data)
+class CreateUserResponseSchema(Schema):
+    user_id = fields.Int()
+    user_name = fields.Str()
+    email = fields.Email()
+    created_at = fields.Date()
