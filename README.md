@@ -21,7 +21,7 @@
 <div align="center">
 <br />
 
-[![license](https://img.shields.io/gitlab/license/gisv5653/grafflib.svg?style=flat-square)](LICENSE)
+<!--[![license](https://img.shields.io/gitlab/license/gisv5653/grafflib.svg?style=flat-square)](LICENSE) -->
 
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://git.mif.vu.lt/gisv5653/grafflib/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![code with hearth by gisv5653](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-gisv5653-ff1414.svg?style=flat-square)](https://git.mif.vu.lt/gisv5653)
@@ -40,7 +40,6 @@
 - [Roadmap](#roadmap)
 - [Support](#support)
 - [Project assistance](#project-assistance)
-- [Contributing](#contributing)
 - [Authors & contributors](#authors--contributors)
 - [Security](#security)
 - [License](#license)
@@ -123,19 +122,9 @@ If you want to say **thank you** or/and support active development of GraffLib:
 
 Together, we can make GraffLib **better**!
 
-## Contributing
-
-First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
-
-We have set up a separate document containing our [contribution guidelines](docs/CONTRIBUTING.md).
-
-Thank you for being involved!
-
 ## Authors & contributors
 
 The original setup of this repository is by [Gintautas Švedas, Ivan Voroncov, Joris Namajūnas, Mantas Mažvila](https://git.mif.vu.lt/gisv5653).
-
-For a full list of all authors and contributors, check [the contributor's page](https://git.mif.vu.lt/gisv5653/grafflib/contributors).
 
 ## Security
 

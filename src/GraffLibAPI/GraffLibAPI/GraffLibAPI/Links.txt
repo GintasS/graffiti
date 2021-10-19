@@ -1,0 +1,65 @@
+API:
+
+Resetting password - https://stackoverflow.com/questions/3077229/restful-password-reset
+HTTP status codes - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+Swagger Editor data types - https://swagger.io/docs/specification/data-models/data-types/#string
+Swagger Documentation editor - https://editor.swagger.io/
+
+Marshmallow:
+
+Marshmallow Enum library for validating enum - https://pypi.org/project/marshmallow-enum/
+Marshmallow OneOf examples - https://www.programcreek.com/python/example/108223/marshmallow.validate.OneOf
+Marshmallow validators - https://marshmallow.readthedocs.io/en/stable/marshmallow.validate.html#marshmallow.validate.Length
+Swallowing unknown args for Marshmallow schemas - https://stackoverflow.com/questions/59699234/typeerror-defined-function-got-an-unexpected-keyword-argument-many
+https://stackoverflow.com/questions/60866234/unknown-field-after-updating-to-3-5-0-marshmallow
+https://marshmallow.readthedocs.io/en/stable/marshmallow.validate.html
+https://marshmallow.readthedocs.io/en/stable/quickstart.html
+
+Database:
+https://realpython.com/python-sqlite-sqlalchemy/
+https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#connecting-our-api-to-a-database
+https://sqlitebrowser.org/
+https://www.sqlshack.com/learn-sql-naming-conventions/
+https://marshmallow-sqlalchemy.readthedocs.io/en/latest/
+https://docs.sqlalchemy.org/en/14/core/engines.html
+https://docs.sqlalchemy.org/en/14/core/constraints.html#unique-constraint
+https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/table_config.html?highlight=__table_args__
+https://docs.sqlalchemy.org/en/14/core/metadata.html?highlight=extend_existing
+https://stackoverflow.com/questions/2317081/sqlalchemy-maximum-column-length
+https://docs.sqlalchemy.org/en/14/core/type_basics.html
+https://stackoverflow.com/questions/24481852/serialising-an-enum-member-to-json
+https://stackoverflow.com/questions/7478403/sqlalchemy-classes-across-files
+Relationships - https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
+
+Email sending:
+https://docs.python.org/3.7/library/configparser.html
+https://www.reddit.com/r/learnpython/comments/264ffw/what_is_the_pythonic_way_of_storing_credentials/
+https://realpython.com/python-send-email/
+
+
+Validation links:
+
+Email min length - https://stackoverflow.com/questions/1423195/what-is-the-actual-minimum-length-of-an-email-address-as-defined-by-the-ietf
+Email max length - https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+
+Password min length - https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/minimum-password-length
+Password max length - https://stackoverflow.com/questions/98768/should-i-impose-a-maximum-length-on-passwords
+
+Username min length - https://security.stackexchange.com/questions/46875/why-is-there-a-minimum-username-length
+Username max length - https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup-autologon-username
+
+
+Misc links:
+
+https://auth0.com/blog/developing-restful-apis-with-python-and-flask/
+https://www.perforce.com/blog/alm/how-write-software-requirements-specification-srs-document
+
+https://towardsdatascience.com/creating-restful-apis-using-flask-and-python-655bad51b24
+Naming conventions - https://stackoverflow.com/questions/159720/what-is-the-naming-convention-in-python-for-variable-and-function-names
+Google Style Guide - https://google.github.io/styleguide/pyguide.html#316-naming
+
+Python Errors and exceptions - https://docs.python.org/3.7/tutorial/errors.html
+Making JSON class serializble - https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
+Py Linq library - https://pypi.org/project/py-linq/
+Pylint - https://docs.microsoft.com/en-us/visualstudio/python/linting-python-code?view=vs-2019
+Storing password change history - https://security.stackexchange.com/questions/85074/is-it-safe-to-store-a-password-hash-history-for-preventing-user-to-keep-same-pas
