@@ -1,5 +1,5 @@
 ---
-title: "doc"
+title: "doc: "
 about: Suggest an idea for this project
 ---
 
