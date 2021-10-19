@@ -1,9 +1,8 @@
 ---
-name: Support Question
-about: Question on how to use this project
 title: "support: "
-labels: "question"
-assignees: ""
+about: Question on how to use this project
 ---
 
 # Support Question
+
+<!-- Write the question below -->
