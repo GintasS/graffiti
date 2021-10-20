@@ -966,14 +966,11 @@
     "CreateImageRequest": {
       "type": "object",
       "properties": {
-        "source": {
-          "type": "string"
-        },
-        "imageMetadataModel": {
+        "image_metadata_model": {
           "$ref": "#/definitions/ImageMetadataModel"
         },
-        "imageDescription": {
-          "$ref": "#/definitions/ImageDescriptionModel"
+        "image_classification_model": {
+          "$ref": "#/definitions/ImageClassificationModel"
         }
       }
     },
@@ -981,14 +978,17 @@
     "CreateImageResponse": {
       "type": "object",
       "properties": {
-        "source": {
+        "image_unique_name": {
           "type": "string"
         },
-        "imageMetadataModel": {
+        "url": {
+          "type": "string"
+        },
+        "image_metadata_model": {
           "$ref": "#/definitions/ImageMetadataModel"
         },
-        "imageDescription": {
-          "$ref": "#/definitions/ImageDescriptionModel"
+        "image_description_model": {
+          "$ref": "#/definitions/ImageClassificationModel"
         }
       }
     },
@@ -1044,16 +1044,15 @@
           ]
         },
 
-        "coordinates": {
-          "$ref": "#/definitions/CoordinatesModel"
-        },
-
-
-        "photographyTime": {
+        "photographed_time": {
           "type": "string"
         },
-        "uploadTime": {
+        "upload_time": {
           "type": "string"
+        },
+
+        "image_location_model": {
+          "$ref": "#/definitions/ImageLocationModel"
         }
       }
     },
@@ -1088,6 +1087,17 @@
       }
     },
 
+    "ImageLocationModel": {
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
 
     "ImageDescription": {
       "type": "object",
@@ -1118,16 +1128,19 @@
     },
 
 
-    "ImageDescriptionModel": {
+    "ImageClassificationModel": {
       "type": "object",
       "properties": {
+        "user_provided_name": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
-        "graffitiObject": {
+        "graffiti_object": {
           "type": "string"
         },
-        "photoDirection": {
+        "image_direction": {
           "type": "string",
           "description": "Direction from which the photo was taken.",
           "enum": [
@@ -1294,15 +1307,15 @@
 
     "CreateCityResponse": {
       "type": "object",
-        "properties": {
-            "id": {
-                "type": "integer",
-                "format": "int64"
-            },
-            "city_name": {
-                "type": "string"
-            }
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "city_name": {
+          "type": "string"
         }
+      }
     },
 
     "City": {

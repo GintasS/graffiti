@@ -1,6 +1,8 @@
-# Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
+# Library includes.
 from marshmallow import post_load
 from marshmallow import Schema, fields, validate, ValidationError
+
+# Project includes.
 from GraffLibAPI.configuration.constants import *
 
 class SendPasswordRecoveryEmailRequest():

@@ -1,5 +1,7 @@
-# Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
+# Library includes.
 from marshmallow import post_load
+
+# Project includes.
 from GraffLibAPI.models.user_model import UserModel, UserModelSchema
 
 class CreateUserRequest(UserModel):
