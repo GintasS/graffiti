@@ -1,9 +1,7 @@
 ---
-name: Weekly report
-about: Weekly documentation for SE
 title: "doc: Weekly report"
+about: Weekly documentation for SE
 labels: "documentation, help-wanted, priority-medium"
-assignees: ""
 ---
 
 # Feature Request
