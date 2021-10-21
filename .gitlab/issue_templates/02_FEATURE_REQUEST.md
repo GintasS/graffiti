@@ -1,32 +1,30 @@
 ---
-name: Feature Request
-about: Suggest an idea for this project
 title: "feat: "
-labels: "enhancement"
-assignees: ""
+about: Suggest an idea for this project
 ---
 
 # Feature Request
 
 **Describe the Feature Request**
 
-<!-- A clear and concise description of what the feature request is. Please include if your feature request is related to a problem. -->
+<!-- A clear and concise description of what the feature request is. Please include if your feature request is related to a problem below. -->
 
 **Describe Preferred Solution**
 
-<!-- A clear and concise description of what you want to happen. -->
+<!-- A clear and concise description of what you want to happen below. -->
 
 **Describe Alternatives**
 
-<!-- A clear and concise description of any alternative solutions or features you've considered. -->
+<!-- A clear and concise description of any alternative solutions or features you've considered below. -->
 
 **Related Code**
 
-<!-- If you are able to illustrate the bug or feature request with an example, please provide it here. -->
+<!-- If you are able to illustrate the bug or feature request with an example, please provide it below. -->
 
 **Additional Context**
 
-<!-- List any other information that is relevant to your issue. Stack traces, related issues, suggestions on how to add, use case, Stack Overflow links, forum links, screenshots, OS if applicable, etc. -->
+<!-- List any other information that is relevant to your issue below. Stack traces, related issues, suggestions on how to add, use case, Stack Overflow links, forum links, screenshots, OS if applicable, etc. -->
 
 **If the feature request is approved, would you be willing to submit a PR?**
-Yes / No _(Help can be provided if you need assistance submitting a PR)_
+
+Yes / No <!-- Help can be provided if you need assistance submitting a PR -->
