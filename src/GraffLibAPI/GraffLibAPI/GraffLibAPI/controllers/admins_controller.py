@@ -45,9 +45,23 @@ def get_specific_user(user_id):
 @blueprint_admins.route('/users/<int:user_id>/', methods=['DELETE'])
 def delete_specific_user(user_id):
     try:
-        session.delete(session.query(UserEntity).filter_by(id=user_id).one())
-        session.commit()
-        
+        found_user = session.query(UserEntity).filter(UserEntity.id.like(user_id)).first()
+        if found_user is None:
+            return "User does not exist", 404
+
+        else:    
+            session.delete(session.query(UserEntity).filter_by(id=user_id).one())
+            session.commit()
+            '''
+        found_user = session.query(UserEntity).\
+            filter(
+                    UserEntity.id.like(user_id)
+            ).\
+            first()
+
+        if found_user is None:
+            return "User does not exist", 404
+        '''
     except:
         return "Internal server error.", 500
 
