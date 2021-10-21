@@ -34,7 +34,7 @@ class UserEntity(Base):
     email = sa.Column(sa.String(EMAIL_MAX_LENGTH), nullable=False)
     password = sa.Column(sa.String(PASSWORD_MAX_LENGTH), nullable=False)
     role = sa.Column(sa.Enum(RoleType), nullable=False)
-    created_at = sa.Column(sa.DATE)
+    created_at = sa.Column(sa.TIMESTAMP)
     children = relationship("UserPasswordResetEntity")
     children2 = relationship("ImageEntity")
 
