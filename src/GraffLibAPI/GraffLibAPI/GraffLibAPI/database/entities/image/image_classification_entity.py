@@ -12,7 +12,7 @@ from GraffLibAPI.database.base import Base
 class ImageClassificationEntity(Base):
     __tablename__ = "image_classification"
 
-    image_unique_name = sa.Column(sa.String(IMAGE_UNIQUE_NAME_MAX_LENGTH), ForeignKey('image.image_unique_name'), nullable=False, primary_key=True)
+    image_unique_name = sa.Column(sa.String, ForeignKey('image.image_unique_name'), nullable=False, primary_key=True)
     user_provided_name = sa.Column(sa.Unicode(USER_PROVIDED_IMAGE_NAME_MAX_LENGTH), nullable=True)
     description = sa.Column(sa.String(IMAGE_DESCRIPTION_MAX_LENGTH), nullable=True)
     # TODO: in the future, perhaps, graffiti_object could be an Enum?

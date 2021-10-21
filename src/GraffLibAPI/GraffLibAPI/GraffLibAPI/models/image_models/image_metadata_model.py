@@ -20,6 +20,6 @@ class ImageMetadataModel():
 
 class ImageMetadataModelSchema(Schema):
     extension = fields.Str(validate=validate.Length(min=IMAGE_EXTENSION_MIN_LENGTH, max=IMAGE_EXTENSION_MAX_LENGTH, error=IMAGE_EXTENSION_VALIDATION_MSG))
-    photographed_time = fields.Date()
-    upload_time = fields.Date()
+    photographed_time = fields.DateTime()
+    upload_time = fields.DateTime()
     image_location_model = fields.Nested(ImageLocationModelSchema)
