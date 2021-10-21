@@ -45,14 +45,10 @@ def get_specific_user(user_id):
 @blueprint_admins.route('/users/<int:user_id>/', methods=['DELETE'])
 def delete_specific_user(user_id):
     try:
-        #session.query(UserEntity).filter(session.id == user_id).delete()
-        #session.delete(User.query.filter_by(id=user_id))
-        print('hello')
-        session.query(UserEntity).filter(id == user_id).delete()
-        print('hello2')
+        session.delete(session.query(UserEntity).filter_by(id=user_id).one())
+        session.commit()
         
-        
-    except TypeError:
+    except:
         return "Internal server error.", 500
 
     return {
