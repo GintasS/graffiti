@@ -12,7 +12,7 @@ from GraffLibAPI.database.base import Base
 class ImageEntity(Base):
     __tablename__ = "image"
 
-    image_unique_name = sa.Column(sa.String(IMAGE_UNIQUE_NAME_MAX_LENGTH), nullable=False, primary_key=True)
+    image_unique_name = sa.Column(sa.String, nullable=False, primary_key=True)
     user_id = sa.Column(sa.Integer, ForeignKey('user.id'))
     children = relationship("ImageMetadataEntity")
     children2 = relationship("ImageClassificationEntity")

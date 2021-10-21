@@ -14,10 +14,10 @@ class ImageMetadataEntity(Base):
     __tablename__ = "image_metadata"
 
     id = sa.Column(sa.Integer, primary_key=True)
-    image_unique_name = sa.Column(sa.String(IMAGE_UNIQUE_NAME_MAX_LENGTH), ForeignKey('image.image_unique_name'), nullable=False)    
+    image_unique_name = sa.Column(sa.String, ForeignKey('image.image_unique_name'), nullable=False)    
     extension =  sa.Column(sa.String(IMAGE_EXTENSION_MAX_LENGTH), nullable=False)
-    photographed_time = sa.Column(sa.DATE, nullable=False)
-    upload_time = sa.Column(sa.DATE, nullable=False)
+    photographed_time = sa.Column(sa.TIMESTAMP, nullable=False)
+    upload_time = sa.Column(sa.TIMESTAMP, nullable=False)
     children = relationship("ImageLocationEntity")
 
 class ImageMetadataEntitySchema(SQLAlchemySchema):
