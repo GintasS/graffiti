@@ -48,10 +48,9 @@ def delete_specific_user(user_id):
         found_user = session.query(UserEntity).filter(UserEntity.id.like(user_id)).first()
         if found_user is None:
             return "User does not exist", 404
-
-        else:    
-            session.delete(session.query(UserEntity).filter_by(id=user_id).one())
-            session.commit()
+    
+        session.delete(found_user)
+        session.commit()
 
     except:
         return "Internal server error.", 500
