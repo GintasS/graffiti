@@ -1,3 +1,4 @@
+from typing import Type
 from flask import Blueprint, request
 from GraffLibAPI.database.db_setup import session
 from GraffLibAPI.models.requests.create_user_request import CreateUserRequest, CreateUserRequestSchema
@@ -16,7 +17,7 @@ def get_users():
         users = session.query(UserEntity).all()
         user_entity_schema = UserEntitySchema(many=True)
     except:
-        return "Internal server errror.", 500
+        return "Internal server error.", 500
 
     return {
         'message': 'This PATCH13 endpoint should update the entity',
@@ -26,16 +27,36 @@ def get_users():
 
 @blueprint_admins.route('/users/<int:user_id>/', methods=['GET'])
 def get_specific_user(user_id):
+    #Question: we should rewrite Example Value or recombine output in a correct way
+    try:
+        user = session.query(UserEntity).get(user_id)
+        user_entity_schema = UserEntitySchema()
+
+    except:
+        return "Internal server error.", 500
+
     return {
         'message': 'This GET2 SPECIFIC endpoint should update the entity',
         'method': request.method,
-        'body': request.json,
+        'body': user_entity_schema.dump(user),
         'userId': user_id
     }
 
 @blueprint_admins.route('/users/<int:user_id>/', methods=['DELETE'])
 def delete_specific_user(user_id):
+    try:
+        found_user = session.query(UserEntity).filter(UserEntity.id == user_id).first()
+        if found_user is None:
+            return "User does not exist", 404
+    
+        session.delete(found_user)
+        session.commit()
+
+    except:
+        return "Internal server error.", 500
+
     return {
+        'status': 'Successful delete',
         'message': 'This DELETE3 endpoint should update the entity',
         'method': request.method,
         'body': request.json,
@@ -52,4 +73,3 @@ def delete_specific_image_for_user(user_id, image_id):
         'userId': user_id,
         'imageId': image_id
     }
-

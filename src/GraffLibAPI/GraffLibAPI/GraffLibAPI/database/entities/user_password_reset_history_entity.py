@@ -12,8 +12,8 @@ class UserPasswordResetHistoryEntity(Base):
 
     id = sa.Column(sa.Integer, primary_key=True)
     reset_id = sa.Column(sa.Integer, ForeignKey('user_password_reset.id'))
-    reset_iniatiated = sa.Column(sa.DATE)
-    reset_completed = sa.Column(sa.DATE, nullable=True)
+    reset_iniatiated = sa.Column(sa.TIMESTAMP)
+    reset_completed = sa.Column(sa.TIMESTAMP, nullable=True)
 
 
 class UserPasswordResetHistoryEntitySchema(SQLAlchemySchema):
