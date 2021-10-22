@@ -1,5 +1,3 @@
-import simplejson as json
-
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
 from marshmallow import Schema, fields
 from marshmallow import post_load

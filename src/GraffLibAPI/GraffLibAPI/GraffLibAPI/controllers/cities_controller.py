@@ -1,7 +1,6 @@
 # Library imports
 import json
 from flask import Blueprint, render_template, request, jsonify
-from linq import Flow
 import datetime as dt
 from sqlalchemy import update, and_, or_, not_
 from marshmallow import ValidationError
