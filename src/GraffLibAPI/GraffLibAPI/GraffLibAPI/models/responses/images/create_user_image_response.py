@@ -25,5 +25,5 @@ class CreateUserImageResponse():
 class CreateUserImageResponseSchema(Schema):
     image_unique_name = fields.Str(min=IMAGE_UNIQUE_NAME_MIN_LENGTH,max=IMAGE_UNIQUE_NAME_MAX_LENGTH)
     url = fields.URL(min=IMAGE_UNIQUE_URL_MAX_LENGTH,max=IMAGE_UNIQUE_URL_MAX_LENGTH, relative=False)
-    image_metadata_model = fields.Nested(ImageMetadataModelSchema())
+    image_metadata_model = fields.Nested(ImageMetadataModelSchema(exclude=['original_image_name']))
     image_classification_model = fields.Nested(ImageClassificationModelSchema())
