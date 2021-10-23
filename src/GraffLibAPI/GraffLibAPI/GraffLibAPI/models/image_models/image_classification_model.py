@@ -1,7 +1,7 @@
 import datetime as dt
 
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
-from marshmallow import Schema, fields, validate, ValidationError
+from marshmallow import Schema, fields, validate, ValidationError, post_load
 from GraffLibAPI.models.enums import RoleType
 from GraffLibAPI.configuration.constants import *
 from GraffLibAPI.models.image_models.image_location_model import ImageLocationModelSchema 
@@ -24,3 +24,7 @@ class ImageClassificationModelSchema(Schema):
     description = fields.Str()
     graffiti_object = fields.Str()
     image_direction = EnumField(image_direction.ImageDirection)
+
+    @post_load
+    def make_image_classification_model(self, data, **kwargs):
+        return ImageClassificationModel(**data)
