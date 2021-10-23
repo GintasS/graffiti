@@ -20,7 +20,7 @@ from GraffLibAPI.database.entities.image.image_entity import ImageEntity
 from GraffLibAPI.database.entities.image.image_metadata_entity import ImageMetadataEntity
 from GraffLibAPI.database.entities.image.image_location_entity import ImageLocationEntity
 from GraffLibAPI.database.entities.image.image_classification_entity import ImageClassificationEntity
-from GraffLibAPI.models.image_models.image_location_model import ImageLocationModel
+from GraffLibAPI.models.image_models.image_location_model import ImageLocationModel, ImageLocationModelSchema
 from GraffLibAPI.models.image_models.image_model import ImageModel, ImageModelSchema
 from GraffLibAPI.models.image_models.image_metadata_model import ImageMetadataModel
 from GraffLibAPI.models.image_models.image_classification_model import ImageClassificationModel, ImageClassificationModelSchema
@@ -32,6 +32,7 @@ from requests_toolbelt.multipart import decoder
 from GraffLibAPI.utils.file_helper import *
 from GraffLibAPI.utils.image_helper import *
 from GraffLibAPI.utils.datetime_parser import *
+from GraffLibAPI.utils.location_helper import *
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
@@ -95,13 +96,18 @@ def create_user_image(user_id):
 
         result = decoder.MultipartDecoder(request.get_data(), request.content_type)
 
-        if len(result.parts) != 2:
+        if len(result.parts) < 2 or len(result.parts) > 3:
             return "Bad Request", 400
         if found_user == None:
             return "User was not found.", 404
 
         # Request data.
         user_classification_model = ImageClassificationModelSchema().load(json.loads(result.parts[0].text))
+        user_precise_location = None
+
+        if len(result.parts) == 3:
+            user_precise_location = ImageLocationModelSchema().load(json.loads(result.parts[1].text))
+
         user_image_request = CreateUserImageRequest(user_classification_model, user_id)
 
         file_part = request.files['inFile']
@@ -144,11 +150,18 @@ def create_user_image(user_id):
             return "File types don't match.", 415
         if file_size > 100:
             return "File size is too large", 413
-        if file_metadata.has_exif == False or hasattr(file_metadata, 'gps_latitude') == False or hasattr(file_metadata, 'gps_longitude') == False:
+        if file_metadata.has_exif == False:
             return "File metadata is missing.", 405
+        if hasattr(file_metadata, 'gps_latitude') == False and hasattr(file_metadata, 'gps_longitude') == False and user_precise_location == None:
+            return "File location data is missing.", 405
+        
+        gps_coordinates = None
 
-        # GPS data.
-        gps_coordinates = [ file_metadata.gps_latitude[2], file_metadata.gps_longitude[2] ]
+        if hasattr(file_metadata, 'gps_latitude') != False and hasattr(file_metadata, 'gps_longitude') != False:
+            gps_coordinates = [ dms_to_dd(file_metadata.gps_latitude, file_metadata.gps_latitude_ref), dms_to_dd(file_metadata.gps_longitude, file_metadata.gps_longitude_ref) ]
+
+        if gps_coordinates != None and user_precise_location != None:
+            gps_coordinates = user_precise_location.coordinates
 
         # Image was taken on this date.
         file_metadata_date = parse_date(file_metadata.datetime_original)
