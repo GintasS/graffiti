@@ -445,10 +445,18 @@
           },
           {
             "in": "formData",
-            "name": "formData",
+            "name": "image-classification-model",
             "description": "User object that needs to be added to the system.",
             "required": true,
             "default": "{\"user_provided_name\":\"test\", \"description\":\"test\", \"graffiti_object\":\"test\", \"image_direction\":\"FRONT\"}",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "image-precise-location-model",
+            "description": "User object that needs to be added to the system.",
+            "required": false,
+            "default": "{\"coordinates\": [\"0\", \"0\"]}",
             "type": "string"
           },
           {
@@ -458,8 +466,6 @@
             "required": true,
             "type": "file"
           }
-
-
         ],
         "responses": {
           "201": {
