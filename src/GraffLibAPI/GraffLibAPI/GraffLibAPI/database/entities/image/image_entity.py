@@ -14,6 +14,7 @@ class ImageEntity(Base):
 
     image_unique_name = sa.Column(sa.String, nullable=False, primary_key=True)
     user_id = sa.Column(sa.Integer, ForeignKey('user.id'))
+    url = sa.Column(sa.String, nullable=False)
     children = relationship("ImageMetadataEntity")
     children2 = relationship("ImageClassificationEntity")
 
@@ -25,3 +26,4 @@ class ImageEntitySchema(SQLAlchemySchema):
 
     image_unique_name = auto_field()
     user_id = auto_field()
+    url = auto_field()
