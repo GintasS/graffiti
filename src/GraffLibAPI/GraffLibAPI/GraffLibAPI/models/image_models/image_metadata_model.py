@@ -9,8 +9,9 @@ from GraffLibAPI.models.image_models.image_location_model import ImageLocationMo
 from marshmallow_geojson import GeoJSONSchema, PropertiesSchema, FeatureSchema
 
 class ImageMetadataModel():
-    def __init__(self, extension, photographed_time, upload_time, image_location_model):
+    def __init__(self, extension, original_image_name, photographed_time, upload_time, image_location_model):
         self.extension = extension
+        self.original_image_name = original_image_name
         self.photographed_time = photographed_time
         self.upload_time = upload_time
         self.image_location_model = image_location_model
@@ -20,6 +21,7 @@ class ImageMetadataModel():
 
 class ImageMetadataModelSchema(Schema):
     extension = fields.Str(validate=validate.Length(min=IMAGE_EXTENSION_MIN_LENGTH, max=IMAGE_EXTENSION_MAX_LENGTH, error=IMAGE_EXTENSION_VALIDATION_MSG))
+    original_image_name = fields.String()
     photographed_time = fields.DateTime()
     upload_time = fields.DateTime()
     image_location_model = fields.Nested(ImageLocationModelSchema)

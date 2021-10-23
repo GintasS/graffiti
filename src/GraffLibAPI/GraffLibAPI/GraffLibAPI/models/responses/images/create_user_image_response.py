@@ -1,5 +1,3 @@
-import simplejson as json
-
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
 from marshmallow import Schema, fields
 from marshmallow import post_load
@@ -27,5 +25,5 @@ class CreateUserImageResponse():
 class CreateUserImageResponseSchema(Schema):
     image_unique_name = fields.Str(min=IMAGE_UNIQUE_NAME_MIN_LENGTH,max=IMAGE_UNIQUE_NAME_MAX_LENGTH)
     url = fields.URL(min=IMAGE_UNIQUE_URL_MAX_LENGTH,max=IMAGE_UNIQUE_URL_MAX_LENGTH, relative=False)
-    image_metadata_model = fields.Nested(ImageMetadataModelSchema())
+    image_metadata_model = fields.Nested(ImageMetadataModelSchema(exclude=['original_image_name']))
     image_classification_model = fields.Nested(ImageClassificationModelSchema())

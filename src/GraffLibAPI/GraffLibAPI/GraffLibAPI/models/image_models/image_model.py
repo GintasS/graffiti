@@ -1,5 +1,4 @@
 import datetime as dt
-import simplejson
 
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
 from marshmallow import Schema, fields, validate, ValidationError

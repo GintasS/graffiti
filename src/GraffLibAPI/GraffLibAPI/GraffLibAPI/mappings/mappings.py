@@ -23,8 +23,6 @@ from GraffLibAPI.models.requests.images.create_user_image_request import CreateU
 from GraffLibAPI.models.enums.user_password_reset_type import UserPasswordResetType
 from GraffLibAPI.models.responses.images.create_user_image_response import CreateUserImageResponse
 from GraffLibAPI.database.db_setup import session
-from GraffLibAPI.utils.image_helper import *
-
 
 # http://www.python.org/dev/peps/pep-3107/
 def to_user_entity(request : CreateUserRequest) -> UserEntity:
@@ -34,7 +32,7 @@ def to_user_entity(request : CreateUserRequest) -> UserEntity:
         last_name=request.last_name, 
         email=request.email, 
         password=request.password, 
-        role=request.role, 
+        role=request.role,
         created_at=dt.datetime.now())
 
 def to_city_entity(request : CreateCityRequest) -> CityEntity:
@@ -99,10 +97,10 @@ def to_image_model(image_entity : ImageEntity) -> ImageModel:
     image_metadata_model = to_image_metadata_model(image_metadata_entity, image_location_model)
     image_classification_model = to_image_classification_model(image_classification_entity)
 
-    return ImageModel(create_image_unique_url(image_entity.image_unique_name, image_metadata_entity.extension), image_entity, image_metadata_model, image_classification_model)
+    return ImageModel("", image_entity, image_metadata_model, image_classification_model)
 
 def to_image_metadata_model(image_metadata_entity : ImageMetadataEntity, image_location_model) -> ImageMetadataModel:   
-    return ImageMetadataModel(image_metadata_entity.extension, image_metadata_entity.photographed_time, image_metadata_entity.upload_time, image_location_model)
+    return ImageMetadataModel(image_metadata_entity.extension, image_metadata_entity.original_image_name, image_metadata_entity.photographed_time, image_metadata_entity.upload_time, image_location_model)
 
 def to_image_classification_model(image_classification_entity : ImageClassificationEntity) -> ImageClassificationModel:
     return ImageClassificationModel(image_classification_entity.user_provided_name, image_classification_entity.description, image_classification_entity.graffiti_object, image_classification_entity.direction)
@@ -110,14 +108,16 @@ def to_image_classification_model(image_classification_entity : ImageClassificat
 def to_image_location_model(coordinates) -> ImageLocationModel:
     return ImageLocationModel(coordinates)
 
-def to_image_entity(create_user_image_request : CreateUserImageRequest, image_unique_name : str) -> ImageEntity:
+def to_image_entity(create_user_image_request : CreateUserImageRequest, image_unique_name : str, url: str) -> ImageEntity:
     return ImageEntity(
         image_unique_name = image_unique_name,
-        user_id = create_user_image_request.user_id)
+        user_id = create_user_image_request.user_id,
+        url = url)
 
 def to_image_metadata_entity(image_metadata_model : ImageMetadataModel, image_unique_name : str) -> ImageMetadataEntity:
     return ImageMetadataEntity(
         image_unique_name = image_unique_name,
+        original_image_name = image_metadata_model.original_image_name,
         extension = image_metadata_model.extension,
         photographed_time = image_metadata_model.photographed_time,
         upload_time = image_metadata_model.upload_time)

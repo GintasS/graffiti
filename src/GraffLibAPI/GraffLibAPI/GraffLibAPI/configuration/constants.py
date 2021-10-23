@@ -41,12 +41,18 @@ IMAGE_DESCRIPTION_MAX_LENGTH = 180
 
 IMAGE_UNIQUE_URL_MAX_LENGTH = 62
 
+IMAGE_ALLOWED_EXTENSIONS = [
+  "jpeg", 
+  "png"
+]
+
+HTTP_REQUEST_MIME_TYPES = [
+  "image/jpeg",
+  "image/png"
+]
+
 # General
 DATE_FORMAT = "%Y-%m-%dT%H:%M:%S+00:00"
-
-
-
-
 
 # Database
 SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:admin@localhost:5432/grafflib"
