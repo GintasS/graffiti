@@ -399,7 +399,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Image"
+                "$ref": "#/definitions/ImageModel"
               }
             }
           },
@@ -428,7 +428,7 @@
         "description": "",
         "operationId": "postUserImage",
         "consumes": [
-          "application/json"
+          "multipart/form-data"
         ],
         "produces": [
           "application/json"
@@ -437,20 +437,29 @@
           {
             "name": "userId",
             "in": "path",
-            "description": "ID of User to create a new image for.",
+            "description": "ID of User to get all the images.",
             "required": true,
+            "default": 1,
             "type": "integer",
             "format": "int64"
           },
           {
-            "in": "body",
-            "name": "body",
-            "description": "Image object that needs to be added to the system.",
+            "in": "formData",
+            "name": "formData",
+            "description": "User object that needs to be added to the system.",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/CreateImageRequest"
-            }
+            "default": "{\"user_provided_name\":\"test\", \"description\":\"test\", \"graffiti_object\":\"test\", \"image_direction\":\"FRONT\"}",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "inFile",
+            "description": "User object that needs to be added to the system.",
+            "required": true,
+            "type": "file"
           }
+
+
         ],
         "responses": {
           "201": {
@@ -476,6 +485,12 @@
           },
           "409": {
             "description": "Image already exists."
+          },
+          "413": {
+            "description": "Image's size is too large. Maximum size is 100 MB."
+          },
+          "415": {
+            "description": "Image's extension type is not supported."
           },
           "500": {
             "description": "Internal server error."
@@ -950,25 +965,9 @@
     "ImageModel": {
       "type": "object",
       "properties": {
-        "source": {
+        "photo_url": {
           "type": "string"
         },
-        "imageMetadata": {
-          "$ref": "#/definitions/ImageMetadata"
-        },
-        "user": {
-          "$ref": "#/definitions/User"
-        },
-        "imageDescription": {
-          "$ref": "#/definitions/ImageDescription"
-        }
-      }
-    },
-
-
-    "CreateImageRequest": {
-      "type": "object",
-      "properties": {
         "image_metadata_model": {
           "$ref": "#/definitions/ImageMetadataModel"
         },
@@ -978,19 +977,17 @@
       }
     },
 
+
     "CreateImageResponse": {
       "type": "object",
       "properties": {
         "image_unique_name": {
           "type": "string"
         },
-        "url": {
-          "type": "string"
-        },
         "image_metadata_model": {
           "$ref": "#/definitions/ImageMetadataModel"
         },
-        "image_description_model": {
+        "image_classification_model": {
           "$ref": "#/definitions/ImageClassificationModel"
         }
       }
@@ -1025,10 +1022,10 @@
           "type": "number",
           "format": "double"
         },
-        "photographyTime": {
+        "photographed_time": {
           "type": "string"
         },
-        "uploadTime": {
+        "upload_time": {
           "type": "string"
         }
       }
@@ -1042,11 +1039,9 @@
           "description": "Image's extension",
           "enum": [
             "png",
-            "jpeg",
-            "jpg"
+            "jpeg"
           ]
         },
-
         "photographed_time": {
           "type": "string"
         },
@@ -1067,12 +1062,10 @@
           "format": "int64"
         },
         "Latitude": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "Longitude": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         }
       }
     },
@@ -1080,12 +1073,10 @@
     "CoordinatesModel": {
       "properties": {
         "Latitude": {
-          "type": "number",
-          "format": "double"
+          "type": "number"
         },
         "Longitude": {
-          "type": "number",
-          "format": "double"
+          "type": "number"
         }
       }
     },
@@ -1095,8 +1086,9 @@
         "coordinates": {
           "type": "array",
           "minItems": 2,
+          "maxItems": 2,
           "items": {
-            "type": "number"
+            "type": "string"
           }
         }
       }
