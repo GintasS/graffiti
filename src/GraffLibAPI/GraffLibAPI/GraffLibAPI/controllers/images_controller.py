@@ -144,7 +144,7 @@ def create_user_image(user_id):
             return "File types don't match.", 415
         if file_size > 100:
             return "File size is too large", 413
-        if file_metadata.has_exif == False or file_metadata.gps_latitude is None or file_metadata.gps_longitude is None:
+        if file_metadata.has_exif == False or hasattr(file_metadata, 'gps_latitude') == False or hasattr(file_metadata, 'gps_longitude') == False:
             return "File metadata is missing.", 405
 
         # GPS data.
