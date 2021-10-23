@@ -2,7 +2,7 @@ import os
 import platform
 
 # Validation
-# UserModel
+
 USERNAME_MIN_LENGTH = 6
 USERNAME_MAX_LENGTH = 256
 
@@ -16,20 +16,50 @@ USERNAME_VALIDATION_MSG = "Username must be between 6 and 256 characters."
 EMAIL_VALIDATION_MSG = "Email address must be a valid one."
 PASSWORD_VALIDATION_MSG = "Password must be between 8 and 128 characters."
 
-# UpdateUnauthenticatedPasswordRequest
-
 # Python secure library will create on average 1.3 characters per single byte.
 # This equals to 41.6 characters on average.
-PASSWORD_RESET_TOKEN_MIN_LENGTH = 32  
-PASSWORD_RESET_TOKEN_MAX_LENGTH = 48
+PASSWORD_RESET_TOKEN_MIN_LENGTH = 41  
+PASSWORD_RESET_TOKEN_MAX_LENGTH = 42
 
 PASSWORD_RESET_TOKEN_VALIDATION_MSG = "Token must be between 32 and 48 characters."
 
-# Database constants
-if platform.system().lower() == "windows" or platform.system().lower() == "linux":
-    DATABASE_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/database/main-db.db"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
+# Image
+# Same as PASSWORD_RESET_TOKEN, Python secure library will create a hashed name for the name.
+IMAGE_UNIQUE_NAME_MIN_LENGTH = 41  
+IMAGE_UNIQUE_NAME_MAX_LENGTH = 42
 
+USER_PROVIDED_IMAGE_NAME_MIN_LENGTH = 50
+USER_PROVIDED_IMAGE_NAME_MAX_LENGTH = 60
+
+IMAGE_EXTENSION_MIN_LENGTH = 3
+IMAGE_EXTENSION_MAX_LENGTH = 5
+
+IMAGE_EXTENSION_VALIDATION_MSG = "Image Extension length should be between 3 and 5."
+
+IMAGE_DESCRIPTION_MIN_LENGTH = 0
+IMAGE_DESCRIPTION_MAX_LENGTH = 180
+
+IMAGE_UNIQUE_URL_MAX_LENGTH = 62
+
+IMAGE_ALLOWED_EXTENSIONS = [
+  "jpeg", 
+  "png"
+]
+
+HTTP_REQUEST_MIME_TYPES = [
+  "image/jpeg",
+  "image/png"
+]
+
+# General
+DATE_FORMAT = "%Y-%m-%dT%H:%M:%S+00:00"
+
+# Database
+SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:admin@localhost:5432/grafflib"
+
+
+# OS related path constants.
+if platform.system().lower() == "windows" or platform.system().lower() == "linux":
     APPSETTINGS_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
     APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
 
@@ -38,9 +68,6 @@ if platform.system().lower() == "windows" or platform.system().lower() == "linux
 
 
 else:
-    DATABASE_FILE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/GraffLibAPI/database/main-db.db"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(DATABASE_FILE_RELATIVE_PATH)
-
     APPSETTINGS_FILE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
     APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
 

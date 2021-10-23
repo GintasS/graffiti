@@ -45,7 +45,7 @@ def get_specific_user(user_id):
 @blueprint_admins.route('/users/<int:user_id>/', methods=['DELETE'])
 def delete_specific_user(user_id):
     try:
-        found_user = session.query(UserEntity).filter(UserEntity.id.like(user_id)).first()
+        found_user = session.query(UserEntity).filter(UserEntity.id == user_id).first()
         if found_user is None:
             return "User does not exist", 404
     

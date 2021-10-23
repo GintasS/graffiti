@@ -12,7 +12,7 @@ class UpdateUnauthenticatedUserPasswordRequest():
         return '<UpdateUnauthenticatedUserPasswordRequest(name={self.user_id!r})>'.format(self=self)
 
 class UpdateUnauthenticatedUserPasswordRequestSchema(Schema):
-    token = fields.Str(validate=validate.Length(min=PASSWORD_RESET_TOKEN_MIN_LENGTH, max=PASSWORD_RESET_TOKEN_MAX_LENGTH, error=PASSWORD_RESET_TOKEN_VALIDATION_MSG))
+    token = fields.Str()
     new_password = fields.Str(validate=validate.Length(min=PASSWORD_MIN_LENGTH, max=PASSWORD_MAX_LENGTH, error=PASSWORD_VALIDATION_MSG))
 
     @post_load

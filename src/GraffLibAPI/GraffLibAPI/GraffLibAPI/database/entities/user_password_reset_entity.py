@@ -16,7 +16,7 @@ class UserPasswordResetEntity(Base):
     id = sa.Column(sa.Integer, primary_key=True)
     user_id = sa.Column(sa.Integer, ForeignKey('user.id'))
     reset_type = sa.Column(sa.Enum(UserPasswordResetType), nullable=False)
-    token = sa.Column(sa.String(PASSWORD_RESET_TOKEN_MAX_LENGTH), nullable=False)
+    token = sa.Column(sa.String, nullable=False)
     children = relationship("UserPasswordResetHistoryEntity")
 
 class UserPasswordResetEntitySchema(SQLAlchemySchema):

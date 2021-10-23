@@ -369,10 +369,140 @@
       }
     },
 
+    "/users/{userId}/images": {
+      "get": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "Get user's images.",
+        "description": "",
+        "operationId": "getUserImages",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to get all the images.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ImageModel"
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated."
+          },
+          "403": {
+            "description": "User is not authorized."
+          },
+          "404": {
+            "description": "User was not found."
+          },
+          "409": {
+            "description": "User can't get another user's images."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Images"
+        ],
+        "summary": "Create a new image for the user.",
+        "description": "",
+        "operationId": "postUserImage",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of User to get all the images.",
+            "required": true,
+            "default": 1,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "formData",
+            "name": "formData",
+            "description": "User object that needs to be added to the system.",
+            "required": true,
+            "default": "{\"user_provided_name\":\"test\", \"description\":\"test\", \"graffiti_object\":\"test\", \"image_direction\":\"FRONT\"}",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "inFile",
+            "description": "User object that needs to be added to the system.",
+            "required": true,
+            "type": "file"
+          }
+
+
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful operation.",
+            "schema": {
+              "$ref": "#/definitions/CreateImageResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "User is not authenticated."
+          },
+          "403": {
+            "description": "User is not authorized."
+          },
+          "404": {
+            "description": "User was not found."
+          },
+          "405": {
+            "description": "Validation exception."
+          },
+          "409": {
+            "description": "Image already exists."
+          },
+          "413": {
+            "description": "Image's size is too large. Maximum size is 100 MB."
+          },
+          "415": {
+            "description": "Image's extension type is not supported."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+
     "/users/{userId}/images/{imageId}": {
       "delete": {
         "tags": [
-          "Admins"
+          "Images"
         ],
         "summary": "Delete user's image.",
         "description": "",
@@ -413,118 +543,6 @@
           },
           "404": {
             "description": "User or the image was not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      }
-    },
-
-    "/users/{userId}/images": {
-      "get": {
-        "tags": [
-          "Images"
-        ],
-        "summary": "Get user's images.",
-        "description": "",
-        "operationId": "getUserImages",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "ID of User to get all the images.",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Image"
-              }
-            }
-          },
-          "401": {
-            "description": "User is not authenticated."
-          },
-          "403": {
-            "description": "User is not authorized."
-          },
-          "404": {
-            "description": "User was not found."
-          },
-          "500": {
-            "description": "Internal server error."
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Images"
-        ],
-        "summary": "Create a new image for the user.",
-        "description": "",
-        "operationId": "postUserImage",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "ID of User to create a new image for.",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Image object that needs to be added to the system.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CreateImageRequest"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Successful operation.",
-            "schema": {
-              "$ref": "#/definitions/CreateImageResponse"
-            }
-          },
-          "400": {
-            "description": "Bad request."
-          },
-          "401": {
-            "description": "User is not authenticated."
-          },
-          "403": {
-            "description": "User is not authorized."
-          },
-          "404": {
-            "description": "User was not found."
-          },
-          "405": {
-            "description": "Validation exception."
-          },
-          "409": {
-            "description": "Image already exists."
           },
           "500": {
             "description": "Internal server error."
@@ -947,48 +965,30 @@
     "ImageModel": {
       "type": "object",
       "properties": {
-        "source": {
+        "photo_url": {
           "type": "string"
         },
-        "imageMetadata": {
-          "$ref": "#/definitions/ImageMetadata"
-        },
-        "user": {
-          "$ref": "#/definitions/User"
-        },
-        "imageDescription": {
-          "$ref": "#/definitions/ImageDescription"
-        }
-      }
-    },
-
-
-    "CreateImageRequest": {
-      "type": "object",
-      "properties": {
-        "source": {
-          "type": "string"
-        },
-        "imageMetadataModel": {
+        "image_metadata_model": {
           "$ref": "#/definitions/ImageMetadataModel"
         },
-        "imageDescription": {
-          "$ref": "#/definitions/ImageDescriptionModel"
+        "image_classification_model": {
+          "$ref": "#/definitions/ImageClassificationModel"
         }
       }
     },
+
 
     "CreateImageResponse": {
       "type": "object",
       "properties": {
-        "source": {
+        "image_unique_name": {
           "type": "string"
         },
-        "imageMetadataModel": {
+        "image_metadata_model": {
           "$ref": "#/definitions/ImageMetadataModel"
         },
-        "imageDescription": {
-          "$ref": "#/definitions/ImageDescriptionModel"
+        "image_classification_model": {
+          "$ref": "#/definitions/ImageClassificationModel"
         }
       }
     },
@@ -1022,10 +1022,10 @@
           "type": "number",
           "format": "double"
         },
-        "photographyTime": {
+        "photographed_time": {
           "type": "string"
         },
-        "uploadTime": {
+        "upload_time": {
           "type": "string"
         }
       }
@@ -1039,21 +1039,18 @@
           "description": "Image's extension",
           "enum": [
             "png",
-            "jpeg",
-            "jpg"
+            "jpeg"
           ]
         },
-
-        "coordinates": {
-          "$ref": "#/definitions/CoordinatesModel"
-        },
-
-
-        "photographyTime": {
+        "photographed_time": {
           "type": "string"
         },
-        "uploadTime": {
+        "upload_time": {
           "type": "string"
+        },
+
+        "image_location_model": {
+          "$ref": "#/definitions/ImageLocationModel"
         }
       }
     },
@@ -1065,12 +1062,10 @@
           "format": "int64"
         },
         "Latitude": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "Longitude": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         }
       }
     },
@@ -1078,16 +1073,26 @@
     "CoordinatesModel": {
       "properties": {
         "Latitude": {
-          "type": "number",
-          "format": "double"
+          "type": "number"
         },
         "Longitude": {
-          "type": "number",
-          "format": "double"
+          "type": "number"
         }
       }
     },
 
+    "ImageLocationModel": {
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
 
     "ImageDescription": {
       "type": "object",
@@ -1118,16 +1123,19 @@
     },
 
 
-    "ImageDescriptionModel": {
+    "ImageClassificationModel": {
       "type": "object",
       "properties": {
+        "user_provided_name": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
-        "graffitiObject": {
+        "graffiti_object": {
           "type": "string"
         },
-        "photoDirection": {
+        "image_direction": {
           "type": "string",
           "description": "Direction from which the photo was taken.",
           "enum": [
@@ -1294,15 +1302,15 @@
 
     "CreateCityResponse": {
       "type": "object",
-        "properties": {
-            "id": {
-                "type": "integer",
-                "format": "int64"
-            },
-            "city_name": {
-                "type": "string"
-            }
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "city_name": {
+          "type": "string"
         }
+      }
     },
 
     "City": {

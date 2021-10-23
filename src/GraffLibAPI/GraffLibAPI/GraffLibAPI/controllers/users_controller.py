@@ -56,7 +56,7 @@ def create_user():
         session.add(new_user)
         session.commit()
 
-        return to_create_user_response(new_user).toJSON(), 201
+        return CreateUserResponseSchema().dump(to_create_user_response(new_user)), 201
     except ValidationError as err:
         return jsonify(err.messages), 400
     except:
