@@ -1,0 +1,29 @@
+# What was done this week?
+
+- Added image uploading
+- Migrated to PostgreSQL
+- Completed the technical specification
+- Did research on image comparison algorithms
+- Overhauled our Git template system
+- Cleaned up our requirements
+
+# What issues/risks/blockers do you have?
+
+- We may have fallen behind in the past and have some catching up to do
+
+# What is the goal for next week?
+
+- Improve the Git repository (currently we have files that aren't supposed to be there)
+- Stop using localhost
+- Smaller bugfixes
+- Research tasks (security)
+
+# What is the overall status?
+
+- Yellow
+
+<!-- 
+  Green - everything is normal, we are not falling the plan.
+  Yellow - we have blockers, we are taking longer than expected, we are falling behind the plan.
+  Red - situation is critical, people are not working, we are completing our work, we are very behind the plan.
+-->
