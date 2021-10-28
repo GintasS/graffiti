@@ -9,7 +9,7 @@ from exif import Image as Img
 import os
 import os.path as pathh
 from pathlib import Path
-
+from sqlalchemy import update, and_, or_, not_
 
 # TODO: Remove unused python libraries
 
@@ -190,5 +190,64 @@ def create_user_image(user_id):
         response = create_user_image_response(unique_image_name, url, image_metadata_model_object, user_image_request.image_classification_model)
         
         return CreateUserImageResponseSchema().dump(response), 201
+    except:
+        return "Internal server errror.", 500
+
+@blueprint_images.route('/<int:user_id>/images/<string:image_name>', methods=['DELETE'])
+def delete_specific_image_for_user(user_id, image_name):
+    try:
+        found_user = session.query(UserEntity).\
+            filter(
+                UserEntity.id == user_id
+            ).\
+            first()
+
+        if found_user == None:
+            return "User was not found.", 404
+
+        filter_image = session.query(
+                    ImageEntity
+            ).filter(
+                and_(
+                    ImageEntity.user_id == user_id,
+                    ImageEntity.image_unique_name == image_name
+                )
+            ).all()
+
+        if filter_image == None:
+            return "Image was not found.", 404
+
+        image_join = session.query(
+                 ImageEntity, ImageMetadataEntity, ImageClassificationEntity
+            ).filter(
+                 ImageEntity.user_id == user_id
+            ).filter(
+                 ImageMetadataEntity.image_unique_name == image_name
+            ).filter(
+                 ImageClassificationEntity.image_unique_name == image_name,
+            ).first()
+
+        if image_join is None:
+            return "Internal server errror.", 500
+
+        image_location = session.query(
+                ImageLocationEntity
+            ).filter(
+                ImageLocationEntity.id == image_join[1].id,
+            ).first()
+
+        if len(image_join) != 3 or image_location is None:
+            return "Internal server errror.", 500
+    
+        # Order here is important because of FKs.
+                # TODO: delete marker if no images exist on the marker.
+        session.delete(image_join[2])
+        session.delete(image_location)
+        session.delete(image_join[1])
+        session.delete(image_join[0])
+        session.commit()
+
+        return "", 204
+
     except:
         return "Internal server errror.", 500
