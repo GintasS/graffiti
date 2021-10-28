@@ -176,6 +176,9 @@
     <Compile Include="GraffLibAPI\utils\image_helper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\utils\location_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\utils\user_helper.py">
       <SubType>Code</SubType>
     </Compile>

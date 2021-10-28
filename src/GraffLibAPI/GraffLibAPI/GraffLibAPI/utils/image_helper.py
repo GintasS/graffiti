@@ -27,3 +27,13 @@ def is_image_has_correct_extension(extension) -> bool:
 
 def is_http_request_mime_type(mime_type) -> bool:
     return mime_type in HTTP_REQUEST_MIME_TYPES
+
+def dms_to_dd(gps_coords, gps_coords_ref):
+    d, m, s =  gps_coords
+    dd = d + m / 60 + s / 3600
+    if gps_coords_ref.upper() in ('S', 'W'):
+        return -dd
+    elif gps_coords_ref.upper() in ('N', 'E'):
+        return dd
+    else:
+        raise RuntimeError('Incorrect gps_coords_ref {}'.format(gps_coords_ref))

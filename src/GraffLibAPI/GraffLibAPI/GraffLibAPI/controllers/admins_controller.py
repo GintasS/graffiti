@@ -50,6 +50,7 @@ def delete_specific_user(user_id):
             return "User does not exist", 404
     
         session.delete(found_user)
+
         session.commit()
 
     except:
@@ -61,15 +62,4 @@ def delete_specific_user(user_id):
         'method': request.method,
         'body': request.json,
         'userId': user_id
-    }
-
-
-@blueprint_admins.route('/users/<int:user_id>/images/<int:image_id>', methods=['DELETE'])
-def delete_specific_image_for_user(user_id, image_id):
-    return {
-        'message': 'This endpoint should update the entity',
-        'method': request.method,
-        'body': request.json,
-        'userId': user_id,
-        'imageId': image_id
     }
