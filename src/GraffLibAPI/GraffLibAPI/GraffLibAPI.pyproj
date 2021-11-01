@@ -44,7 +44,10 @@
     <Compile Include="GraffLibAPI\controllers\cities_controller.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\controllers\images_controller.py">
+    <Compile Include="GraffLibAPI\controllers\city_markers_controller.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\controllers\marker_images_controller.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\controllers\markers_controller.py">
@@ -65,6 +68,16 @@
     <Compile Include="GraffLibAPI\database\entities\city_entity.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\database\entities\marker\marker_metadata_entity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\database\entities\user\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\enums\marker_status.py" />
+    <Compile Include="GraffLibAPI\models\marker\marker_location_model.py" />
+    <Compile Include="GraffLibAPI\database\entities\marker\marker_location_entity.py" />
+    <Compile Include="GraffLibAPI\database\entities\marker\marker_entity.py" />
     <Compile Include="GraffLibAPI\database\entities\image\image_entity.py" />
     <Compile Include="GraffLibAPI\database\entities\image\image_metadata_entity.py" />
     <Compile Include="GraffLibAPI\database\entities\image\__init__.py">
@@ -74,13 +87,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\database\entities\image\image_classification_entity.py" />
-    <Compile Include="GraffLibAPI\database\entities\user_entity.py">
+    <Compile Include="GraffLibAPI\database\entities\marker\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\database\entities\user_password_reset_history_entity.py">
+    <Compile Include="GraffLibAPI\database\entities\user\user_entity.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\database\entities\user_password_reset_entity.py">
+    <Compile Include="GraffLibAPI\database\entities\user\user_password_reset_history_entity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\database\entities\user\user_password_reset_entity.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\database\entities\__init__.py">
@@ -98,10 +114,13 @@
     <Compile Include="GraffLibAPI\models\city_model.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\models\enums\graffiti_status.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\enums\image_direction.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\enums\RoleType.py">
+    <Compile Include="GraffLibAPI\models\enums\role_type.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\enums\user_password_reset_type.py">
@@ -110,28 +129,38 @@
     <Compile Include="GraffLibAPI\models\enums\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\image_models\image_classification_model.py">
+    <Compile Include="GraffLibAPI\models\image\image_classification_model.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\image_models\image_location_model.py">
+    <Compile Include="GraffLibAPI\models\image\image_location_model.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\image_models\image_model.py">
+    <Compile Include="GraffLibAPI\models\marker\marker_metadata_model.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\image_models\__init__.py">
+    <Compile Include="GraffLibAPI\models\marker\marker_model.py" />
+    <Compile Include="GraffLibAPI\models\image\image_model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\image\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\marker\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\requests\create_city_request.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\requests\images\create_user_image_request.py">
+    <Compile Include="GraffLibAPI\models\requests\create_marker_request.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\requests\create_user_request.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\requests\images\__init__.py">
+    <Compile Include="GraffLibAPI\models\requests\update_image_graffiti_status_request.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\requests\update_marker_status_request.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\requests\send_password_recovery_email_request.py">
@@ -144,20 +173,20 @@
     <Compile Include="GraffLibAPI\models\requests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\responses\images\create_user_image_response.py" />
+    <Compile Include="GraffLibAPI\models\responses\create_marker_image_response.py" />
     <Compile Include="GraffLibAPI\models\responses\create_user_response.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\responses\create_city_response.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\responses\images\__init__.py">
+    <Compile Include="GraffLibAPI\models\responses\create_marker_response.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\responses\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\image_models\image_metadata_model.py" />
+    <Compile Include="GraffLibAPI\models\image\image_metadata_model.py" />
     <Compile Include="GraffLibAPI\models\user_model.py">
       <SubType>Code</SubType>
     </Compile>
@@ -190,24 +219,24 @@
     </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="GraffLibAPI\__init__.py" />
-    <Compile Include="GraffLibAPI\views.py" />
+    <Compile Include="GraffLibAPI\controllers\views_controller.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GraffLibAPI\" />
     <Folder Include="GraffLibAPI\controllers\" />
     <Folder Include="GraffLibAPI\database\entities\" />
     <Folder Include="GraffLibAPI\database\entities\image\" />
-    <Folder Include="GraffLibAPI\main\" />
+    <Folder Include="GraffLibAPI\database\entities\marker\" />
+    <Folder Include="GraffLibAPI\database\entities\user\" />
     <Folder Include="GraffLibAPI\models\" />
     <Folder Include="GraffLibAPI\models\enums\" />
-    <Folder Include="GraffLibAPI\models\image_models\" />
-    <Folder Include="GraffLibAPI\models\requests\images\" />
+    <Folder Include="GraffLibAPI\models\image\" />
+    <Folder Include="GraffLibAPI\models\marker\" />
     <Folder Include="GraffLibAPI\models\responses\" />
     <Folder Include="GraffLibAPI\models\requests\" />
     <Folder Include="GraffLibAPI\configuration\" />
     <Folder Include="GraffLibAPI\database\" />
     <Folder Include="GraffLibAPI\mappings\" />
-    <Folder Include="GraffLibAPI\models\responses\images\" />
     <Folder Include="GraffLibAPI\static\user-images\" />
     <Folder Include="GraffLibAPI\static\scripts\custom scripts\" />
     <Folder Include="GraffLibAPI\templates\email-templates\" />
