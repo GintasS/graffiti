@@ -2,7 +2,7 @@ import datetime as dt
 
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
 from marshmallow import Schema, fields, validate, ValidationError
-from GraffLibAPI.models.enums import RoleType
+from GraffLibAPI.models.enums.role_type import RoleType
 from marshmallow_enum import EnumField
 from GraffLibAPI.configuration.constants import *
 
@@ -27,10 +27,10 @@ class UserModel():
 # Other: https://marshmallow.readthedocs.io/en/stable/quickstart.html
 # Validators: https://marshmallow.readthedocs.io/en/stable/marshmallow.validate.html
 class UserModelSchema(Schema):
-    user_name = fields.Str(validate=validate.Length(min=USERNAME_MIN_LENGTH, max=USERNAME_MAX_LENGTH, error=USERNAME_VALIDATION_MSG))
-    first_name = fields.Str()
-    last_name = fields.Str()
-    email = fields.Email(min=EMAIL_MIN_LENGTH, max=EMAIL_MAX_LENGTH, error=EMAIL_VALIDATION_MSG)
-    password = fields.Str(validate=validate.Length(min=PASSWORD_MIN_LENGTH, max=PASSWORD_MAX_LENGTH, error=PASSWORD_VALIDATION_MSG))
-    role = EnumField(RoleType.RoleType)
-    created_at = fields.Date()
+    user_name = fields.Str(required=True, validate=validate.Length(UserValidation.USERNAME_MIN_LENGTH, UserValidation.USERNAME_MAX_LENGTH, error=UserValidation.USERNAME_VALIDATION_MSG))
+    first_name = fields.Str(required=True, validate=validate.Length(max=UserValidation.FISRT_NAME_MAX_LENGTH, error=UserValidation.FIRST_NAME_VALIDATION_MSG))
+    last_name = fields.Str(required=True, validate=validate.Length(max=UserValidation.LAST_NAME_MAX_LENGTH, error=UserValidation.LAST_NAME_VALIDATION_MSG))
+    email = fields.Email(required=True, validate=validate.Length(UserValidation.EMAIL_MIN_LENGTH, UserValidation.EMAIL_MAX_LENGTH, error=UserValidation.EMAIL_VALIDATION_MSG))
+    password = fields.Str(required=True, validate=validate.Length(UserValidation.PASSWORD_MIN_LENGTH, UserValidation.PASSWORD_MAX_LENGTH, error=UserValidation.PASSWORD_VALIDATION_MSG))
+    role = EnumField(RoleType, required=True)
+    created_at = fields.DateTime(format=MiscValidation.DATE_FORMAT)
