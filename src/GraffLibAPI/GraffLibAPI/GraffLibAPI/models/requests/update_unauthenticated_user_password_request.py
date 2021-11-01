@@ -12,8 +12,8 @@ class UpdateUnauthenticatedUserPasswordRequest():
         return '<UpdateUnauthenticatedUserPasswordRequest(name={self.user_id!r})>'.format(self=self)
 
 class UpdateUnauthenticatedUserPasswordRequestSchema(Schema):
-    token = fields.Str()
-    new_password = fields.Str(validate=validate.Length(min=PASSWORD_MIN_LENGTH, max=PASSWORD_MAX_LENGTH, error=PASSWORD_VALIDATION_MSG))
+    token = fields.Str(required=True, validate=validate.Length(PasswordResetValidation.PASSWORD_RESET_TOKEN_MIN_LENGTH, PasswordResetValidation.PASSWORD_RESET_TOKEN_MAX_LENGTH, error=PasswordResetValidation.PASSWORD_RESET_TOKEN_VALIDATION_MSG))
+    new_password = fields.Str(required=True, validate=validate.Length(UserValidation.PASSWORD_MIN_LENGTH, max=UserValidation.PASSWORD_MAX_LENGTH, error=UserValidation.PASSWORD_VALIDATION_MSG))
 
     @post_load
     def make_update_unauthenticated_user_password_request(self, data, **kwargs):

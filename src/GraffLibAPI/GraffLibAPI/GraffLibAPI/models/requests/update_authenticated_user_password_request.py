@@ -14,10 +14,10 @@ class UpdateAuthenticatedUserPasswordRequest():
         return '<UpdateAuthenticatedUserPasswordRequest(name={self.user_id!r})>'.format(self=self)
 
 class UpdateAuthenticatedUserPasswordRequestSchema(Schema):
-    user_id = fields.Int()
-    old_password = fields.Str(validate=validate.Length(min=PASSWORD_MIN_LENGTH, max=PASSWORD_MAX_LENGTH, error=PASSWORD_VALIDATION_MSG))
-    new_password = fields.Str(validate=validate.Length(min=PASSWORD_MIN_LENGTH, max=PASSWORD_MAX_LENGTH, error=PASSWORD_VALIDATION_MSG))
-    changed_at = fields.Date()
+    user_id = fields.Int(required=True)
+    old_password = fields.Str(required=True, validate=validate.Length(UserValidation.PASSWORD_MIN_LENGTH, UserValidation.PASSWORD_MAX_LENGTH, error=UserValidation.PASSWORD_VALIDATION_MSG))
+    new_password = fields.Str(required=True, validate=validate.Length(UserValidation.PASSWORD_MIN_LENGTH, UserValidation.PASSWORD_MAX_LENGTH, error=UserValidation.PASSWORD_VALIDATION_MSG))
+    changed_at = fields.DateTime(format=MiscValidation.DATE_FORMAT)
 
     @post_load
     def make_create_user_request(self, data, **kwargs):

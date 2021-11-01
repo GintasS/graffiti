@@ -19,7 +19,7 @@ class SendPasswordRecoveryEmailRequest():
 
 # **kwargs absorbs unmatched fields.
 class SendPasswordRecoveryEmailRequestSchema(Schema):
-    email = fields.Email(min=EMAIL_MIN_LENGTH, max=EMAIL_MAX_LENGTH, error=EMAIL_VALIDATION_MSG)
+    email = fields.Email(required=True, validate=validate.Length(UserValidation.EMAIL_MIN_LENGTH, UserValidation.EMAIL_MAX_LENGTH, error=UserValidation.EMAIL_VALIDATION_MSG))
 
     @post_load
     def make_send_password_recovery_email_request(self, data, **kwargs):
