@@ -8,8 +8,8 @@ def save_file(file_bytes : bytes, directory : str, unique_image_name : str, file
     new_file.write(file_bytes)
     new_file.close()
 
-def get_current_directory(user_id : int) -> str:
-    return Path(str(Path.cwd()) + "/GraffLibAPI/static/user-images/" + str(user_id) + "/")
+def get_current_directory(marker_id : str) -> str:
+    return Path(str(Path.cwd()) + "/GraffLibAPI/static/markers/" + marker_id + "/")
 
 def create_user_image_directory_name():
     return token_urlsafe(16)
