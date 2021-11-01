@@ -7,7 +7,6 @@ from marshmallow import Schema
 
 # Project includes.
 from GraffLibAPI.configuration.constants import *
-from GraffLibAPI.models.enums.RoleType import RoleType
 from GraffLibAPI.database.base import Base
 
 class ImageMetadataEntity(Base):
@@ -16,7 +15,7 @@ class ImageMetadataEntity(Base):
     id = sa.Column(sa.Integer, primary_key=True)
     image_unique_name = sa.Column(sa.String, ForeignKey('image.image_unique_name'), nullable=False)
     original_image_name = sa.Column(sa.String, nullable=False)
-    extension =  sa.Column(sa.String(IMAGE_EXTENSION_MAX_LENGTH), nullable=False)
+    extension =  sa.Column(sa.String(ImageValidation.IMAGE_EXTENSION_MAX_LENGTH), nullable=False)
     photographed_time = sa.Column(sa.TIMESTAMP, nullable=False)
     upload_time = sa.Column(sa.TIMESTAMP, nullable=False)
     children = relationship("ImageLocationEntity")

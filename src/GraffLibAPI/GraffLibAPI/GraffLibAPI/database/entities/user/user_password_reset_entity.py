@@ -6,7 +6,6 @@ from sqlalchemy.orm import relationship
 
 # Project includes.
 from GraffLibAPI.configuration.constants import *
-from GraffLibAPI.models.enums.RoleType import RoleType
 from GraffLibAPI.database.base import Base
 from GraffLibAPI.models.enums.user_password_reset_type import UserPasswordResetType
 
@@ -14,9 +13,9 @@ class UserPasswordResetEntity(Base):
     __tablename__ = "user_password_reset"
 
     id = sa.Column(sa.Integer, primary_key=True)
-    user_id = sa.Column(sa.Integer, ForeignKey('user.id'))
+    user_id = sa.Column(sa.Integer, ForeignKey('user.id'), nullable=False)
     reset_type = sa.Column(sa.Enum(UserPasswordResetType), nullable=False)
-    token = sa.Column(sa.String, nullable=False)
+    token = sa.Column(sa.String(PasswordResetValidation.PASSWORD_RESET_TOKEN_MAX_LENGTH), nullable=False)
     children = relationship("UserPasswordResetHistoryEntity")
 
 class UserPasswordResetEntitySchema(SQLAlchemySchema):
