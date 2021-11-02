@@ -11,8 +11,8 @@ class UserPasswordResetHistoryEntity(Base):
     __tablename__ = "user_password_reset_history"
 
     id = sa.Column(sa.Integer, primary_key=True)
-    reset_id = sa.Column(sa.Integer, ForeignKey('user_password_reset.id'))
-    reset_iniatiated = sa.Column(sa.TIMESTAMP)
+    reset_id = sa.Column(sa.Integer, ForeignKey('user_password_reset.id'), nullable=False)
+    reset_iniatiated = sa.Column(sa.TIMESTAMP, nullable=False)
     reset_completed = sa.Column(sa.TIMESTAMP, nullable=True)
 
 

@@ -10,16 +10,22 @@ from marshmallow_geojson import GeoJSONSchema, PropertiesSchema, FeatureSchema
 from GraffLibAPI.configuration.constants import *
 from GraffLibAPI.database.base import Base
 
-class ImageLocationEntity(Base):
-    __tablename__ = "image_location"
+class MarkerLocationEntity(Base):
+    __tablename__ = "marker_location"
 
-    id = sa.Column(sa.Integer, ForeignKey('image_metadata.id'), primary_key=True)
+    id = sa.Column(sa.Integer, ForeignKey('marker_metadata.id'), primary_key=True)
+    country = sa.Column(sa.Unicode(LocationValidation.COUNTRY_NAME_MAX_LENGTH), nullable=False)
+    city = sa.Column(sa.Unicode(LocationValidation.CITY_NAME_MAX_LENGTH), nullable=False)
+    address = sa.Column(sa.Unicode(LocationValidation.STREET_ADDRESS_MAX_LENGTH), nullable=False)
     coordinates = sa.Column(Geometry(geometry_type='POINT', srid=4326), nullable=False)
 
-class ImageLocationEntitySchema(GeoJSONSchema):
+class MarkerLocationEntitySchema(GeoJSONSchema):
     class Meta:
-        model = ImageLocationEntity
+        model = MarkerLocationEntity
         load_instance = True  # Optional: deserialize to model instances
 
     id = auto_field()
+    country = auto_field()
+    city = auto_field()
+    address = auto_field()
     coordinates = auto_field()

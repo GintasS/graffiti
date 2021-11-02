@@ -6,10 +6,10 @@ from GraffLibAPI.configuration.constants import *
 from GraffLibAPI.configuration.email_credentials import EmailCredentials
 
 config = configparser.ConfigParser()
-config.read(APPSETTINGS_FILE_URI)
+config.read(FilePath.APPSETTINGS_FILE_URI)
 
 def create_password_reset_url(reset_token : str) -> str:
-    base_url = "http://localhost:8000/password?token={reset_token}"
+    base_url = "http://localhost:8000/v1/password?token={reset_token}"
     base_url = base_url.replace("{reset_token}", reset_token)
 
     return base_url
@@ -21,7 +21,7 @@ def create_password_recovery_email(receiver_email : str, password_reset_link : s
     message["To"] = receiver_email
 
     # Create the HTML version of your message    
-    with open(PASSWORD_RECOVERY_TEMPLATE_FILE_URI, 'r') as f:
+    with open(FilePath.PASSWORD_RECOVERY_TEMPLATE_FILE_URI, 'r') as f:
         html = f.read()
 
     # Add persons email to the template.

@@ -10,12 +10,14 @@ from GraffLibAPI.database.base import Base
 
 class CityEntity(Base):
     __tablename__ = "city"
+
     id = sa.Column(sa.Integer, primary_key=True)
-    city_name = sa.Column(sa.String(255), nullable=False)
+    city_name = sa.Column(sa.Unicode(LocationValidation.CITY_NAME_MAX_LENGTH), nullable=False)
 
 class CityEntitySchema(SQLAlchemyAutoSchema):
     class Meta:
         model = CityEntity
         load_instance = True  # Optional: deserialize to model instances
+
     id = auto_field()
     city_name = auto_field()

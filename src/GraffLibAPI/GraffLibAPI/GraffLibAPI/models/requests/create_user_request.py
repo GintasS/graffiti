@@ -11,8 +11,6 @@ class CreateUserRequest(UserModel):
     def __repr__(self):
         return '<CreateUserRequest(name={self.user_name!r})>'.format(self=self)
 
-
-
 # Note that besides the User class, 
 # we also defined a UserSchema. 
 # We will use the latter to deserialize and serialize instances of User 

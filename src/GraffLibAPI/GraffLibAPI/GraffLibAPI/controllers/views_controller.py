@@ -4,12 +4,10 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template
-from GraffLibAPI import app
 
 # Library imports
 import json
 from flask import Blueprint, render_template, request, jsonify
-from linq import Flow
 import datetime as dt
 from sqlalchemy import update, and_, or_, not_
 from marshmallow import ValidationError
@@ -28,16 +26,18 @@ from GraffLibAPI.models.city_model import CityModel
 from GraffLibAPI.models.requests.send_password_recovery_email_request import *
 from GraffLibAPI.models.requests.update_unauthenticated_user_password_request import *
 from GraffLibAPI.models.requests.update_authenticated_user_password_request import *
-from GraffLibAPI.database.entities.user_entity import *
+from GraffLibAPI.database.entities.user.user_entity import *
 from GraffLibAPI.database.entities.city_entity import *
-from GraffLibAPI.database.entities.user_password_reset_entity import *
-from GraffLibAPI.database.entities.user_password_reset_history_entity import *
+from GraffLibAPI.database.entities.user.user_password_reset_entity import *
+from GraffLibAPI.database.entities.user.user_password_reset_history_entity import *
 from GraffLibAPI.database.db_setup import session
 from GraffLibAPI.mappings.mappings import *
 from GraffLibAPI.utils.email_sender_helper import *
 from GraffLibAPI.utils.user_helper import *
 
-@app.route('/password')
+blueprint_views = Blueprint("api-views", __name__, url_prefix="/v1")
+
+@blueprint_views.route("/password", methods=["GET"])
 def password_reset_unauthenticated():
 
     try:
@@ -50,16 +50,16 @@ def password_reset_unauthenticated():
             raise ValueError("Password reset instance was not found. HttpStatusCode: 404")
         if password_reset_history.reset_iniatiated is None or password_reset_history.reset_completed is not None:
             raise ValueError("Password can't be changed because of the server state. HttpStatusCode: 409")       
+    
+        return render_template(
+            "password-recovery/password-reset-unauthenticated.html",
+            title='GraffLib - Password Reset',
+            year=datetime.now().year,
+        )              
     except Exception as err:        
         return render_template(
-            'password-recovery/password-reset-failure.html',
+            "password-recovery/password-reset-failure.html",
             title='GraffLib - Password Reset',
             year=datetime.now().year,
             reason = str(err)
         )
-
-    return render_template(
-        'password-recovery/password-reset-unauthenticated.html',
-        title='GraffLib - Password Reset',
-        year=datetime.now().year,
-    )

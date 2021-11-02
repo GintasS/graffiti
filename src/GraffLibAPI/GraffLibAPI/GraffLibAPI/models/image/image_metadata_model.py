@@ -2,10 +2,10 @@ import datetime as dt
 
 # Marshmallow is a popular Python package for converting complex datatypes, such as objects, to and from native Python datatypes.
 from marshmallow import Schema, fields, validate, ValidationError
-from GraffLibAPI.models.enums import RoleType
+from GraffLibAPI.models.enums.role_type import RoleType
 from marshmallow_enum import EnumField
 from GraffLibAPI.configuration.constants import *
-from GraffLibAPI.models.image_models.image_location_model import ImageLocationModel, ImageLocationModelSchema
+from GraffLibAPI.models.image.image_location_model import ImageLocationModel, ImageLocationModelSchema
 from marshmallow_geojson import GeoJSONSchema, PropertiesSchema, FeatureSchema
 
 class ImageMetadataModel():
@@ -20,8 +20,8 @@ class ImageMetadataModel():
         return '<ImageMetadataModel(name={self.extension!r})>'.format(self=self)
 
 class ImageMetadataModelSchema(Schema):
-    extension = fields.Str(validate=validate.Length(min=IMAGE_EXTENSION_MIN_LENGTH, max=IMAGE_EXTENSION_MAX_LENGTH, error=IMAGE_EXTENSION_VALIDATION_MSG))
-    original_image_name = fields.String()
-    photographed_time = fields.DateTime()
-    upload_time = fields.DateTime()
-    image_location_model = fields.Nested(ImageLocationModelSchema)
+    extension = fields.Str(required=True, validate=validate.Length(ImageValidation.IMAGE_EXTENSION_MIN_LENGTH, ImageValidation.IMAGE_EXTENSION_MAX_LENGTH, error=ImageValidation.IMAGE_EXTENSION_VALIDATION_MSG))
+    original_image_name = fields.String(required=True, validate=validate.Length(ImageValidation.IMAGE_ORIGINAL_NAME_MIN_LENGTH, ImageValidation.IMAGE_ORIGINAL_NAME_MAX_LENGTH, error=ImageValidation.IMAGE_ORIGINAL_NAME_VALIDATION_MSG))
+    photographed_time = fields.DateTime(required=True, format=MiscValidation.DATE_FORMAT)
+    upload_time = fields.DateTime(required=True, format=MiscValidation.DATE_FORMAT)
+    image_location_model = fields.Nested(nested=ImageLocationModelSchema, required=True)
