@@ -1,6 +1,8 @@
 # Library imports.
 from flask import Blueprint, render_template, request, jsonify
 from secrets import token_urlsafe
+import requests
+import io
 import json
 import datetime
 from PIL import Image
@@ -75,14 +77,11 @@ def get_marker_images(marker_id):
 
 @blueprint_marker_images.route("/markers/<string:marker_id>/images", methods=["POST"])
 def create_marker_image(marker_id):
-    try:
-        # Validation:
-            # TODO: [SECURITY] Check if file has a virus.								
+    try:								
         # Status codes:
             # TODO: [FILE] [Partially done, checking the name] Check whether the user has a particular image.
         # File
             # TODO: [SECURITY] Clean any sensitive data in the file"s metadata.
-            # TODO: [FILE] File compression.
         # Misc
 	        # TODO: [FILE] Should we make unique image name smaller?
 
@@ -175,7 +174,26 @@ def create_marker_image(marker_id):
         # Save the image.
         save_file(file_bytes, directory, unique_image_name, file_extension)
 
-        # Compress the image
+        #Virus scanning.
+        endpoint = "https://api.virusscannerapi.com/virusscan"
+        headers = {
+            'X-ApplicationID': '36af45c9-f7bf-4928-b319-dfc2cb7a5e6f',
+            'X-SecretKey': '0fe6ce8a-9fca-42ba-83fb-b12e72258b1c'
+        }
+        image_file_path = os.path.join(directory, unique_image_name + "." + file_extension)
+        file = open(image_file_path, errors="ignore")
+        data = {
+            'async': 'false',
+        }
+        files = {
+            'inputFile': (image_file_path, file.read())
+        }
+        r = requests.post(url=endpoint, data=data, headers=headers, files = files)
+        response = r.text
+        if ("File is clean" in response)!= True:
+            return "Bad request.", 400
+
+        # Compress the image.
         image_file_path = os.path.join(directory, unique_image_name + "." + file_extension)
         picture = Image.open(image_file_path)
         exif = picture.info['exif']
