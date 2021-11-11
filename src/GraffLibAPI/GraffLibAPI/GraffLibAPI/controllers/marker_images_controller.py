@@ -175,6 +175,12 @@ def create_marker_image(marker_id):
         # Save the image.
         save_file(file_bytes, directory, unique_image_name, file_extension)
 
+        # Compress the image
+        image_file_path = os.path.join(directory, unique_image_name + "." + file_extension)
+        picture = Image.open(image_file_path)
+        exif = picture.info['exif']
+        picture.save(image_file_path, quality = 50, optimize = False, exif = exif)
+
         # Create relashionships.
         image_location_model_object = ImageLocationModel(gps_coordinates)
         image_metadata_model_object = ImageMetadataModel(file_extension, file_name, file_metadata_date, datetime.datetime.now(), image_location_model_object)
