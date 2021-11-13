@@ -215,7 +215,7 @@ def patch_marker_image_graffiti_status(image_id):
     except:
         return "Internal server errror.", 500
 
-@blueprint_marker_images.route("/images/<string:image_id>", methods=["DELETE"])
+@blueprint_marker_images.route("/images/<string:image_id>/", methods=["DELETE"])
 def delete_specific_image_for_marker(image_id):
     try:
         # TODO: [OAuth] Check if image belongs to the user.
