@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "GraffLib REST API"
   },
-  "host": "grafflib-service.3vmbtlgbon26m.eu-central-1.cs.amazonlightsail.com",
+
   "basePath": "/v1",
   "tags": [
     {
