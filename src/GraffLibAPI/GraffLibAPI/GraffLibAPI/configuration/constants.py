@@ -115,6 +115,4 @@ class FilePath:
         PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
 
 # Database
-SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:admin@localhost:5432/grafflib"
-
-
+SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://dbmasteruser:vWWCM}1z:t#N!)Zr^`j)a!a7%Cz!W5Nf@ls-364c2fb1fb3b745849530f9c1b8916c9275ed248.coi19nukqib7.eu-central-1.rds.amazonaws.com:5432/grafflib"
