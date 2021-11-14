@@ -15,6 +15,8 @@ def create_password_reset_url(reset_token : str) -> str:
 
     return base_url
 
+# TODO: [EMAIL SENDING] [PROD] Try use 3rd party service for sending emails, because gmail doesn't work in AWS.
+
 def create_password_recovery_email(receiver_email : str, password_reset_link : str) -> None:
     message = MIMEMultipart("alternative")
     message["Subject"] = u"GraffLib - Password recovery"

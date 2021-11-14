@@ -95,7 +95,8 @@ def send_password_recovery_email():
         return "", 202
     except ValidationError as err:
         return jsonify(err.messages), 400
-    except:
+    except Exception as err:
+        print(err.message)
         return "Internal server errror.", 500
 
 @blueprint_users.route("/password", methods=["POST"])
