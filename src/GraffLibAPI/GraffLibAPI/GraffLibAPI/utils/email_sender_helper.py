@@ -9,8 +9,9 @@ config = configparser.ConfigParser()
 config.read(FilePath.APPSETTINGS_FILE_URI)
 
 def create_password_reset_url(reset_token : str) -> str:
-    base_url = "http://localhost:8000/v1/password?token={reset_token}"
+    base_url = "{app_url}/v1/password?token={reset_token}"
     base_url = base_url.replace("{reset_token}", reset_token)
+    base_url = base_url.replace("{app_url}", Application.APP_URL)
 
     return base_url
 
