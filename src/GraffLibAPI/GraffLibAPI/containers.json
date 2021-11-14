@@ -1,6 +1,6 @@
 {
     "grafflib": {
-        "image": ":grafflib-service.grafflib-container11.7",
+        "image": ":grafflib-service.grafflib-container18.13",
         "ports": {
             "8000": "HTTP"
         }
