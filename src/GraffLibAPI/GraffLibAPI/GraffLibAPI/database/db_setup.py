@@ -33,8 +33,7 @@ from GraffLibAPI.database.entities.image.image_entity import ImageEntity
 from GraffLibAPI.database.entities.user.user_entity import UserEntity
 from GraffLibAPI.database.entities.city_entity import CityEntity
 
-
-
-engine = sa.create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
+postgres_connection_string = Database.get_replaced_databse_uri()
+engine = sa.create_engine(postgres_connection_string, echo=True)
 session = scoped_session(sessionmaker(bind=engine))
 Base.metadata.create_all(engine, checkfirst=True)

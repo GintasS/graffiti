@@ -17,7 +17,7 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>GraffLibAPI</Name>
     <RootNamespace>GraffLibAPI</RootNamespace>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|grafflib-env|$(MSBuildProjectFullPath)</InterpreterId>
     <WebBrowserPort>8000</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -251,6 +251,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GraffLibAPI\configuration\appsettings.ini" />
+    <Content Include="GraffLibAPI\configuration\dbsettings.ini">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="GraffLibAPI\configuration\environment.ini">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="GraffLibAPI\Links.txt" />
     <Content Include="GraffLibAPI\static\content\bootstrap.css" />
     <Content Include="GraffLibAPI\static\content\bootstrap.css.map" />
@@ -291,10 +297,10 @@
     <Content Include="GraffLibAPI\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env\">
-      <Id>env</Id>
+    <Interpreter Include="grafflib-env\">
+      <Id>grafflib-env</Id>
       <Version>3.7</Version>
-      <Description>env (Python 3.7 (32-bit))</Description>
+      <Description>grafflib-env (Python 3.7 (32-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
