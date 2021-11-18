@@ -35,8 +35,8 @@
 
   ],
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/users": {
