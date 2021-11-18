@@ -156,7 +156,7 @@ def update_user_password_user_is_authenticated():
     try:
         password_request = UpdateAuthenticatedUserPasswordRequestSchema().load(request.get_json())
         
-        # TODO: [OAuth] Check if the you"re changing password for the same user who is authenticated.
+        # TODO: [OAuth] Check if the you're changing password for the same user who is authenticated.
         # If not, return 422.
 
         found_user = session.query(UserEntity).filter_by(id=password_request.user_id).first()
