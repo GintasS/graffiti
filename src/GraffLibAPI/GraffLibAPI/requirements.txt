@@ -1,3 +1,6 @@
+opencv-contrib-python==4.5.4.58
+opencv-python==4.5.4.58
+numpy==1.21.2
 bcrypt==3.2.0
 certifi==2021.10.8
 cffi==1.15.0

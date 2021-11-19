@@ -13,6 +13,7 @@ from GraffLibAPI.controllers.markers_controller import blueprint_markers as mark
 from GraffLibAPI.controllers.marker_images_controller import blueprint_marker_images as marker_images_endpoints
 from GraffLibAPI.controllers.users_controller import blueprint_users as user_endpoints
 from GraffLibAPI.controllers.views_controller import blueprint_views as view_endpoints
+from GraffLibAPI.controllers.comparison_controller import blueprint_comparison as comparison_endpoints
 
 app = Flask(__name__)
 app.config['RESTPLUS_MASK_SWAGGER'] = False
@@ -23,6 +24,7 @@ app.register_blueprint(city_endpoints)
 app.register_blueprint(city_marker_endpoints)
 app.register_blueprint(marker_endpoints)
 app.register_blueprint(marker_images_endpoints)
+app.register_blueprint(comparison_endpoints)
 app.register_blueprint(user_endpoints)
 app.register_blueprint(view_endpoints)
 
