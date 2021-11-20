@@ -28,6 +28,7 @@ from GraffLibAPI.models.image.image_location_model import ImageLocationModel, Im
 from GraffLibAPI.models.image.image_model import ImageModel, ImageModelSchema
 from GraffLibAPI.models.image.image_metadata_model import ImageMetadataModel
 from GraffLibAPI.models.image.image_classification_model import ImageClassificationModel, ImageClassificationModelSchema
+from GraffLibAPI.models.image.virus_scan import VirusScan
 from GraffLibAPI.database.entities.user.user_entity import UserEntity, UserEntitySchema
 from GraffLibAPI.models.responses.create_marker_image_response import CreateMarkerImageResponse, CreateMarkerImageResponseSchema
 from GraffLibAPI.mappings.mappings import *
@@ -175,23 +176,10 @@ def create_marker_image(marker_id):
         save_file(file_bytes, directory, unique_image_name, file_extension)
 
         #Virus scanning.
-        endpoint = "https://api.virusscannerapi.com/virusscan"
-        headers = {
-            'X-ApplicationID': '36af45c9-f7bf-4928-b319-dfc2cb7a5e6f',
-            'X-SecretKey': '0fe6ce8a-9fca-42ba-83fb-b12e72258b1c'
-        }
-        image_file_path = os.path.join(directory, unique_image_name + "." + file_extension)
-        file = open(image_file_path, errors="ignore")
-        data = {
-            'async': 'false',
-        }
-        files = {
-            'inputFile': (image_file_path, file.read())
-        }
-        r = requests.post(url=endpoint, data=data, headers=headers, files = files)
-        response = r.text
-        if ("File is clean" in response)!= True:
-            return "Bad request.", 400
+        scanner = VirusScan("")
+        scanner.virus_scanning(directory, unique_image_name, file_extension)
+        if ("File is clean" in scanner.response)!= True:
+            return "The request could not be completed due to a conflict with the current state of the target resource.", 409
 
         # Compress the image.
         image_file_path = os.path.join(directory, unique_image_name + "." + file_extension)
