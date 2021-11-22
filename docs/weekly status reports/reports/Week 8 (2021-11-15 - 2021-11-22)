@@ -1,0 +1,18 @@
+# What was done this week?
+
+- Added HTTP as default schema for dev enviroment
+- Fixed marker serialization bug
+- Moved virus scanning to an util class
+- Attempts at porting a .NET project on linux
+
+# What issues/risks/blockers do you have?
+
+- Difficulties with managing motivation
+
+# What is the goal for next week?
+
+- Remove stale items from the GitLab (issues, branches)
+
+# What is the overall status?
+
+- Yellow
