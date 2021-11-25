@@ -40,9 +40,12 @@ def get_users():
 @blueprint_admins.route("/users/<int:user_id>/", methods=["GET"])
 def get_specific_user(user_id):
     try:
-        user = session.query(UserEntity).get(user_id)
+        found_user = session.query(UserEntity).filter(UserEntity.id == user_id).first()
 
-        return { "body": UserEntitySchema().dump(user) }, 200
+        if found_user is None:
+            return "User does not exist", 404
+
+        return { "body": UserEntitySchema().dump(found_user) }, 200
     except ValidationError as err:
         return jsonify(err.messages), 400
     except:

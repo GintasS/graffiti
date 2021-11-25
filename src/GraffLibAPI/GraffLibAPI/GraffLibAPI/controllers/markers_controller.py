@@ -29,6 +29,10 @@ def get_markers():
     try:
         markers_join = session.query(
                 MarkerLocationEntity, MarkerMetadataEntity, MarkerEntity
+            ).filter(
+                MarkerMetadataEntity.marker_id == MarkerEntity.id
+            ).filter(
+                 MarkerLocationEntity.id == MarkerMetadataEntity.id
             ).all()
 
         marker_models = []
@@ -144,6 +148,9 @@ def patch_marker_status(marker_id):
 @blueprint_markers.route("/<string:marker_id>/", methods=["DELETE"])
 def delete_marker(marker_id):
     try:
+
+        # TODO: need to delete folder as well.
+
         found_marker = session.query(MarkerEntity).\
             filter(
                 MarkerEntity.id == marker_id
