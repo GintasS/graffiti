@@ -2,13 +2,13 @@
 This script runs the GraffLibAPI application using a development server.
 """
 
+from gevent.pywsgi import WSGIServer
 from os import environ
 from GraffLibAPI import app
 
-if __name__ == '__main__':
-    HOST = environ.get('SERVER_HOST', 'localhost')
-    try:
-        PORT = int(environ.get('SERVER_PORT', '8000'))
-    except ValueError:
-        PORT = 8000
-    app.run(HOST, PORT)
+# TODO: [PRODUCTION] Do not use DEV build for PROD.
+# TODO: [PYTHON] Update project to use newest python version and newest packages.
+# TODO: [EMAIL] After user signs up, we need a confirmation email logic.
+
+http_server = WSGIServer(('0.0.0.0', 8000), app)
+http_server.serve_forever()

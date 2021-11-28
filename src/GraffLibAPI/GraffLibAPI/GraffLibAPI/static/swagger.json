@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "GraffLib REST API"
   },
-  "host": "localhost:8000",
+
   "basePath": "/v1",
   "tags": [
     {
@@ -262,7 +262,7 @@
       }
     },
 
-    "/users/{id}": {
+    "/users/{id}/": {
       "get": {
         "tags": [
           "Admins"
@@ -495,7 +495,7 @@
     },
 
 
-    "/markers/{id}": {
+    "/markers/{id}/": {
       "delete": {
         "tags": [
           "Markers"
@@ -726,7 +726,7 @@
       }
     },
 
-    "/images/{id}": {
+    "/images/{id}/": {
       "delete": {
         "tags": [
           "Marker Images"
@@ -902,7 +902,7 @@
       }
     },
 
-    "/cities/{id}": {
+    "/cities/{id}/": {
       "delete": {
         "tags": [
           "Cities"

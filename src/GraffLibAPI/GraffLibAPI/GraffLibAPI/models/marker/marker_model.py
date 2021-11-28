@@ -24,4 +24,4 @@ class MarkerModelSchema(Schema):
     id = fields.Str(required=True, validation=validate.Length(MarkerValidation.MARKER_ID_MIN_LENGTH, MarkerValidation.MARKER_ID_MAX_LENGTH, error=MarkerValidation.MARKER_ID_VALIDATION_MSG))
     user_id = fields.Int(required=True)
     marker_status = EnumField(MarkerStatus, required=True)
-    mark_metadata_model = fields.Nested(nested=MarkerMetadataModelSchema(), required=True)
+    marker_metadata_model = fields.Nested(nested=MarkerMetadataModelSchema(), required=True)
