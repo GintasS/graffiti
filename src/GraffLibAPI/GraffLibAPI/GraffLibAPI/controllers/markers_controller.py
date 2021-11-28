@@ -18,7 +18,6 @@ from GraffLibAPI.models.marker.marker_model import MarkerModel
 from GraffLibAPI.models.marker.marker_metadata_model import MarkerMetadataModel
 from GraffLibAPI.utils.location_helper import *
 from GraffLibAPI.mappings.mappings import *
-from GraffLibAPI.models.responses.create_marker_response import CreateMarkerResponse, CreateMarkerResponseSchema
 from GraffLibAPI.database.entities.city_entity import CityEntity, CityEntitySchema
 from GraffLibAPI.models.requests.update_marker_status_request import UpdateMarkerStatusRequest, UpdateMarkerStatusRequestSchema
 
@@ -116,7 +115,9 @@ def create_marker():
         session.add(marker_location_entity)
         session.commit()
 
-        return { "body": CreateMarkerResponseSchema().dump(CreateMarkerResponse(marker_id = marker_id)) }
+        marker_model = to_marker_model(marker_entity, marker_metadata_entity, marker_location_entity)
+
+        return { "body": MarkerModelSchema().dump(marker_model) }, 201
     except ValidationError as err:
         return jsonify(err.messages), 400
     except:
