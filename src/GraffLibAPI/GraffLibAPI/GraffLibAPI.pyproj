@@ -180,9 +180,6 @@
     <Compile Include="GraffLibAPI\models\responses\create_city_response.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GraffLibAPI\models\responses\create_marker_response.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GraffLibAPI\models\responses\__init__.py">
       <SubType>Code</SubType>
     </Compile>

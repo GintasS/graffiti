@@ -14,6 +14,8 @@ from marshmallow import ValidationError
 # TODO: [CLEANING] Remove unused python libraries
 # TODO: [MAJOR REFACTORING] Move logic code to services.
 # TODO: [MAJOR REFACTORING] Add tests for services.
+# TODO: Add image id for image model/responses.
+# TODO: Model Validation does not work everywhere.
 
 # Project imports.
 from GraffLibAPI.database.db_setup import session
@@ -106,6 +108,10 @@ def create_marker_image(marker_id):
         user_classification_model = ImageClassificationModelSchema().load(json.loads(result.parts[1].text))
         user_precise_location = None
 
+        found_user = session.query(UserEntity).filter(UserEntity.id == user_id).first()
+        if found_user is None:
+            return "User does not exist", 404
+
         if len(result.parts) == 4:
             user_precise_location = ImageLocationModelSchema().load(json.loads(result.parts[2].text))
 
@@ -142,6 +148,9 @@ def create_marker_image(marker_id):
         # Validating image with Pillow.
         file_opened_with_pillow = Image.open(file_part)
         file_extension = file_opened_with_pillow.format_description.split(" ")[0].lower()
+
+        # TODO: check if all jsons passed to here are valid.
+
 
         if is_image_has_correct_extension(file_extension) == False:
             return "File type is wrong.", 415

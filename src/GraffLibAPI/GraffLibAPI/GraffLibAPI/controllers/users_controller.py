@@ -102,7 +102,14 @@ def send_password_recovery_email():
 @blueprint_users.route("/password", methods=["POST"])
 def update_user_password_after_recovery_email():
     try:
-        password_request = UpdateUnauthenticatedUserPasswordRequestSchema().load(request.form)
+        request_data = None
+
+        if len(request.form) == 0:
+            request_data = request.get_json()
+        elif len(request.get_json()) == 0:
+            request_data = request.form
+
+        password_request = UpdateUnauthenticatedUserPasswordRequestSchema().load(request_data)
         password_reset = session.query(UserPasswordResetEntity).filter_by(token=password_request.token).first()
         password_reset_history = session.query(UserPasswordResetHistoryEntity).filter_by(reset_id=password_reset.id).first()
         found_user = session.query(UserEntity).filter_by(id=password_reset.user_id).first()
