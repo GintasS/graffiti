@@ -197,27 +197,22 @@ def to_marker_location_entity(metadata_id : int, country : str, city : str , add
     )
 
 
-def to_marker_model(marker_entity : MarkerEntity, marker_metadata_entity : MarkerMetadataEntity, marker_location_entity : MarkerLocationEntity) -> MarkerModel:
-    marker_metadata_entity = session.query(MarkerMetadataEntity).\
-        filter(
-            MarkerMetadataEntity.marker_id == marker_entity.id
-        ).\
-        first()
-
-    marker_location_entity = session.query(MarkerLocationEntity).\
-        filter(
-            MarkerLocationEntity.id == marker_metadata_entity.id
-        ).\
-        first()
-        
+def to_marker_model(marker_entity : MarkerEntity, marker_metadata_entity : MarkerMetadataEntity, marker_location_entity : MarkerLocationEntity) -> MarkerModel:        
     marker_location_model = to_marker_location_model(marker_location_entity)
     marker_metadata_model = to_marker_metadata_model(marker_metadata_entity, marker_location_model)
 
     return MarkerModel(marker_entity.id, marker_entity.user_id, marker_entity.marker_status, marker_metadata_model)
 
 def to_marker_metadata_model(marker_metadata_entity : MarkerMetadataEntity, marker_location_model : MarkerLocationModel) -> MarkerMetadataModel:   
-    return MarkerMetadataModel(marker_metadata_entity.created_at, marker_metadata_entity.last_update, marker_location_model)
+    return MarkerMetadataModel(
+        marker_id = marker_metadata_entity.id,
+        created_at = marker_metadata_entity.created_at, 
+        last_update = marker_metadata_entity.last_update, 
+        marker_location_model = marker_location_model)
 
 def to_marker_location_model(marker_location_entity : MarkerLocationEntity) -> MarkerLocationModel:
-    return MarkerLocationModel(marker_location_entity.country, marker_location_entity.city, marker_location_entity.address, marker_location_entity.coordinates)
+    coordinates = to_shape(marker_location_entity.coordinates)
+    coordinates_list = [ coordinates.x, coordinates.y ]
+
+    return MarkerLocationModel(marker_location_entity.country, marker_location_entity.city, marker_location_entity.address, coordinates_list)
 

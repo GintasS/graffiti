@@ -1,6 +1,8 @@
 # Library imports.
 import os
 import platform
+from pathlib import Path
+import configparser
 
 class UserValidation:
     USERNAME_MIN_LENGTH = 6
@@ -100,21 +102,67 @@ class MiscValidation:
     URL_SCHEME_HTTPS = "https"
 
 # OS related path constants.
+
+class Directory:
+    WORKING_DIRECTORY = str(Path.cwd())
+    CONFIGURATION_DIRECTORY = "configuration"
+    TEMPLATES_DIRECTORY = "templates"
+    EMAIL_TEMPLATES_DIRECTORY = "email-templates"
+    GRAFFLIB_ROOT_DIRECTORY = "GraffLibAPI"
+
 class FilePath:
-    if platform.system().lower() == "windows" or platform.system().lower() == "linux":
-        APPSETTINGS_FILE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
-        APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
+    APPSETTINGS_FILE = "appsettings.ini"
+    APPSETTINGS_FILE_URI = os.path.join(Directory.WORKING_DIRECTORY, Directory.GRAFFLIB_ROOT_DIRECTORY, Directory.CONFIGURATION_DIRECTORY, APPSETTINGS_FILE)
 
-        PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "../GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
-        PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
-    else:
-        APPSETTINGS_FILE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/configuration/appsettings.ini"
-        APPSETTINGS_FILE_URI = os.path.abspath(APPSETTINGS_FILE_RELATIVE_PATH)
+    PASSWORD_RECOVERY_TEMPLATE_FILE = "password-recovery-template.html"
+    PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.join(Directory.WORKING_DIRECTORY, Directory.GRAFFLIB_ROOT_DIRECTORY, Directory.TEMPLATES_DIRECTORY, Directory.EMAIL_TEMPLATES_DIRECTORY, PASSWORD_RECOVERY_TEMPLATE_FILE)
 
-        PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH = "src/GraffLibAPI/GraffLibAPI/templates/email-templates/password-recovery-template.html"
-        PASSWORD_RECOVERY_TEMPLATE_FILE_URI = os.path.abspath(PASSWORD_RECOVERY_TEMPLATE_RELATIVE_PATH)
+    DATABASE_FILE = "dbsettings.ini"
+    DATABASE_FILE_URI = os.path.join(Directory.WORKING_DIRECTORY, Directory.GRAFFLIB_ROOT_DIRECTORY, Directory.CONFIGURATION_DIRECTORY, DATABASE_FILE)
 
-# Database
-SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:admin@localhost:5432/grafflib"
+    ENVIRONMENT_FILE = "environment.ini"
+    ENVIRONMENT_FILE_URI = os.path.join(Directory.WORKING_DIRECTORY, Directory.GRAFFLIB_ROOT_DIRECTORY, Directory.CONFIGURATION_DIRECTORY, ENVIRONMENT_FILE)
 
 
+class Environment:
+    config = configparser.ConfigParser()
+    config.read(FilePath.ENVIRONMENT_FILE_URI)   
+    CURRENT_ENVIRONMENT_NAME = config.get("environment", "CURRENT_ENVIRONMENT_NAME")
+
+class Database():   
+    POSTGRES_DATABASE_URI = "postgresql+psycopg2://{db-user}:{db-password}@{db-url}:{db-url-port}/{db-name}"
+
+    def get_replaced_databse_uri():
+        postgres_url = Database.POSTGRES_DATABASE_URI
+        config_name = None
+
+        if Environment.CURRENT_ENVIRONMENT_NAME == "DEV":
+            config_name = "db-credentials-dev"
+        if Environment.CURRENT_ENVIRONMENT_NAME == "PROD":
+            config_name = "db-credentials-prod"
+
+        config = configparser.ConfigParser()
+        config.read(FilePath.DATABASE_FILE_URI)
+
+        db_user = config.get(config_name, "POSTGRES_DB_USER_NAME")
+        db_password = config.get(config_name, "POSTGRES_DB_PASSWORD")
+        db_url = config.get(config_name, "POSTGRES_DB_URL")
+        db_url_port = config.get(config_name, "POSTGRES_DB_URL_PORT")
+        db_name = config.get(config_name, "POSTGRES_DB_NAME")
+
+        return postgres_url.replace("{db-user}", db_user) \
+            .replace("{db-password}", db_password) \
+            .replace("{db-url}", db_url) \
+            .replace("{db-url-port}", db_url_port) \
+            .replace("{db-name}", db_name) \
+
+class Application:
+    APP_URL = None
+
+    config = configparser.ConfigParser()
+    config.read(FilePath.APPSETTINGS_FILE_URI)
+    
+    if Environment.CURRENT_ENVIRONMENT_NAME == "DEV":
+        APP_URL = config.get("app", "DEV_URL")
+    if Environment.CURRENT_ENVIRONMENT_NAME == "PROD":
+        APP_URL = config.get("app", "PROD_URL")
