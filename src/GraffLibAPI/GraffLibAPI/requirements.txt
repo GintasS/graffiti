@@ -10,6 +10,7 @@ flask-swagger-ui==3.36.0
 GeoAlchemy2==0.9.4
 geographiclib==1.52
 geopy==2.2.0
+gevent==21.8.0
 greenlet==1.1.2
 idna==3.3
 importlib-metadata==4.8.1
@@ -40,3 +41,5 @@ typing-extensions==3.10.0.2
 urllib3==1.26.7
 Werkzeug==2.0.2
 zipp==3.6.0
+zope.event==4.5.0
+zope.interface==5.4.0
