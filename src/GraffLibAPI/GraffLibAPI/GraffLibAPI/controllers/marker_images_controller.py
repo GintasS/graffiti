@@ -11,6 +11,10 @@ from pathlib import Path
 from sqlalchemy import update, and_, or_, not_
 from marshmallow import ValidationError
 
+# Impose no limit on images.
+Image.MAX_IMAGE_PIXELS = None
+
+
 # TODO: [CLEANING] Remove unused python libraries
 # TODO: [MAJOR REFACTORING] Move logic code to services.
 # TODO: [MAJOR REFACTORING] Add tests for services.
@@ -145,6 +149,9 @@ def create_marker_image(marker_id):
             # File EXIF data is here.
         file_metadata = Img(file_bytes)
 
+        if file_size > 10:
+            return "File size is too large", 413
+
         # Validating image with Pillow.
         file_opened_with_pillow = Image.open(file_part)
         file_extension = file_opened_with_pillow.format_description.split(" ")[0].lower()
@@ -156,8 +163,6 @@ def create_marker_image(marker_id):
             return "File type is wrong.", 415
         if request_mime_type.split("/")[1] != file_extension:
             return "File types don't match.", 415
-        if file_size > 100:
-            return "File size is too large", 413
         if file_metadata.has_exif == False:
             return "File metadata is missing.", 405
         if hasattr(file_metadata, "gps_latitude") == False and hasattr(file_metadata, "gps_longitude") == False and user_precise_location == None:
@@ -193,6 +198,8 @@ def create_marker_image(marker_id):
         # Create response.
         response = create_marker_image_response(unique_image_name, new_entities[0].graffiti_status, user_id, image_metadata_model_object, user_classification_model)
         
+
+
         return { "body": CreateMarkerImageResponseSchema().dump(response) }, 201
     except ValidationError as err:
         return jsonify(err.messages), 400
