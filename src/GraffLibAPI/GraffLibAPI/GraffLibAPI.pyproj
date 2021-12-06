@@ -17,7 +17,7 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>GraffLibAPI</Name>
     <RootNamespace>GraffLibAPI</RootNamespace>
-    <InterpreterId>MSBuild|grafflib-env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>Global|VisualStudio|graffLibEnv64</InterpreterId>
     <WebBrowserPort>8000</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -45,6 +45,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\controllers\city_markers_controller.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\controllers\image_comparison_controller.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\controllers\marker_images_controller.py">
@@ -75,6 +78,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\enums\marker_status.py" />
+    <Compile Include="GraffLibAPI\models\external\on_water_api_response.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\external\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\marker\marker_location_model.py" />
     <Compile Include="GraffLibAPI\database\entities\marker\marker_location_entity.py" />
     <Compile Include="GraffLibAPI\database\entities\marker\marker_entity.py" />
@@ -173,6 +182,9 @@
     <Compile Include="GraffLibAPI\models\requests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\models\responses\compare_two_images_response.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\responses\create_marker_image_response.py" />
     <Compile Include="GraffLibAPI\models\responses\create_user_response.py">
       <SubType>Code</SubType>
@@ -190,6 +202,9 @@
     <Compile Include="GraffLibAPI\models\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\utils\compare_image_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\utils\datetime_parser.py">
       <SubType>Code</SubType>
     </Compile>
@@ -202,7 +217,13 @@
     <Compile Include="GraffLibAPI\utils\image_helper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\utils\location_iq_api_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\utils\location_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\utils\on_water_api_helper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\utils\user_helper.py">
@@ -229,6 +250,7 @@
     <Folder Include="GraffLibAPI\models\enums\" />
     <Folder Include="GraffLibAPI\models\image\" />
     <Folder Include="GraffLibAPI\models\marker\" />
+    <Folder Include="GraffLibAPI\models\external\" />
     <Folder Include="GraffLibAPI\models\responses\" />
     <Folder Include="GraffLibAPI\models\requests\" />
     <Folder Include="GraffLibAPI\configuration\" />
@@ -303,6 +325,9 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X86</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|VisualStudio|graffLibEnv64" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 
