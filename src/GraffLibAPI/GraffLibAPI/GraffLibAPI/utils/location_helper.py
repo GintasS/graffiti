@@ -24,8 +24,12 @@ def get_short_address(address : dict) -> str:
     house_number = ""
     if address.get("house_number") is not None:
         house_number = address["house_number"]
+    
+    if address.get("road") is None:
+        short_address = address["city"] + ", " + address["country"]
+    else:
+        short_address = address["road"] + house_number + ", " + address["city"] + ", " + address["country"]
 
-    short_address = address["road"] + house_number + ", " + address["city"] + ", " + address["country"]
     return short_address
 
 def dms_to_dd(gps_coords, gps_coords_ref):
