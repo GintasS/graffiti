@@ -102,15 +102,17 @@ def create_marker():
                 CityEntity.city_name == city
             ).\
             first()
-        # TODO: [OAuth] remove user_id from json multi-part HTTP request after integrating to open auth.
+ 
+        if found_city is None:
+            return "City does not exist in database.", 404
+
+       # TODO: [OAuth] remove user_id from json multi-part HTTP request after integrating to open auth.
         found_user = session.query(UserEntity).\
             filter(
                 UserEntity.id == create_marker_request.user_id
             ).\
             first()
 
-        if found_city is None:
-            return "City does not exist in database.", 404
         if found_user is None:
             return "User was not found.", 404
 
