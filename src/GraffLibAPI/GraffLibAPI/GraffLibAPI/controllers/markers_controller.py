@@ -86,7 +86,7 @@ def create_marker():
             return "Marker can't be created on water.", 409
 
         # Reverse engineer address from coordinates.
-        location = create_location_iq_api_request(create_marker_request.coordinates[0], create_marker_request.coordinates[1])
+        location = get_location_from_coordinates(create_marker_request.coordinates[0], create_marker_request.coordinates[1])
         location_raw = location.raw["address"]
         location_address = get_short_address(location_raw)
 
