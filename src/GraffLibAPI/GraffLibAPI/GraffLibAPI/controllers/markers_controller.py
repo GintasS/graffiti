@@ -3,7 +3,9 @@ from flask import Blueprint, render_template, request, jsonify
 from secrets import token_urlsafe
 from marshmallow import ValidationError
 import json
-
+import logging
+logger = logging.getLogger()
+import glob
 
 from GraffLibAPI.database.db_setup import session
 from GraffLibAPI.models.requests.create_user_request import CreateUserRequest, CreateUserRequestSchema
@@ -20,6 +22,9 @@ from GraffLibAPI.utils.location_helper import *
 from GraffLibAPI.mappings.mappings import *
 from GraffLibAPI.database.entities.city_entity import CityEntity, CityEntitySchema
 from GraffLibAPI.models.requests.update_marker_status_request import UpdateMarkerStatusRequest, UpdateMarkerStatusRequestSchema
+from GraffLibAPI.models.external.on_water_api_response import OnWaterApiResponse, OnWaterApiResponseSchema
+from GraffLibAPI.utils.on_water_api_helper import *
+
 
 blueprint_markers = Blueprint("api-markers", __name__, url_prefix="/v1/markers")
 
@@ -35,6 +40,24 @@ def get_markers():
             ).all()
 
         marker_models = []
+
+        dir_exists = os.path.exists("/app/GraffLibAPI/static/markers")
+        logger.warning("CREATE MARKER ROOT DIR EXISTS:" + str(dir_exists))
+
+        dir_exists2 = os.path.exists("/app/GraffLibAPI/static/markers/ybpB8L22TMWcAlFXdDkRCc7S8lDKlkqqf9ryEbLqJMs")
+        logger.warning("CREATE MARKER FULL DIR EXISTS:" + str(dir_exists2))
+
+        dir_exists3 = os.path.isfile("/app/GraffLibAPI/static/markers/ybpB8L22TMWcAlFXdDkRCc7S8lDKlkqqf9ryEbLqJMs/test.txt")
+        logger.warning("CREATE MARKER FILE EXISTS:" + str(dir_exists3))
+
+        dir_working = str(Path.cwd())
+        logger.warning("WORKING DIR " + dir_working)
+
+        outputTxt = glob.glob('**/*.txt', recursive=True)
+        logger.warning("GLOB output TXT: "+ str(outputTxt))
+
+        outputJPEG = glob.glob('**/*.jpeg', recursive=True)
+        logger.warning("GLOB output JPEG: "+ str(outputJPEG))
 
         for m in markers_join:
             marker_models.append(to_marker_model(m[2], m[1], m[0]))
@@ -55,8 +78,15 @@ def create_marker():
         create_marker_request = CreateMarkerRequestSchema().load(request.get_json())
         new_marker_coordinates = [ create_marker_request.coordinates[0], create_marker_request.coordinates[1] ]
 
+        # Check if marker is on water or not.
+        on_water_api_request_text = create_on_water_api_request(str(create_marker_request.coordinates[0]), str(create_marker_request.coordinates[1]))
+        on_water_api_request_response = OnWaterApiResponseSchema().load(json.loads(on_water_api_request_text))
+
+        if on_water_api_request_response.water is True:
+            return "Marker can't be created on water.", 409
+
         # Reverse engineer address from coordinates.
-        location = get_location_from_coordinates(create_marker_request.coordinates[0], create_marker_request.coordinates[1])
+        location = create_location_iq_api_request(create_marker_request.coordinates[0], create_marker_request.coordinates[1])
         location_raw = location.raw["address"]
         location_address = get_short_address(location_raw)
 
@@ -83,7 +113,6 @@ def create_marker():
             return "City does not exist in database.", 404
         if found_user is None:
             return "User was not found.", 404
-
 
         markers_join = session.query(
                 MarkerLocationEntity, MarkerMetadataEntity, MarkerEntity
@@ -127,7 +156,6 @@ def create_marker():
 def patch_marker_status(marker_id):
     try:
         update_marker_status_request = UpdateMarkerStatusRequestSchema().load(request.get_json())
-
         found_marker = session.query(MarkerEntity).\
             filter(
                 MarkerEntity.id == marker_id
@@ -149,9 +177,7 @@ def patch_marker_status(marker_id):
 @blueprint_markers.route("/<string:marker_id>/", methods=["DELETE"])
 def delete_marker(marker_id):
     try:
-
         # TODO: need to delete folder as well.
-
         found_marker = session.query(MarkerEntity).\
             filter(
                 MarkerEntity.id == marker_id

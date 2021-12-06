@@ -61,13 +61,11 @@ class ImageValidation:
     IMAGE_ORIGINAL_NAME_VALIDATION_MSG = "Image original name must be between 1 and 100 characters."
 
     IMAGE_ALLOWED_EXTENSIONS = [
-      "jpeg", 
-      "png"
+      "jpeg"
     ]
 
     HTTP_REQUEST_MIME_TYPES = [
-      "image/jpeg",
-      "image/png"
+      "image/jpeg"
     ]
 
 class MarkerValidation:
@@ -166,3 +164,29 @@ class Application:
         APP_URL = config.get("app", "DEV_URL")
     if Environment.CURRENT_ENVIRONMENT_NAME == "PROD":
         APP_URL = config.get("app", "PROD_URL")
+
+class OnWaterApi:
+    def get_replaced_api_url(latitude, longitude):
+        API_BASE_URL = "https://api.onwater.io/api/v1/results/{latitude},{longitude}?access_token={access_token}"
+        config = configparser.ConfigParser()
+        config.read(FilePath.APPSETTINGS_FILE_URI)
+        API_KEY = config.get("onwater-api-credentials", "API_KEY")
+
+        url = API_BASE_URL.replace("{latitude}", latitude) \
+            .replace("{longitude}", longitude) \
+            .replace("{access_token}", API_KEY)
+
+        return url
+
+class LocationIqApi:
+    def get_replaced_api_url(latitude, longitude):
+        API_BASE_URL = "https://us1.locationiq.com/v1/reverse.php?key={key}&lat={latitude}&lon={longitude}&format=json"
+        config = configparser.ConfigParser()
+        config.read(FilePath.APPSETTINGS_FILE_URI)
+        API_KEY = config.get("location-iq-api-credentials", "API_KEY")
+
+        url = API_BASE_URL.replace("{latitude}", latitude) \
+            .replace("{longitude}", longitude) \
+            .replace("{key}", API_KEY)
+
+        return url
