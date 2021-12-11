@@ -177,16 +177,3 @@ class OnWaterApi:
             .replace("{access_token}", API_KEY)
 
         return url
-
-class LocationIqApi:
-    def get_replaced_api_url(latitude, longitude):
-        API_BASE_URL = "https://us1.locationiq.com/v1/reverse.php?key={key}&lat={latitude}&lon={longitude}&format=json"
-        config = configparser.ConfigParser()
-        config.read(FilePath.APPSETTINGS_FILE_URI)
-        API_KEY = config.get("location-iq-api-credentials", "API_KEY")
-
-        url = API_BASE_URL.replace("{latitude}", latitude) \
-            .replace("{longitude}", longitude) \
-            .replace("{key}", API_KEY)
-
-        return url
