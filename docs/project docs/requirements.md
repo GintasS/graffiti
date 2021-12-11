@@ -100,17 +100,13 @@ Here are the project functions that we think our ***primary user*** will need th
 - Upload the graffiti image.
 - Display uploaded graffiti image.
 - Aggregate different graffiti images around a single GIS marker.
-- Analyze different graffiti images. This can be achieved either by some traditional algorithm, like comparing pixels, using machine vision or AI/ML algorithms.
-- Compare different graffiti images over time.
+- Analyze different graffiti images. This can be achieved either by some traditional algorithm, like comparing pixels.
 - Allow the user to enter description about the particular image.
 - Allow user to register, and log-in, recover an account.
 
 Here are the project functions that we think our ***secondary user*** will need the most:
 - Manage user accounts by deleting them or changing passwords and email addresses.
 - Manage user data, such as images, markers, meta-data and other data.
-
-Here are the project functions that we think our ***anonymous user*** will need the most:
-- View existing graffiti images and data about them.
 
 ### Assumptions and Dependencies
 
@@ -129,11 +125,9 @@ Factors that impact your ability to fulfill the requirements:
 
 - As a primary user, I want to be able log-in, register and recover my account, so that I could safely interact with the project. ***FR1***
 - As a primary user, I want to add new graffiti information to our system or have existing graffiti information, so that I could share this information with the users. ***FR2***
-- As a primary user, I want to compare graffiti over time*, so that I would know how various graffiti change.  ***FR3***
-- As a primary user, I want to see graffiti information, so that I could see uploaded images of different users.  ***FR4***
-- As a primary user, I want to see graffiti information for one specific geographical location, so I would know all available information for a single graffiti.  ***FR5***
-- As a secondary user, I want to be able to manage user information, by removing user information, so I could prevent malicious data being stored.  ***FR6***
-- As an anonymous user, I want to be able to see graffiti images and their data without logging in, so I could experience the platform with no extra steps. ***FR7***
+- As a primary user, I want to see graffiti information, so that I could see uploaded images of different users.  ***FR3***
+- As a primary user, I want to see graffiti information for one specific geographical location, so I would know all available information for a single graffiti.  ***FR4***
+- As a secondary user, I want to be able to manage user information, by removing user information, so I could prevent malicious data being stored.  ***FR5***
 
 <br>
 * - To this day, we don't know how we will compare graffiti images. One possibility would be to compare it using some machine vision algorithm and or it's meta-data.
@@ -142,18 +136,14 @@ Factors that impact your ability to fulfill the requirements:
 ### External Interface Requirements
 
 Primary user's interface requirements:
-- In the best-case scenario, the user will have a GUI where he can perform all the 
-actions described in functional requirements. ***But this is not planned for now.*** ***EIR1***
+- The user will have a GUI where he can perform all the 
+actions described in functional requirements. ***EIR1***
 
 Secondary user's interface requirements:
 - In the best-case scenario, the user will have a GUI where he can perform all the 
-actions described in functional requirements. ***But this is not planned for now.*** ***EIR2***
+actions described in functional requirements. ***EIR2***
 
-Anonymous user's interface requirements:
-- In the best-case scenario, the user will have a GUI where he can perform all the 
-actions described in functional requirements. ***But this is not planned for now.*** ***EIR3***
-
-Hardware's interface requirements:
+Hardware's interface requirements: <!--TODO: Update for phone? -->
 - Windows OS with network-adapter. ***HIR1***
 - Windows OS version that supports modern websites. ***HIR2***
 - Windows OS that supports Python 3 and Flask. ***HIR3***
@@ -172,10 +162,10 @@ Software's interface requirements:
 
 #### Security
 
-- User information in the database should be kept in a secure manner. ***NFR3***
+- Sensitive user information in the database should be kept in a secure manner. ***NFR3***
 - User passwords should be hashed using a modern and secure hashing algorithm. ***NFR4***
 - Our back-end system should validate user information as not to allow malicious code. ***NFR5***
-- Primary and anonymous users should not have administrative privileges in our system. ***NFR6***
+- Primary users should not have administrative privileges in our system. ***NFR6***
 
 #### Localization
 
@@ -183,7 +173,7 @@ Software's interface requirements:
 
 #### Usability
 
-- If a GUI exists, the user will be able to upload a photo in a less than 15 clicks. ***NFR8***
+- The user will be able to upload a photo in a less than 15 clicks. ***NFR8***
 
 ## Additional Information
 
@@ -197,6 +187,9 @@ External links:
 - Non-functional requirements - [link](https://www.altexsoft.com/blog/non-functional-requirements/).
 
 ## Changelog
+
+### 2021-12-07
+- Updated requirements document to better suit the current situation
 
 ### 2021-10-01
 - Updated requirements document according to the feedback received.
