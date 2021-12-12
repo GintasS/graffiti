@@ -59,14 +59,11 @@ The intended use of this document  is as follows:
 Our goal is: ***to connect people who are interested in graffiti and enable them to share, analyze and compare pictures of graffiti online.*** 
 
 Our system would:
-- Save user data(accounts, passwords, emails, personal information).
 - Save actual images.
 - Save image meta-data(location, extensions, photography date, upload date).
 - Save marker data (pins on the map).
 
-Currently, there are no focus on front-end(GUI). We are primarily focused on back-end system.
-
-We are thinking of hosting our system on Vilnius University's infrastructure.
+Our system is being hosted on Amazon Web Services (AWS) Lightsail infrastructure.
 
 ### Definitions and Acronyms
 
@@ -101,8 +98,6 @@ Here are the project functions that we think our ***primary user*** will need th
 - Display uploaded graffiti image.
 - Aggregate different graffiti images around a single GIS marker.
 - Analyze different graffiti images. This can be achieved either by some traditional algorithm, like comparing pixels.
-- Allow the user to enter description about the particular image.
-- Allow user to register, and log-in, recover an account.
 
 Here are the project functions that we think our ***secondary user*** will need the most:
 - Manage user accounts by deleting them or changing passwords and email addresses.
@@ -117,17 +112,15 @@ Factors that impact your ability to fulfill the requirements:
 
 ## System Features and Requirements
 
-[<img src="images/project-architecture.jpg" width="1000" height="475"/>](image.png)
-
+[<img src="images/project-architecture2.jpg" width="1000" height="475"/>](image.png)
 
 ### Functional requirements
 
 
-- As a primary user, I want to be able log-in, register and recover my account, so that I could safely interact with the project. ***FR1***
-- As a primary user, I want to add new graffiti information to our system or have existing graffiti information, so that I could share this information with the users. ***FR2***
-- As a primary user, I want to see graffiti information, so that I could see uploaded images of different users.  ***FR3***
-- As a primary user, I want to see graffiti information for one specific geographical location, so I would know all available information for a single graffiti.  ***FR4***
-- As a secondary user, I want to be able to manage user information, by removing user information, so I could prevent malicious data being stored.  ***FR5***
+- As a primary user, I want to add new graffiti information to our system or have existing graffiti information, so that I could share this information with the users. ***FR1***
+- As a primary user, I want to see graffiti information, so that I could see uploaded images of different users.  ***FR2***
+- As a primary user, I want to see graffiti information for one specific geographical location, so I would know all available information for a single graffiti.  ***FR3***
+- As a secondary user, I want to be able to manage user information, by removing user information, so I could prevent malicious data being stored.  ***FR4***
 
 <br>
 * - To this day, we don't know how we will compare graffiti images. One possibility would be to compare it using some machine vision algorithm and or it's meta-data.
@@ -143,10 +136,17 @@ Secondary user's interface requirements:
 - In the best-case scenario, the user will have a GUI where he can perform all the 
 actions described in functional requirements. ***EIR2***
 
-Hardware's interface requirements: <!--TODO: Update for phone? -->
-- Windows OS with network-adapter. ***HIR1***
-- Windows OS version that supports modern websites. ***HIR2***
-- Windows OS that supports Python 3 and Flask. ***HIR3***
+Hardware's interface requirements:
+- Linux OS with network-adapter. ***HIR1***
+- Linux OS version that supports modern websites. ***HIR2***
+- Linux OS that supports Python 3 and Flask. ***HIR3***
+
+Mobile's interface requirements:
+- Phone that has Android OS. ***HIR4***
+- Phone that has Android API Level 27 and higher. ***HIR5***
+- Phone that has access to the internet. ***HIR6***
+- Phone that has a camera. ***HIR7***
+- Phone that supports attaching metadata to images. ***HIR8***
 
 Software's interface requirements:
 - Allow HTTP messaging from and to the software. ***SIR1***
@@ -178,9 +178,11 @@ Software's interface requirements:
 ## Additional Information
 
 Our links:
-- GraffLib Project Vision can be found here: [link](https://miro.com/app/board/o9J_lyyCsbc=/).
-- GraffLib MVP can be found here: [link](https://miro.com/app/board/o9J_lws9LDk=/).
-- GraffLib Project Architecture can be found here: [link](https://miro.com/app/board/o9J_lvYW3C4=/).
+- GraffLib Project Vision can be found here: [link](https://miro.com/app/board/o9J_lyyCsbc=/?invite_link_id=262843621346).
+- GraffLib MVP can be found here: [link](https://miro.com/app/board/o9J_lws9LDk=/?invite_link_id=37621749983).
+- GraffLib Project Architecture can be found here: [link](https://miro.com/app/board/o9J_lvYW3C4=/?invite_link_id=886516147944).
+- Grafflib Android App Design can be found here: [link](https://miro.com/app/board/o9J_liMF5I0=/?invite_link_id=456606650408)
+
 
 External links:
 - Writing requirements specification - [link](https://www.perforce.com/blog/alm/how-write-software-requirements-specification-srs-document).
@@ -188,8 +190,14 @@ External links:
 
 ## Changelog
 
+### 2021-12-12
+- Removed some requirements.
+- Updated existing requirements.
+- Added mobile phone requirements.
+- Removed functional requirements.
+
 ### 2021-12-07
-- Updated requirements document to better suit the current situation
+- Updated requirements document to better suit the current situation.
 
 ### 2021-10-01
 - Updated requirements document according to the feedback received.
