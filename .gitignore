@@ -145,3 +145,5 @@ cython_debug/
 # Misc files
 .suo
 .rnd
+/src/GraffLibAPI/GraffLibAPI/obj/Any CPU/Debug/GraffLibAPI.pyproj.CoreCompileInputs.cache
+/src/GraffLibAPI/GraffLibAPI/obj/Any CPU/Debug/GraffLibAPI.pyproj.FileListAbsolute.txt

@@ -41,6 +41,7 @@ from GraffLibAPI.database.entities.marker.marker_metadata_entity import MarkerMe
 from GraffLibAPI.database.entities.marker.marker_location_entity import MarkerLocationEntity
 from GraffLibAPI.models.marker.marker_model import MarkerModel, MarkerModelSchema
 from GraffLibAPI.models.requests.update_image_graffiti_status_request import UpdateImageGraffitiStatusRequestSchema 
+from GraffLibAPI.controllers.markers_controller import delete_marker
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
@@ -68,6 +69,9 @@ def get_marker_images(marker_id):
             all()
 
         image_models = list(map(lambda image_entity: to_image_model(image_entity), marker_images))
+
+        if len(marker_images) is 0:
+            delete_marker(marker_id)
 
         return { "body": ImageModelSchema(many=True).dump(image_models) }, 200  
     except ValidationError as err:
@@ -259,9 +263,9 @@ def delete_specific_image_for_marker(image_id):
 
         if len(image_join) != 3 or image_location is None:
             return "Internal server errror.", 500
-    
+
+        get_marker_images(image.marker_id)
         # Order here is important because of FKs.
-        # TODO: [MARKER] Should we delete markers if no images exist on the marker?
 
         session.delete(image_join[2])
         session.delete(image_location)
