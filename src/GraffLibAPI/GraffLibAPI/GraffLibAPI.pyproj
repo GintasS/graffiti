@@ -75,6 +75,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\enums\marker_status.py" />
+    <Compile Include="GraffLibAPI\models\image\virus_scan.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\marker\marker_location_model.py" />
     <Compile Include="GraffLibAPI\database\entities\marker\marker_location_entity.py" />
     <Compile Include="GraffLibAPI\database\entities\marker\marker_entity.py" />

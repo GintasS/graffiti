@@ -10,6 +10,8 @@ import os.path as pathh
 from pathlib import Path
 from sqlalchemy import update, and_, or_, not_
 from marshmallow import ValidationError
+import requests
+import io
 
 # TODO: [CLEANING] Remove unused python libraries
 # TODO: [MAJOR REFACTORING] Move logic code to services.
@@ -41,6 +43,7 @@ from GraffLibAPI.database.entities.marker.marker_metadata_entity import MarkerMe
 from GraffLibAPI.database.entities.marker.marker_location_entity import MarkerLocationEntity
 from GraffLibAPI.models.marker.marker_model import MarkerModel, MarkerModelSchema
 from GraffLibAPI.models.requests.update_image_graffiti_status_request import UpdateImageGraffitiStatusRequestSchema 
+from GraffLibAPI.models.image.virus_scan import VirusScan
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
@@ -183,6 +186,18 @@ def create_marker_image(marker_id):
 
         # Save the image.
         save_file(file_bytes, directory, unique_image_name, file_extension)
+
+        #Virus scanning.
+        scanner = VirusScan("")
+        scanner.virus_scanning(directory, unique_image_name, file_extension)
+        if ("File is clean" in scanner.response)!= True:
+            return "The request could not be completed due to a conflict with the current state of the target resource.", 409
+
+        # Compress the image.
+        image_file_path = os.path.join(directory, unique_image_name + "." + file_extension)
+        picture = Image.open(image_file_path)
+        exif = picture.info['exif']
+        picture.save(image_file_path, quality = 50, optimize = False, exif = exif)
 
         # Create relashionships.
         image_location_model_object = ImageLocationModel(gps_coordinates)
