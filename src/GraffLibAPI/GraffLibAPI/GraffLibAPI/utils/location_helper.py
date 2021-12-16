@@ -14,15 +14,23 @@ def get_location_from_coordinates(latitude : Decimal, longitude : Decimal) -> st
         return None
     else:
         return location
-def get_short_address(address : dict) -> str:
+def parse_address(address : dict) -> str:
     # TODO: [REFACTORING] This will limit markers to city boundaries only. Refactor this (and endpoints) to include rural areas.
     if address.get("road") is None or\
-       address.get("house_number") is None or \
-       address.get("city") is None or \
-       address.get("country") is None:\
+       address.get("country") is None or\
+       (address.get("city") is None and\
+        address.get("town") is None):
         return None
 
-    return address["road"] + address["house_number"] + ", " + address["city"] + ", " + address["country"]
+    parsed_address = {
+        "road": address.get("road"),
+        "house_number": address.get("house_number"),
+        "city": address.get("town") if address.get("city") is None else address.get("city"),
+        "country": address.get("country"),
+    }
+
+    parsed_address["full_address"] = parsed_address["road"] + " " + parsed_address["house_number"] + ", " + parsed_address["city"] + ", " + parsed_address["country"]
+    return parsed_address
 
 def dms_to_dd(gps_coords, gps_coords_ref):
     d, m, s =  gps_coords
