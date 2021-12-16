@@ -1,5 +1,9 @@
 # Set base image (host OS)
-FROM python:3.7
+FROM python:3.7.12-buster
+
+# Set timezone for Europe/Vilnius.
+RUN cp /usr/share/zoneinfo/Europe/Vilnius /etc/localtime
+RUN echo "Europe/Vilnius" > /etc/timezone
 
 # By default, listen on port 8000
 EXPOSE 8000/tcp

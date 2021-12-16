@@ -41,6 +41,7 @@ from GraffLibAPI.database.entities.marker.marker_metadata_entity import MarkerMe
 from GraffLibAPI.database.entities.marker.marker_location_entity import MarkerLocationEntity
 from GraffLibAPI.models.marker.marker_model import MarkerModel, MarkerModelSchema
 from GraffLibAPI.models.requests.update_image_graffiti_status_request import UpdateImageGraffitiStatusRequestSchema 
+from GraffLibAPI.utils.virus_scan import *
 
 # A blueprint is an object very similar to a flask application object, but instead of creating a new one, 
 # it allows the extension of the current application.
@@ -78,8 +79,7 @@ def get_marker_images(marker_id):
 @blueprint_marker_images.route("/markers/<string:marker_id>/images", methods=["POST"])
 def create_marker_image(marker_id):
     try:
-        # Validation:
-            # TODO: [SECURITY] Check if file has a virus.								
+        # Validation:						
         # Status codes:
             # TODO: [FILE] [Partially done, checking the name] Check whether the user has a particular image.
         # File
@@ -123,6 +123,9 @@ def create_marker_image(marker_id):
         file_bytes = file_part.read()
         file_size = len(file_bytes) / 10000000
         file_name = file_part.filename.split(".")[0]
+
+        if is_virus(file_bytes) is True:
+            return "Image can't be uploaded, because of it's contents.", 409
 
         # Finding image with the same name.
         image_join = session.query(

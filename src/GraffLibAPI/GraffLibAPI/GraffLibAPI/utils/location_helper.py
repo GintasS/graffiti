@@ -4,8 +4,6 @@ from geopy.distance import great_circle
 from geoalchemy2.shape import to_shape
 from GraffLibAPI.configuration.constants import *
 
-# TODO: Nominatim FREE API is very unstable. Are there are any other free alternatives?
-
 def get_location_from_coordinates(latitude : Decimal, longitude : Decimal) -> str:
     geolocator = Nominatim(user_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148")
     location = geolocator.reverse(str(latitude) + ", " + str(longitude), language='en', addressdetails=True)

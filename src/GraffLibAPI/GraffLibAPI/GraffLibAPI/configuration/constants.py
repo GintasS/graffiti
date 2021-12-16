@@ -166,3 +166,11 @@ class Application:
         APP_URL = config.get("app", "DEV_URL")
     if Environment.CURRENT_ENVIRONMENT_NAME == "PROD":
         APP_URL = config.get("app", "PROD_URL")
+
+class VirusScan:
+    config = configparser.ConfigParser()
+    config.read(FilePath.APPSETTINGS_FILE_URI)
+    
+    APP_URL = config.get("virus-scan-credentials", "APP_URL")
+    APP_ID = config.get("virus-scan-credentials", "APP_ID")
+    APP_SECRET = config.get("virus-scan-credentials", "APP_SECRET_KEY")
