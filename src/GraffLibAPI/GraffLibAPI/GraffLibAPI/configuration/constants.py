@@ -167,6 +167,20 @@ class Application:
     if Environment.CURRENT_ENVIRONMENT_NAME == "PROD":
         APP_URL = config.get("app", "PROD_URL")
 
+class OnWaterApi:
+    def get_replaced_api_url(latitude, longitude):       
+        config = configparser.ConfigParser()
+        config.read(FilePath.APPSETTINGS_FILE_URI)
+
+        API_BASE_URL = config.get("onwater-api-credentials", "API_URL")
+        API_KEY = config.get("onwater-api-credentials", "API_KEY")
+
+        url = API_BASE_URL.replace("{latitude}", latitude) \
+            .replace("{longitude}", longitude) \
+            .replace("{access_token}", API_KEY)
+
+        return url
+
 class VirusScan:
     config = configparser.ConfigParser()
     config.read(FilePath.APPSETTINGS_FILE_URI)
