@@ -22,7 +22,7 @@ def parse_address(address : dict) -> str:
 
     parsed_address = {
         "road": address.get("road"),
-        "house_number": address.get("house_number"),
+        "house_number": "" if address.get("house_number") is None else address.get("house_number"),
         "city": address.get("town") if address.get("city") is None else address.get("city"),
         "country": address.get("country"),
     }
