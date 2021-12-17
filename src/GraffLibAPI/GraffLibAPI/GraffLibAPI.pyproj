@@ -17,7 +17,7 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>GraffLibAPI</Name>
     <RootNamespace>GraffLibAPI</RootNamespace>
-    <InterpreterId>MSBuild|grafflib-env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <WebBrowserPort>8000</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -208,6 +208,9 @@
     <Compile Include="GraffLibAPI\utils\user_helper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\utils\virus_scan.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\utils\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -294,10 +297,10 @@
     <Content Include="GraffLibAPI\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="grafflib-env\">
-      <Id>grafflib-env</Id>
+    <Interpreter Include="env\">
+      <Id>env</Id>
       <Version>3.7</Version>
-      <Description>grafflib-env (Python 3.7 (32-bit))</Description>
+      <Description>env (Python 3.7 (32-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
