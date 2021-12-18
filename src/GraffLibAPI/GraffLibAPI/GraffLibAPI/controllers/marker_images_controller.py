@@ -10,7 +10,8 @@ import os.path as pathh
 from pathlib import Path
 from sqlalchemy import update, and_, or_, not_
 from marshmallow import ValidationError
-
+import sys
+import traceback
 # TODO: [CLEANING] Remove unused python libraries
 # TODO: [MAJOR REFACTORING] Move logic code to services.
 # TODO: [MAJOR REFACTORING] Add tests for services.
@@ -159,7 +160,7 @@ def create_marker_image(marker_id):
             return "File type is wrong.", 415
         if request_mime_type.split("/")[1] != file_extension:
             return "File types don't match.", 415
-        if file_size > 100:
+        if file_size > 10:
             return "File size is too large", 413
         if file_metadata.has_exif == False:
             return "File metadata is missing.", 405
@@ -167,6 +168,9 @@ def create_marker_image(marker_id):
             return "File location data is missing.", 405
         
         gps_coordinates = None
+
+        print("EXIF DATA:")
+        print(file_metadata.get_all())
 
         if hasattr(file_metadata, "gps_latitude") != False and hasattr(file_metadata, "gps_longitude") != False:
             gps_coordinates = [ dms_to_dd(file_metadata.gps_latitude, file_metadata.gps_latitude_ref), dms_to_dd(file_metadata.gps_longitude, file_metadata.gps_longitude_ref) ]
@@ -197,9 +201,8 @@ def create_marker_image(marker_id):
         response = create_marker_image_response(unique_image_name, new_entities[0].graffiti_status, user_id, image_metadata_model_object, user_classification_model)
         
         return { "body": CreateMarkerImageResponseSchema().dump(response) }, 201
-    except ValidationError as err:
-        return jsonify(err.messages), 400
-    except:
+    except Exception as err:
+        traceback.print_exc()
         return "Internal server errror.", 500
 
 @blueprint_marker_images.route("/images/<string:image_id>/status/graffiti-status", methods=["PATCH"])
