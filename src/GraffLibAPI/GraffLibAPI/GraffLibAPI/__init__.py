@@ -11,6 +11,7 @@ from GraffLibAPI.controllers.city_markers_controller import blueprint_city_marke
 from GraffLibAPI.controllers.cities_controller import blueprint_cities as city_endpoints
 from GraffLibAPI.controllers.markers_controller import blueprint_markers as marker_endpoints
 from GraffLibAPI.controllers.marker_images_controller import blueprint_marker_images as marker_images_endpoints
+from GraffLibAPI.controllers.image_comparison_controller import blueprint_image_comparison as image_comparison_endpoints
 from GraffLibAPI.controllers.users_controller import blueprint_users as user_endpoints
 from GraffLibAPI.controllers.views_controller import blueprint_views as view_endpoints
 
@@ -23,6 +24,7 @@ app.register_blueprint(city_endpoints)
 app.register_blueprint(city_marker_endpoints)
 app.register_blueprint(marker_endpoints)
 app.register_blueprint(marker_images_endpoints)
+app.register_blueprint(image_comparison_endpoints)
 app.register_blueprint(user_endpoints)
 app.register_blueprint(view_endpoints)
 

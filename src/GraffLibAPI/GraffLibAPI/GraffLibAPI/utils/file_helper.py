@@ -18,6 +18,12 @@ def get_current_directory(marker_id : str) -> str:
 def create_user_image_directory_name():
     return token_urlsafe(16)
 
+def get_image_full_path(directory : str, image_unique_name : str, file_extension : str):
+    file_name_with_extension = image_unique_name + "." + file_extension
+    image_full_path = os.path.join(directory, file_name_with_extension)
+    
+    return image_full_path
+
 def create_directory_if_not_exists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
