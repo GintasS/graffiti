@@ -25,6 +25,10 @@
       "description": "Manage images for GIS markers."
     },
     {
+      "name": "Image Comparison",
+      "description": "Compare images."
+    },
+    {
       "name": "City markers",
       "description": "Manage markers for a particular city."
     },
@@ -35,8 +39,8 @@
 
   ],
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/users": {
@@ -671,6 +675,56 @@
       }
     },
 
+    "/images/{image-to-compare-id}/{image-to-compare-against-id}/comparison": {
+      "get": {
+        "tags": [
+          "Image Comparison"
+        ],
+        "summary": "Compare two images.",
+        "description": "",
+        "operationId": "compareTwoImages",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "image-to-compare-id",
+            "in": "path",
+            "description": "Image ID to compare.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image-to-compare-against-id",
+            "in": "path",
+            "description": "Image ID to compare against.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation."
+          },
+          "401": {
+            "description": "User is not authenticated."
+          },
+          "403": {
+            "description": "User is not authorized."
+          },
+          "404": {
+            "description": "Image was not found."
+          },
+          "409": {
+            "description": "Images can't be compared."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+
     "/images/{id}/status/graffiti-status": {
       "patch": {
         "tags": [
@@ -1287,6 +1341,15 @@
       "properties": {
         "city_name": {
           "type": "string"
+        }
+      }
+    },
+
+    "CompareTwoImagesResponse": {
+      "type": "object",
+      "properties": {
+        "similarity_index": {
+          "type": "integer"
         }
       }
     },
