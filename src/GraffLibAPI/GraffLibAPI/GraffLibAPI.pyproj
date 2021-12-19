@@ -17,7 +17,7 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>GraffLibAPI</Name>
     <RootNamespace>GraffLibAPI</RootNamespace>
-    <InterpreterId>MSBuild|grafflib-env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <WebBrowserPort>8000</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -75,6 +75,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\models\enums\marker_status.py" />
+    <Compile Include="GraffLibAPI\models\external\on_water_api_response.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\models\external\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\models\marker\marker_location_model.py" />
     <Compile Include="GraffLibAPI\database\entities\marker\marker_location_entity.py" />
     <Compile Include="GraffLibAPI\database\entities\marker\marker_entity.py" />
@@ -205,7 +211,13 @@
     <Compile Include="GraffLibAPI\utils\location_helper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\utils\on_water_api_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GraffLibAPI\utils\user_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraffLibAPI\utils\virus_scan.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraffLibAPI\utils\__init__.py">
@@ -227,6 +239,7 @@
     <Folder Include="GraffLibAPI\database\entities\user\" />
     <Folder Include="GraffLibAPI\models\" />
     <Folder Include="GraffLibAPI\models\enums\" />
+    <Folder Include="GraffLibAPI\models\external\" />
     <Folder Include="GraffLibAPI\models\image\" />
     <Folder Include="GraffLibAPI\models\marker\" />
     <Folder Include="GraffLibAPI\models\responses\" />
@@ -294,10 +307,10 @@
     <Content Include="GraffLibAPI\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="grafflib-env\">
-      <Id>grafflib-env</Id>
+    <Interpreter Include="env\">
+      <Id>env</Id>
       <Version>3.7</Version>
-      <Description>grafflib-env (Python 3.7 (32-bit))</Description>
+      <Description>env (Python 3.7 (32-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>

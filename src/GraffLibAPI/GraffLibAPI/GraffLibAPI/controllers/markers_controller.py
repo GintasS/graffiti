@@ -20,6 +20,10 @@ from GraffLibAPI.utils.location_helper import *
 from GraffLibAPI.mappings.mappings import *
 from GraffLibAPI.database.entities.city_entity import CityEntity, CityEntitySchema
 from GraffLibAPI.models.requests.update_marker_status_request import UpdateMarkerStatusRequest, UpdateMarkerStatusRequestSchema
+from GraffLibAPI.models.external.on_water_api_response import OnWaterApiResponse, OnWaterApiResponseSchema
+from GraffLibAPI.utils.on_water_api_helper import *
+
+
 
 blueprint_markers = Blueprint("api-markers", __name__, url_prefix="/v1/markers")
 
@@ -57,15 +61,26 @@ def create_marker():
 
         # Reverse engineer address from coordinates.
         location = get_location_from_coordinates(create_marker_request.coordinates[0], create_marker_request.coordinates[1])
+
+        if location is None:
+            return "Failed to get address from coordinates.", 409
+
         location_raw = location.raw["address"]
-        location_address = get_short_address(location_raw)
+        parsed_address = parse_address(location_raw)
 
-        if location is None or location_address is None:
-            return "Unable to get address from coordinates.", 409
+        if parsed_address is None:
+            return "Unable to parse address from coordinates.", 409
 
-        city = location_raw["city"].strip()
-        country = location_raw["country"].strip()
-        address = location_address.strip()
+        # Check if marker is on water or not.
+        on_water_api_request_text = create_on_water_api_request(str(create_marker_request.coordinates[0]), str(create_marker_request.coordinates[1]))
+        on_water_api_request_response = OnWaterApiResponseSchema().load(json.loads(on_water_api_request_text))
+
+        if on_water_api_request_response.water is True:
+            return "Marker can't be created on water.", 409
+
+        city = parsed_address["city"]
+        country = parsed_address["country"]
+        address = parsed_address["full_address"]
 
         found_city = session.query(CityEntity).\
             filter(

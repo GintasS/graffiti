@@ -61,13 +61,11 @@ class ImageValidation:
     IMAGE_ORIGINAL_NAME_VALIDATION_MSG = "Image original name must be between 1 and 100 characters."
 
     IMAGE_ALLOWED_EXTENSIONS = [
-      "jpeg", 
-      "png"
+      "jpeg"
     ]
 
     HTTP_REQUEST_MIME_TYPES = [
-      "image/jpeg",
-      "image/png"
+      "image/jpeg"
     ]
 
 class MarkerValidation:
@@ -93,7 +91,7 @@ class LocationValidation:
     COORDINATES_LIST_MAX_ELEMENTS = 2
     COORDINATES_VALIDATION_MSG = "Coordinates array must contain two elements, latitude and longitude."
 
-    NEW_MARKER_MIN_DISTANCE_BETWEEN_EXISTING_MARKER = 0.1
+    NEW_MARKER_MIN_DISTANCE_BETWEEN_EXISTING_MARKER = 0.05
 
 class MiscValidation:
     DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
@@ -166,3 +164,25 @@ class Application:
         APP_URL = config.get("app", "DEV_URL")
     if Environment.CURRENT_ENVIRONMENT_NAME == "PROD":
         APP_URL = config.get("app", "PROD_URL")
+
+class OnWaterApi:
+    def get_replaced_api_url(latitude, longitude):       
+        config = configparser.ConfigParser()
+        config.read(FilePath.APPSETTINGS_FILE_URI)
+
+        API_BASE_URL = config.get("onwater-api-credentials", "API_URL")
+        API_KEY = config.get("onwater-api-credentials", "API_KEY")
+
+        url = API_BASE_URL.replace("{latitude}", latitude) \
+            .replace("{longitude}", longitude) \
+            .replace("{access_token}", API_KEY)
+
+        return url
+
+class VirusScan:
+    config = configparser.ConfigParser()
+    config.read(FilePath.APPSETTINGS_FILE_URI)
+    
+    APP_URL = config.get("virus-scan-credentials", "APP_URL")
+    APP_ID = config.get("virus-scan-credentials", "APP_ID")
+    APP_SECRET = config.get("virus-scan-credentials", "APP_SECRET_KEY")
