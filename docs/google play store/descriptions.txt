@@ -1,0 +1,24 @@
+This is the Grafflib. An app, where you can discover various graffitis around the world.
+
+WHAT IS A GRAFFITI
+Graffiti (both singular and plural; the singular graffito is rarely used except in archeology) is writing or drawings made on a wall or other surface, usually without permission and within public view. Graffiti ranges from simple written words to elaborate wall paintings, and has existed since ancient times, with examples dating back to ancient Egypt, ancient Greece, and the Roman Empire.
+
+LIMITATIONS
+Currently, only Vilnius city is supported.
+
+FEATURES
+- View existing graffiti markers in your city.
+- View graffiti images.
+- Create a new graffiti marker.
+- Upload a graffiti image for the marker.
+
+CREDITS
+This app was created by Gintautas Švedas, Mantas Mažvila, Ivan Voroncov.
+The creation of this app was supported by Vilnius University's PBL program.
+
+
+Grafflib
+====
+Grafflib allows users to discover graffiti images in cities.
+====
+
