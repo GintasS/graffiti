@@ -47,6 +47,7 @@
     <Compile Include="GraffLibAPI\controllers\city_markers_controller.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\controllers\image_comparison_controller.py" />
     <Compile Include="GraffLibAPI\controllers\marker_images_controller.py">
       <SubType>Code</SubType>
     </Compile>
@@ -179,6 +180,7 @@
     <Compile Include="GraffLibAPI\models\requests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\models\responses\compare_two_images_response.py" />
     <Compile Include="GraffLibAPI\models\responses\create_marker_image_response.py" />
     <Compile Include="GraffLibAPI\models\responses\create_user_response.py">
       <SubType>Code</SubType>
@@ -196,6 +198,7 @@
     <Compile Include="GraffLibAPI\models\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\utils\compare_image_helper.py" />
     <Compile Include="GraffLibAPI\utils\datetime_parser.py">
       <SubType>Code</SubType>
     </Compile>

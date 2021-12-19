@@ -1,4 +1,3 @@
-from cv2 import cv2
 import logging
 logger = logging.getLogger()
 
