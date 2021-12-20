@@ -145,3 +145,4 @@ cython_debug/
 # Misc files
 .suo
 .rnd
+/src/GraffLibAPI/.vs/GraffLibAPI/v16/TestStore/0/000.testlog

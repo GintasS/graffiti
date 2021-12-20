@@ -190,6 +190,12 @@
     <Compile Include="GraffLibAPI\models\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraffLibAPI\test\test_datetime_parser.py" />
+    <Compile Include="GraffLibAPI\test\test_email_sender_helper.py" />
+    <Compile Include="GraffLibAPI\test\test_file_helper.py" />
+    <Compile Include="GraffLibAPI\test\test_image_helper.py" />
+    <Compile Include="GraffLibAPI\test\test_location_helper.py" />
+    <Compile Include="GraffLibAPI\test\__init__.py" />
     <Compile Include="GraffLibAPI\utils\datetime_parser.py">
       <SubType>Code</SubType>
     </Compile>
@@ -238,6 +244,11 @@
     <Folder Include="GraffLibAPI\static\scripts\custom scripts\" />
     <Folder Include="GraffLibAPI\templates\email-templates\" />
     <Folder Include="GraffLibAPI\templates\password-recovery\" />
+    <Folder Include="GraffLibAPI\test\" />
+    <Folder Include="GraffLibAPI\test\.pytest_cache\" />
+    <Folder Include="GraffLibAPI\test\.pytest_cache\v\" />
+    <Folder Include="GraffLibAPI\test\.pytest_cache\v\cache\" />
+    <Folder Include="GraffLibAPI\test\__pycache__\" />
     <Folder Include="GraffLibAPI\utils\" />
     <Folder Include="GraffLibAPI\services\" />
     <Folder Include="GraffLibAPI\static\" />
@@ -271,6 +282,15 @@
     <Content Include="GraffLibAPI\static\swagger.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="GraffLibAPI\test\.pytest_cache\.gitignore" />
+    <Content Include="GraffLibAPI\test\.pytest_cache\CACHEDIR.TAG" />
+    <Content Include="GraffLibAPI\test\.pytest_cache\README.md" />
+    <Content Include="GraffLibAPI\test\.pytest_cache\v\cache\lastfailed" />
+    <Content Include="GraffLibAPI\test\.pytest_cache\v\cache\nodeids" />
+    <Content Include="GraffLibAPI\test\.pytest_cache\v\cache\stepwise" />
+    <Content Include="GraffLibAPI\test\__pycache__\datetime_parser_test.cpython-310.pyc" />
+    <Content Include="GraffLibAPI\test\__pycache__\test_datetime_parser.cpython-310.pyc" />
+    <Content Include="GraffLibAPI\test\__pycache__\__init__.cpython-310.pyc" />
     <Content Include="requirements.txt" />
     <Content Include="GraffLibAPI\static\content\site.css" />
     <Content Include="GraffLibAPI\static\fonts\glyphicons-halflings-regular.eot" />
