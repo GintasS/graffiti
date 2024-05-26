@@ -14,31 +14,35 @@
 - **Hosting**: the application is currently hosted on the Google Cloud. Previously, I have tried running it on the AWS.
 
 ## Demo
-Check out our [live demo](#) to see GraffLib in action.
+Back-end: [live demo](https://grafflibapi-7qcob53xgq-ew.a.run.app/)<br>
+Front-end: [Android APK](https://play.google.com/store/apps/details?id=com.company.grafflib)<br>
+Presentation: [PDF](https://gsvedas.me/Grafflib_presentation.pdf)
 
-## Installation
-To get started with GraffLib, follow these simple steps:
-
-### Prerequisites
+## Prerequisites
 - Python 3.9
 - requirements.txt
 - Android (for running front-end)
 - Web brwoser/Postman for calling API endpoints;
 
+## Media
+TBD
+
+## Installation
+To get started with GraffLib, follow these simple steps:
+
 ### Steps
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/grafflib.git
+    git clone [https://github.com/gintass/grafflib.git](https://github.com/GintasS/graffiti.git)
     ```
 2. **Navigate to the project directory:**
     ```bash
-    cd src\GraffLibAPI\GraffLibAPI
+    cd \ROOT PROJECT PATH\src\GraffLibAPI\GraffLibAPI
     ```
 3. **Install dependencies:**
     ```bash
     pip install -r requirements.txt
-    ```
-    
+    ```    
 4. **Start the development server:**
     ```bash
    python runserver.py
