@@ -25,7 +25,10 @@ Presentation: [PDF](https://gsvedas.me/Grafflib_presentation.pdf)
 - Web brwoser/Postman for calling API endpoints;
 
 ## Media
-TBD
+<img src="docs/images/1.jpg" alt="alt text" width="200"/>
+<img src="docs/images/2.jpg" alt="alt text" width="200"/>
+<img src="docs/images/3.jpg" alt="alt text" width="200"/>
+<img src="docs/images/4.jpg" alt="alt text" width="200"/>
 
 ## Installation
 To get started with GraffLib, follow these simple steps:
@@ -33,7 +36,7 @@ To get started with GraffLib, follow these simple steps:
 ### Steps
 1. **Clone the repository:**
     ```bash
-    git clone [https://github.com/gintass/grafflib.git](https://github.com/GintasS/graffiti.git)
+    git clone https://github.com/gintass/grafflib.git
     ```
 2. **Navigate to the project directory:**
     ```bash
