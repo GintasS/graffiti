@@ -45,13 +45,20 @@ To get started with GraffLib, follow these simple steps:
 3. **Install dependencies:**
     ```bash
     pip install -r requirements.txt
-    ```    
-4. **Start the development server:**
+    ```
+4. **Edit these configuration files:**<br>
+    appsettings.ini<br>
+    dbsettings.ini<br>
+    environment.ini<br>
+
+    Search for every **ENTER_YOUR** prefix in these three .ini files, to replace strings with your data.
+  
+6. **Start the development server:**
     ```bash
    python runserver.py
     ```
 ## Usage
-After installing and setting up GraffLib, you can access the application at `http://localhost:8080`. Here are some basic instructions to get you started:
+After running the **runserver.py** script, the application can be reached at `http://localhost:8080`.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
