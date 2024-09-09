@@ -18,6 +18,17 @@ GraffLib offers a powerful Android application that allows users to interact wit
 The Restful API is a core component of GraffLib, enabling seamless integration with various platforms, including web, mobile, and desktop applications. The API provides endpoints for all major functionalities, such as graffiti cataloging, image uploads, and geographic data handling.
 </p>
 
+## <a name="Features"></a>Features
+<ul>
+  <li><b>Graffiti Cataloging:</b> Easily catalog graffiti art by taking photos and uploading them to the platform.</li>
+  <li><b>Map Integration:</b> Mark the locations of graffiti on an interactive map, restricted to whitelisted cities.</li>
+  <li><b>Temporal Gallery:</b> View the evolution of graffiti spots over time through a temporal gallery feature.</li>
+  <li><b>Restful API:</b> Seamlessly integrate with various platforms using the provided Restful API.</li>
+  <li><b>Security:</b> Ensure the security of uploaded content by scanning files and URLs for viruses using VirusTotal.</li>
+  <li><b>Geocoding:</b> Convert addresses into geographic coordinates and vice versa using Nominatim.</li>
+  <li><b>Water Body Identification:</b> Enhance the categorization of graffiti locations by identifying water bodies in images using the IsItWater API.</li>
+</ul>
+
 ## <a name="Technologies"></a>Technologies 
 
 | Technology Stack | Description |
