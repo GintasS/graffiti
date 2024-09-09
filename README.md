@@ -1,68 +1,46 @@
-# **GraffLib**
+<div align="center">
+  <h2>GraffLib</h2>
+</div>
 
-## Overview
-**GraffLib** is a comprehensive application designed to catalog and explore graffiti art across urban environments. It serves as a temporal gallery and a tool for searching similar graffiti. With a combination of graffiti and library functionalities, GraffLib aims to capture the beauty and dynamics of graffiti in cities.
+## Jump to...
 
-## Features
-- **Graffiti Cataloging:** Easily create, organize, and search graffiti artworks.
-- **Temporal Gallery:** Visualize the changes in graffiti spots over time.
-- **Users system** The project contains a basic user system: registering and changing of the password.
-- **Rest API:** An extensive API designed to easily integrate with different platforms and apps (Web, Apps, Desktop).
-- **Front-end support:** Available on the Android OS.
-- **GIS support:"** You can mark Graffiti images on the Google Maps (only whitelisted cities are allowed).
-- **3rd party APIs** The project uses 3rd party APIs (Nominatim, IsItWater, VirusTotal).
-- **Database**: a lot of user data, markers, metadata are saved in the PostgreSQL DB.
-- **Hosting**: the application is currently hosted on the Google Cloud. Previously, I have tried running it on the AWS.
+  - [Intro](#intro)
+  - [Features](#features)
+  - [Technologies](#technologies)
+  - [Media](#media)
 
-## Demo
-Back-end: [live demo](https://grafflibapi-7qcob53xgq-ew.a.run.app/)<br>
-Front-end: [Android APK](https://play.google.com/store/apps/details?id=com.company.grafflib)<br>
-Presentation: [PDF](https://gsvedas.me/Grafflib_presentation.pdf)
+## <a name="Intro"></a>Intro
 
-## Prerequisites
-- Python 3.9
-- requirements.txt
-- Android (for running front-end)
-- Web brwoser/Postman for calling API endpoints;
+<p>GraffLib is a comprehensive application designed to catalog and explore graffiti art across urban environments. It serves as a temporal gallery and a tool for searching similar graffiti. With a combination of graffiti and library functionalities, GraffLib aims to capture the beauty and dynamics of graffiti in cities.
 
-## Media
+GraffLib offers a powerful Android application that allows users to interact with the platform on the go. The Android app provides a user-friendly interface to catalog, explore, and search for graffiti art. Users can take photos of graffiti, upload them to the platform, and mark their locations on the map. The app also supports viewing the temporal gallery, allowing users to see how graffiti spots evolve over time. Additionally, users can manage their profiles, view their contributions, and interact with other graffiti enthusiasts through the app.
+
+The Restful API is a core component of GraffLib, enabling seamless integration with various platforms, including web, mobile, and desktop applications. The API provides endpoints for all major functionalities, such as graffiti cataloging, image uploads, and geographic data handling.
+</p>
+
+## <a name="Technologies"></a>Technologies 
+
+| Technology Stack | Description |
+| ---------------- | ----------- |
+| **Python** | The core backend logic and data processing are implemented using Python, leveraging its extensive libraries and frameworks. |
+| **Restful API** | The application provides a Restful API to facilitate seamless integration with various platforms, including web, mobile, and desktop applications. |
+| **Flask** | A lightweight WSGI web application framework in Python, used to build the backend of the application. |
+| **Swagger** | Integrated Swagger for API documentation, providing an interactive interface to explore and test the API endpoints. |
+| **Docker** | Used to containerize the application, ensuring consistency across different environments and simplifying deployment. |
+| **AWS Lightsail** | Previously used for hosting the application, providing a simple and cost-effective way to deploy and manage the application. |
+| **Google Maps** | Integrated with Google Maps to allow users to mark graffiti images on the map, restricted to whitelisted cities. |
+| **Android** | The front-end of the application is developed for the Android OS, providing a user-friendly interface for mobile users. |
+| **Marshmallow** | A library for object serialization and deserialization, used to convert complex data types to and from Python data types. |
+| **GeoAlchemy2** | An extension of SQLAlchemy, designed to support spatial databases like PostGIS, enabling advanced geographic queries and operations. |
+| **PostgreSQL** | A robust and scalable relational database system used to store user data, markers, and metadata. |
+| **PostGIS** | An extension of PostgreSQL that adds support for geographic objects, enabling spatial queries and GIS functionalities. |
+| **Nominatim** | Utilized for geocoding and reverse geocoding, converting addresses into geographic coordinates and vice versa. |
+| **VirusTotal** | A third-party API used to scan and analyze files and URLs for viruses, ensuring the security of uploaded content. |
+| **IsItWater** | A third-party API that helps in identifying water bodies in images, enhancing the categorization of graffiti locations. |
+
+## <a name="Media"></a>Media
+
 <img src="docs/images/1.jpg" alt="alt text" width="200"/>
 <img src="docs/images/2.jpg" alt="alt text" width="200"/>
 <img src="docs/images/3.jpg" alt="alt text" width="200"/>
 <img src="docs/images/4.jpg" alt="alt text" width="200"/>
-
-## Installation
-To get started with GraffLib, follow these simple steps:
-
-### Steps
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/gintass/grafflib.git
-    ```
-2. **Navigate to the project directory:**
-    ```bash
-    cd \ROOT PROJECT PATH\src\GraffLibAPI\GraffLibAPI
-    ```
-3. **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. **Edit these configuration files:**<br>
-    appsettings.ini<br>
-    dbsettings.ini<br>
-    environment.ini<br>
-
-    Search for every **ENTER_YOUR** prefix in these three .ini files, to replace strings with your data.
-  
-6. **Start the development server:**
-    ```bash
-   python runserver.py
-    ```
-## Usage
-After running the **runserver.py** script, the application can be reached at `http://localhost:8080`.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-For any questions or suggestions, feel free to reach out to us at [svedgintas@gmail.com](mailto:svedgintas@gmail.com).
